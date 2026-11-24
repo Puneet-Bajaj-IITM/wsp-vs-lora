@@ -1,0 +1,51 @@
+\section{Background and related work}
+
+Weight-space programming sits between two older ways of changing a model. Knowledge editing writes specific facts into the weights with closed-form updates. Fine-tuning changes behaviour broadly through gradient descent. Our question is which of the two programming behaves like, and when.
+
+\paragraph{Weight-space programming.} \citet{takehi2026sparks} introduced the setting. A frontier model, the \emph{programmer}, gets read and write access to a network's weights and a small budget of forward passes, and must change its behaviour without gradient descent. Their experiments range from identifying a network's training data from its weights, to writing small policy networks from scratch, to repairing Qwen3.5-0.8B's reasoning loops by ablating one direction in the MLPs of layers 15 and 19. Notably, the same programmer could not improve Gemma~3 270M, a model that rarely looped. That is an early hint that programming works best where a specific failure exists to be fixed.
+
+\paragraph{Follow-up work.} Several studies have since extended the idea:
+\begin{itemize}
+  \item \citet{hu2026exploring} ran 16 editing trajectories on Qwen3.5-0.8B and 9B, with embeddings, final norm and output head frozen.
+  \begin{itemize}
+    \item They found large, localised gains on some benchmarks, mostly from suppressing failure behaviours such as reasoning loops, and no validated improvement in 6 of 16 trajectories.
+    \item Their cross-task tests found mostly positive transfer, with some unquantified regressions.
+    \item Gains were largest where the base model was weakest.
+  \end{itemize}
+  \item \citet{varam2026mixed} report that programmers can write biosignal classifiers from scratch with far fewer training subjects than gradient descent needs, but cannot improve classifiers that are already well trained.
+  \item \citet{lehmann2026compiling} has programmers write game-playing networks from scratch out of a simulator's source code.
+  \begin{itemize}
+    \item The written weights look like programs, mostly exact zeros and small integers, and beat learners that only see example levels.
+    \item They are fragile: weight noise the size of one gradient step removes most of their success, and gradient training cannot improve them.
+    \item When asked to repair trained networks, the strongest writers rebuilt them almost entirely, while Claude Opus 5.5 made small edits that never surpassed the original.
+  \end{itemize}
+  \item \citet{salloum2026treeising} recast the Qwen3.5 repair as discrete optimisation over weight bits, with no language model involved.
+  \item \citet{ahmed2026memorization} argue that an LLM's reading of weights relies on local arithmetic plus memorised dataset priors.
+  \item \citet{goworek2026replicating} reproduce the original writing and reading experiments and conclude that current writing amounts to compiling hand-designed programs.
+\end{itemize}
+Closest to our work, \citet{yang2026writing} compare one published patch (the Qwen3.5-0.8B loop repair) with LoRA on spatial reasoning. LoRA reached near-ceiling target accuracy but broke two neighbouring distance tasks that the patch preserved, whether the adapter was trained from the base model or on top of the patch. They conclude that written edits disturb less, and leave broader capability checks and the combination of the two methods open. We differ in four ways:
+\begin{itemize}
+  \item 20 independent programmer runs under one brief, 18 of them audited, instead of one reused patch;
+  \item tasks that vary how much of the needed knowledge the model already has;
+  \item general-ability measures (MMLU, next-token accuracy, an unrelated task) alongside the target task;
+  \item a test of programming as a starting point for fine-tuning at a matched budget, in the cases where fine-tuning alone fails.
+\end{itemize}
+
+Several findings of these follow-up studies line up with ours:
+\begin{itemize}
+  \item \textbf{Program-like weights.} Lehmann's program-like written weights match what we call compiling. He uses the word for turning known rules into a new network; we use it for writing label-derived tables into an existing pretrained model.
+  \item \textbf{Redirection.} Hu et al.'s gains came mostly from suppressing a failure, which is our redirect regime.
+  \item \textbf{Already-trained models.} Their failures, and Varam et al.'s, came on models with no identifiable failure or already well trained, which resembles our learn regime.
+  \item \textbf{Programmer styles.} Lehmann's contrast between writers who rebuild a network and Opus 5.5's small edits parallels our own split between Fable's bypass circuits and Opus's through edits.
+  \item \textbf{Transfer.} Hu et al.'s mostly positive transfer came from small edits to frozen-output models, which is consistent with our finding that edits working through the network leave other abilities intact.
+\end{itemize}
+
+\paragraph{Knowledge editing.} ROME~\citep{meng2022rome} and MEMIT~\citep{meng2023memit} locate factual associations in mid-layer MLPs. They insert new associations with closed-form updates, treating the MLP as a key--value store. Those methods compute the update with a solver and, in ROME's case, an optimised value vector. One of our programmers independently built a similar key--value memory from activation statistics alone. Our setting differs in that the programmer must also discover the mechanism and choose where to write, with a small pass budget.
+
+\paragraph{Parameter-efficient fine-tuning.} LoRA~\citep{hu2022lora} trains low-rank updates to the attention and MLP projections and is our gradient baseline. Fine-tuned models need many repetitions to store new facts in a form that survives rephrasing~\citep{allenzhu2023physics}; we see the same effect in our facts task (Section~\ref{sec:compile}).
+
+\paragraph{Probing.} Linear probes~\citep{alain2016probes} measure what information is linearly decodable from a representation. We use a probe at the answer position as a cheap measure of how much of each task's answer the base model already encodes. Section~\ref{sec:discussion} discusses what such a probe misses.
+
+\paragraph{Label remapping.} Models can be asked to answer with flipped or arbitrary labels, and larger models override their semantic priors more easily~\citep{wei2023larger}. Our inverted SST-5 task applies the same idea to a single fixed prompt. The model is never told the labels are mirrored, so any fix has to come from the weights.
+
+\paragraph{Simulating survey respondents.} Twin-2K-500~\citep{toubia2025twin} pairs a large battery of survey answers from 2,058 US respondents with LLM-simulated ``digital twins''. We use it as a task where the needed knowledge is about individuals, which a small model mostly does not have.

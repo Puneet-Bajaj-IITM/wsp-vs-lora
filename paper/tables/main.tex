@@ -1,0 +1,39 @@
+\begin{tabular}{llllr}
+\toprule
+Method & Programmer & Test acc. [95\% CI] & Test NLL & Dev acc. \\
+\midrule
+\multicolumn{5}{l}{\textit{SST-5}} \\
+Base & -- & 44.9 \tiny[42.8, 46.9] & 3.19 & 42.3 \\
+Label prior & -- & 23.1 \tiny[21.4, 24.8] & 1.58 & 25.3 \\
+LoRA & -- & 59.0 \tiny[57.0, 61.1] & 0.93 & 57.4 \\
+WSP r1 & Fable & 47.3 \tiny[45.2, 49.2] & 1.25 & 47.4 \\
+WSP r4 & Fable & 48.0 \tiny[45.9, 50.0] & 1.26 & 46.1 \\
+WSP r5 & Fable & 46.7 \tiny[44.5, 48.8] & 1.27 & 46.0 \\
+WSP o1 & Opus & \multicolumn{3}{l}{no edit beat base} \\
+\multicolumn{5}{l}{\textit{SST-5 inverted}} \\
+Base & -- & 4.0 \tiny[3.2, 4.8] & 9.59 & 5.0 \\
+Label prior & -- & 23.1 \tiny[21.4, 24.8] & 1.58 & 25.3 \\
+LoRA & -- & 49.3 \tiny[47.2, 51.4] & 1.08 & 49.8 \\
+WSP r1 & Fable & 46.4 \tiny[44.3, 48.5] & 1.26 & 48.1 \\
+WSP r2 & Fable & 46.2 \tiny[44.1, 48.3] & 1.26 & 44.2 \\
+WSP r3 & Fable & 48.1 \tiny[46.0, 50.1] & 1.23 & 48.4 \\
+WSP o1 & Opus & 45.7 \tiny[43.7, 47.7] & 1.24 & 44.8 \\
+\multicolumn{5}{l}{\textit{Twin-2K}} \\
+Base & -- & 30.9 \tiny[29.4, 32.4] & 2.60 & 29.4 \\
+Label prior & -- & 47.1 \tiny[45.4, 48.6] & 1.29 & 47.8 \\
+LoRA & -- & 42.8 \tiny[41.2, 44.4] & 1.36 & 40.6 \\
+WSP r1 & Fable* & 32.8 \tiny[31.3, 34.2] & 1.51 & 33.2 \\
+WSP r2 & Fable & 45.0 \tiny[43.4, 46.6] & 1.38 & 45.8 \\
+WSP o1 & Opus & 31.9 \tiny[30.4, 33.3] & 1.52 & 31.7 \\
+WSP p1 & Fable, preserve & 35.2 \tiny[33.7, 36.8] & 2.90 & 35.0 \\
+\multicolumn{5}{l}{\textit{Fictional facts}} \\
+Base & -- & 21.1 \tiny[18.4, 23.7] & 3.46 & 19.4 \\
+Label prior & -- & 27.4 \tiny[24.6, 30.4] & 1.59 & 24.1 \\
+LoRA & -- & 98.8 \tiny[98.0, 99.4] & 0.10 & 99.2 \\
+WSP r1 & Fable & 100.0 \tiny[100.0, 100.0] & 0.00 & 100.0 \\
+WSP r2 & Fable & 100.0 \tiny[100.0, 100.0] & 0.01 & 100.0 \\
+WSP r4 & Fable & 100.0 \tiny[100.0, 100.0] & 0.00 & 100.0 \\
+WSP o1 & Opus & 76.9 \tiny[74.0, 79.4] & 1.03 & 73.0 \\
+WSP p1 & Fable, preserve & 25.0 \tiny[22.2, 27.7] & 2.81 & 25.2 \\
+\bottomrule
+\end{tabular}

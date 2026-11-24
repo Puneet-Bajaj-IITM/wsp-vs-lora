@@ -1,0 +1,736 @@
+{
+ "prices_per_million": {
+  "claude-fable-5-2": {
+   "input": 8.0,
+   "output": 40.0,
+   "cache_read": 0.2
+  },
+  "claude-fable-5-1": {
+   "input": 10.0,
+   "output": 50.0,
+   "cache_read": 1.0
+  },
+  "claude-opus-5-5": {
+   "input": 4.0,
+   "output": 20.0,
+   "cache_read": 0.2
+  }
+ },
+ "cache_write_multiplier": 1.25,
+ "runs": [
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "o1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.18,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 34,
+    "output_tokens": 12364,
+    "cache_creation_input_tokens": 117077,
+    "cache_read_input_tokens": 1731151
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "o1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 56.12,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 674,
+    "output_tokens": 245912,
+    "cache_creation_input_tokens": 8246469,
+    "cache_read_input_tokens": 49823166
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "p1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 6.63,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 188,
+    "output_tokens": 78053,
+    "cache_creation_input_tokens": 391262,
+    "cache_read_input_tokens": 15583921
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "p1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 364.24,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 764,
+    "output_tokens": 959294,
+    "cache_creation_input_tokens": 31199634,
+    "cache_read_input_tokens": 69319952
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.24,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 24,
+    "output_tokens": 12836,
+    "cache_creation_input_tokens": 155981,
+    "cache_read_input_tokens": 1030083
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 32.31,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 106,
+    "output_tokens": 300421,
+    "cache_creation_input_tokens": 1880625,
+    "cache_read_input_tokens": 7430408
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r2",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.4,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 20,
+    "output_tokens": 8264,
+    "cache_creation_input_tokens": 217578,
+    "cache_read_input_tokens": 730087
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r2",
+   "role": "programmer",
+   "transcripts": 2,
+   "usd": 45.27,
+   "models": {
+    "claude-fable-5-2": 2
+   },
+   "tokens": {
+    "input_tokens": 138,
+    "output_tokens": 297772,
+    "cache_creation_input_tokens": 3180481,
+    "cache_read_input_tokens": 7760451
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r3",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 43.55,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 156,
+    "output_tokens": 283127,
+    "cache_creation_input_tokens": 3017681,
+    "cache_read_input_tokens": 10220856
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r4",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 4.4,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 134,
+    "output_tokens": 55662,
+    "cache_creation_input_tokens": 287944,
+    "cache_read_input_tokens": 9216374
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "facts",
+   "run": "r4",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 39.12,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 250,
+    "output_tokens": 442854,
+    "cache_creation_input_tokens": 1460193,
+    "cache_read_input_tokens": 34009429
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "o1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 35.4,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 666,
+    "output_tokens": 232832,
+    "cache_creation_input_tokens": 3725046,
+    "cache_read_input_tokens": 60589585
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.82,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 32,
+    "output_tokens": 11322,
+    "cache_creation_input_tokens": 258191,
+    "cache_read_input_tokens": 1531522
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 48.57,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 210,
+    "output_tokens": 213804,
+    "cache_creation_input_tokens": 3717857,
+    "cache_read_input_tokens": 14167657
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r2",
+   "role": "programmer",
+   "transcripts": 2,
+   "usd": 34.84,
+   "models": {
+    "claude-fable-5-2": 2
+   },
+   "tokens": {
+    "input_tokens": 120,
+    "output_tokens": 132651,
+    "cache_creation_input_tokens": 2865385,
+    "cache_read_input_tokens": 4406662
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r3",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 30.79,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 120,
+    "output_tokens": 107240,
+    "cache_creation_input_tokens": 2552611,
+    "cache_read_input_tokens": 4856769
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r4",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 3.94,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 86,
+    "output_tokens": 42355,
+    "cache_creation_input_tokens": 391020,
+    "cache_read_input_tokens": 5676711
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r4",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 19.87,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 430,
+    "output_tokens": 195480,
+    "cache_creation_input_tokens": 533901,
+    "cache_read_input_tokens": 33535737
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r5",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 4.72,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 114,
+    "output_tokens": 52420,
+    "cache_creation_input_tokens": 409413,
+    "cache_read_input_tokens": 8097162
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5",
+   "run": "r5",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 86.41,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 576,
+    "output_tokens": 194992,
+    "cache_creation_input_tokens": 7076555,
+    "cache_read_input_tokens": 39207554
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "o1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.23,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 38,
+    "output_tokens": 15064,
+    "cache_creation_input_tokens": 114615,
+    "cache_read_input_tokens": 1790219
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "o1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 30.83,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 702,
+    "output_tokens": 160594,
+    "cache_creation_input_tokens": 3233524,
+    "cache_read_input_tokens": 57246249
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "r1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.65,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 30,
+    "output_tokens": 12869,
+    "cache_creation_input_tokens": 229491,
+    "cache_read_input_tokens": 1209419
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "r1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 15.93,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 78,
+    "output_tokens": 99114,
+    "cache_creation_input_tokens": 1121761,
+    "cache_read_input_tokens": 3726515
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "r2",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.22,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 22,
+    "output_tokens": 7495,
+    "cache_creation_input_tokens": 183193,
+    "cache_read_input_tokens": 766024
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "r2",
+   "role": "programmer",
+   "transcripts": 2,
+   "usd": 20.2,
+   "models": {
+    "claude-fable-5-2": 2
+   },
+   "tokens": {
+    "input_tokens": 122,
+    "output_tokens": 79328,
+    "cache_creation_input_tokens": 1608341,
+    "cache_read_input_tokens": 4722415
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "r3",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.24,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 16,
+    "output_tokens": 7139,
+    "cache_creation_input_tokens": 198517,
+    "cache_read_input_tokens": 533965
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "sst5inv",
+   "run": "r3",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 24.87,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 122,
+    "output_tokens": 67742,
+    "cache_creation_input_tokens": 2120577,
+    "cache_read_input_tokens": 4784237
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "o1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 0.98,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 28,
+    "output_tokens": 8990,
+    "cache_creation_input_tokens": 107826,
+    "cache_read_input_tokens": 1307174
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "o1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 28.07,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 514,
+    "output_tokens": 210900,
+    "cache_creation_input_tokens": 3125322,
+    "cache_read_input_tokens": 41122049
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "p1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 6.21,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 182,
+    "output_tokens": 63846,
+    "cache_creation_input_tokens": 440720,
+    "cache_read_input_tokens": 13666767
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "p1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 102.64,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 776,
+    "output_tokens": 355851,
+    "cache_creation_input_tokens": 7244263,
+    "cache_read_input_tokens": 79795467
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "r1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 84.68,
+   "models": {
+    "claude-fable-5-1": 1
+   },
+   "tokens": {
+    "input_tokens": 4737,
+    "output_tokens": 328181,
+    "cache_creation_input_tokens": 3331796,
+    "cache_read_input_tokens": 26576690
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "r2",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 1.65,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 36,
+    "output_tokens": 11554,
+    "cache_creation_input_tokens": 217664,
+    "cache_read_input_tokens": 1644506
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "r2",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 76.0,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 288,
+    "output_tokens": 506630,
+    "cache_creation_input_tokens": 4837294,
+    "cache_read_input_tokens": 36773965
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "r3",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 53.37,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 166,
+    "output_tokens": 184204,
+    "cache_creation_input_tokens": 4410254,
+    "cache_read_input_tokens": 9495561
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "r4",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 14.14,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 272,
+    "output_tokens": 208969,
+    "cache_creation_input_tokens": 731394,
+    "cache_read_input_tokens": 31493366
+   }
+  },
+  {
+   "model": "qwen",
+   "task": "twin",
+   "run": "r4",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 40.99,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 544,
+    "output_tokens": 469605,
+    "cache_creation_input_tokens": 742863,
+    "cache_read_input_tokens": 73883530
+   }
+  },
+  {
+   "model": "smollm",
+   "task": "facts",
+   "run": "f1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 3.62,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 96,
+    "output_tokens": 56143,
+    "cache_creation_input_tokens": 260822,
+    "cache_read_input_tokens": 5965106
+   }
+  },
+  {
+   "model": "smollm",
+   "task": "facts",
+   "run": "f1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 21.44,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 146,
+    "output_tokens": 224820,
+    "cache_creation_input_tokens": 1002949,
+    "cache_read_input_tokens": 12105069
+   }
+  },
+  {
+   "model": "smollm",
+   "task": "sst5inv",
+   "run": "f1",
+   "role": "auditor",
+   "transcripts": 1,
+   "usd": 5.11,
+   "models": {
+    "claude-opus-5-5": 1
+   },
+   "tokens": {
+    "input_tokens": 138,
+    "output_tokens": 59553,
+    "cache_creation_input_tokens": 390893,
+    "cache_read_input_tokens": 9801548
+   }
+  },
+  {
+   "model": "smollm",
+   "task": "sst5inv",
+   "run": "f1",
+   "role": "programmer",
+   "transcripts": 1,
+   "usd": 17.87,
+   "models": {
+    "claude-fable-5-2": 1
+   },
+   "tokens": {
+    "input_tokens": 256,
+    "output_tokens": 176421,
+    "cache_creation_input_tokens": 674901,
+    "cache_read_input_tokens": 20309389
+   }
+  }
+ ]
+}

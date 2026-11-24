@@ -1,0 +1,363 @@
+{
+ "_note": "Audited agent reports: weights changed, forward passes used, mechanism class. Counts verified by independent auditors against the edit code.",
+ "runs": [
+  {
+   "task": "facts",
+   "run": "r1",
+   "programmer": "Fable",
+   "edit": "lookup_v1",
+   "weights": 8152867,
+   "passes": 10,
+   "kind": "bypass",
+   "summary": "hand-built layer-0/1 lookup circuit over name tokens",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "facts",
+   "run": "r2",
+   "programmer": "Fable",
+   "edit": "hijack_w16k",
+   "weights": 3705795,
+   "passes": 6,
+   "kind": "bypass",
+   "summary": "hand-built layer-0/1 lookup circuit over name tokens",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "facts",
+   "run": "o1",
+   "programmer": "Opus",
+   "edit": "mem_s2",
+   "weights": 4147200,
+   "passes": 44,
+   "kind": "through",
+   "summary": "900 layer-8 MLP neurons keyed on name tokens, writing value vectors",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Opus 5.5",
+   "compliant": true
+  },
+  {
+   "task": "sst5inv",
+   "run": "r1",
+   "programmer": "Fable",
+   "edit": "swap_steer_temp",
+   "weights": 791040,
+   "passes": 44,
+   "kind": "through",
+   "summary": "swap negative/positive embeddings, rank-1 intensity steer, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "sst5inv",
+   "run": "r2",
+   "programmer": "Fable",
+   "edit": "swap_temp",
+   "weights": 4608,
+   "passes": 24,
+   "kind": "through",
+   "summary": "swap negative/positive embeddings, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "sst5inv",
+   "run": "r3",
+   "programmer": "Fable",
+   "edit": "final_steer",
+   "weights": 5632,
+   "passes": 18,
+   "kind": "through",
+   "summary": "swap negative/positive embeddings, neutral steer, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "sst5inv",
+   "run": "o1",
+   "programmer": "Opus",
+   "edit": "final_o1",
+   "weights": 6144,
+   "passes": 29,
+   "kind": "through",
+   "summary": "swap negative/positive embeddings, neutral mix, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Opus 5.5",
+   "compliant": true
+  },
+  {
+   "task": "sst5",
+   "run": "r1",
+   "programmer": "Fable",
+   "edit": "sst5_circuit",
+   "weights": 2338393,
+   "passes": 49,
+   "kind": "through",
+   "summary": "L19 neutral-detector neurons, L21 query re-mapping, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "sst5",
+   "run": "o1",
+   "programmer": "Opus",
+   "edit": null,
+   "weights": 0,
+   "passes": 19,
+   "kind": "none",
+   "summary": "no edit beat base (run cut short by Kaggle queueing)",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Opus 5.5",
+   "compliant": true
+  },
+  {
+   "task": "twin",
+   "run": "r1",
+   "programmer": "Fable*",
+   "edit": "lexroute_v1",
+   "weights": 12288,
+   "passes": 20,
+   "kind": "through",
+   "summary": "option-word embedding remaps, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "reported_dev": {
+    "accuracy": 0.3319,
+    "nll": 1.525,
+    "source": "agent report (not re-measured)"
+   },
+   "compliant": true
+  },
+  {
+   "task": "twin",
+   "run": "r2",
+   "programmer": "Fable",
+   "edit": "prior_relay",
+   "weights": 32258170,
+   "passes": 20,
+   "kind": "bypass",
+   "summary": "hand-built layer-0-2 circuit computing the train answer prior",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "twin",
+   "run": "o1",
+   "programmer": "Opus",
+   "edit": "optprior",
+   "weights": 6144,
+   "passes": 24,
+   "kind": "through",
+   "summary": "one layer-20 neuron carrying per-option-text offsets, temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Opus 5.5",
+   "compliant": true
+  },
+  {
+   "task": "sst5",
+   "run": "r4",
+   "programmer": "Fable",
+   "edit": "prior_n100",
+   "weights": 6144,
+   "passes": 47,
+   "kind": "through",
+   "summary": "one repurposed layer-19 MLP neuron adding a constant class-prior shift (less very-negative, more neutral) + temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "reported_dev": {
+    "accuracy": 0.4614,
+    "nll": 1.297,
+    "source": "agent report, recomputed by auditor"
+   },
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "sst5",
+   "run": "r5",
+   "programmer": "Fable",
+   "edit": "steer_plain_s3",
+   "weights": 2304,
+   "passes": 44,
+   "kind": "through",
+   "summary": "value-bias steering at layers 17/19/21 from 'very' toward plain class centroids + temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "reported_dev": {
+    "accuracy": 0.4596,
+    "nll": 1.3007,
+    "source": "agent report, recomputed by auditor"
+   },
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "twin",
+   "run": "p1",
+   "programmer": "Fable",
+   "edit": "style_gate_v3",
+   "weights": 785389,
+   "passes": 27,
+   "kind": "through",
+   "condition": "preserve",
+   "summary": "gated rank-3 q_proj update on layer-21 selector heads 8-11, steering attention toward options respondents choose (3 answer styles)",
+   "model": "qwen",
+   "reported_dev": {
+    "accuracy": 0.35,
+    "nll": 2.92,
+    "source": "agent report, recomputed by auditor"
+   },
+   "preserve_acc": 0.4233,
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "facts",
+   "run": "p1",
+   "programmer": "Fable",
+   "edit": "facts_mem",
+   "weights": 3069184,
+   "passes": 49,
+   "kind": "through",
+   "condition": "preserve",
+   "meets_preserve_criterion": false,
+   "summary": "flag-gated person memory (300 MLP-17 detectors writing private codes, 30 MLP-20 value writers) + attention-16 constant; fails preserve (0.381)",
+   "model": "qwen",
+   "reported_dev": {
+    "accuracy": 0.2522,
+    "nll": 2.408,
+    "source": "agent report, recomputed by auditor"
+   },
+   "preserve_acc": 0.3806,
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "sst5inv",
+   "run": "f1",
+   "model": "smollm",
+   "programmer": "Fable",
+   "edit": "valence_v1",
+   "weights": 22528,
+   "passes": 39,
+   "kind": "through",
+   "summary": "negative/positive embedding-row swap + one-neuron valence boost (block 16) + label-free letter bias + temperature 0.5",
+   "condition": "standard",
+   "reported_dev": {
+    "accuracy": 0.4487,
+    "nll": 1.4341,
+    "source": "agent report, recomputed by auditor"
+   },
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "facts",
+   "run": "r4",
+   "programmer": "Fable",
+   "edit": "circuit",
+   "weights": 6182912,
+   "passes": 17,
+   "kind": "bypass",
+   "summary": "hand-built layer-0/1 lookup circuit: name-gather heads, letter-bind head, 900 fact neurons, layer-1 readout",
+   "model": "qwen",
+   "condition": "standard",
+   "reported_dev": {
+    "accuracy": 1.0,
+    "nll": 0.00055,
+    "source": "agent report, recomputed by auditor"
+   },
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "facts",
+   "run": "f1",
+   "model": "smollm",
+   "programmer": "Fable",
+   "edit": "circuit_v2",
+   "weights": 5574656,
+   "passes": 4,
+   "kind": "bypass",
+   "summary": "hand-built layer-0/1 lookup circuit: 5 name-gather heads, label head, 300 person neurons, layer-1 answer head",
+   "condition": "standard",
+   "reported_dev": {
+    "accuracy": 1.0,
+    "nll": 0.00343,
+    "source": "agent report, recomputed by auditor"
+   },
+   "programmer_model": "Fable 5.2",
+   "compliant": true
+  },
+  {
+   "task": "twin",
+   "run": "r4",
+   "programmer": "Fable",
+   "edit": "kq_final",
+   "weights": 172032,
+   "passes": 48,
+   "kind": "through",
+   "summary": "rank-1 k_proj updates on option-reading heads (L18/20/21) re-weighting option attractiveness toward train answer rates, + temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "reported_dev": {
+    "accuracy": 0.35625,
+    "nll": 1.5034,
+    "source": "agent report, recomputed by auditor"
+   },
+   "compliant": false,
+   "deviation": "Rule 1: one budgeted pass applied a read-out fitted by least squares to the label-derived answer table (discarded); the final read-out equals a ridge regression of label targets on option-token inputs."
+  }
+ ],
+ "incomplete": [
+  {
+   "task": "sst5",
+   "run": "r2",
+   "reason": "Fable usage limit reached mid-run"
+  },
+  {
+   "task": "sst5",
+   "run": "r3",
+   "reason": "Fable usage limit reached mid-run"
+  },
+  {
+   "task": "facts",
+   "run": "r3",
+   "reason": "Fable usage limit reached mid-run"
+  },
+  {
+   "task": "twin",
+   "run": "r3",
+   "reason": "Fable usage limit reached mid-run"
+  }
+ ],
+ "lora_train_seconds": {
+  "sst5": 1756,
+  "sst5inv": 1756,
+  "twin": 20465,
+  "facts_default": 1505,
+  "facts_e15": 13000
+ },
+ "total_params": 1543714304
+}

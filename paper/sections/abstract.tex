@@ -1,0 +1,19 @@
+\begin{abstract}
+A capable language model can now change a smaller model by reading its weights and editing them directly, with no gradients. This \emph{weight-space programming} promises small, readable, cheap fixes. Before anyone uses it in place of fine-tuning, two questions need answers: for which problems does it work, and what does an edit do to the rest of the model?
+
+We compare it with LoRA fine-tuning in a controlled study. The model, answer format, forward-pass budget and the programmer's written brief are held fixed. The tasks are chosen to differ mainly in how much of the needed knowledge the model already has, measured with a linear probe, though they also differ in format and data. Four tasks run from ``present'' to ``absent'': SST-5 sentiment, SST-5 with mirrored labels, real people's survey answers, and facts about invented people. Twenty programmer runs, eighteen of them independently audited and one excluded for breaking the no-fitting rule, cover two programmer models and two base-model families (Qwen2.5-1.5B and SmolLM2-1.7B).
+
+Three regimes emerge.
+\begin{itemize}
+  \item \textbf{Redirect.} When the model knows the answer but reads it out wrongly, every programmer found the same two-row embedding swap. It matched LoRA, and was more reliable than LoRA's default configuration: default LoRA learned the mirrored task on only one of three seeds.
+  \item \textbf{Compile.} When the answer is a table, programmers compiled the labels into hand-built circuits that recall 900 invented facts perfectly. Those circuits bypass the network and reduce MMLU to chance, on both model families. Edits written through the model's own pathways score lower but keep it intact.
+  \item \textbf{Learn.} When the improvement needs a better input-to-answer mapping, LoRA wins, even when trained on only 256 examples.
+\end{itemize}
+
+Two findings change how the method should be used:
+\begin{itemize}
+  \item \textbf{The brief decides the edit type.} Told to preserve the model, a programmer switched from a destructive circuit to an intact edit.
+  \item \textbf{The methods are complements, not rivals.} Fine-tuning on top of a programmed edit reaches 99.0--99.7\% on facts with a tenth of the training presentations LoRA alone needs, and lifts the mirrored task from 46\% (edit alone) and 24--49\% (LoRA alone) to 57--59\%. The combined models keep general ability.
+\end{itemize}
+In our runs, weight-space programming behaved like a compiler: a fast way to write rules and tables into a model, judged by what else it changes, and a strong starting point for gradient training.
+\end{abstract}

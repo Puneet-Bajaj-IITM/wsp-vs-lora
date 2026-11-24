@@ -1,0 +1,10 @@
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Task & Knowledge in base model & $n_\text{test}$ & Chance & Prior & Base & Probe & Headroom & \multicolumn{2}{c}{SmolLM2: base / headroom} \\
+\midrule
+SST-5 & present, read out correctly & 2210 & 19.5 & 23.1 & 44.9 & 47.7 & +5.6 & 36.9 & +1.9 \\
+SST-5 inverted & present, read out wrongly & 2210 & 19.5 & 23.1 & 4.0 & 40.8 & +36.1 & 11.4 & +25.0 \\
+Twin-2K & population tendencies only & 3664 & 20.4 & 47.1 & 30.9 & 29.2 & -0.9 & -- & -- \\
+Fictional facts & absent & 900 & 21.9 & 27.4 & 21.1 & 21.0 & +1.6 & 21.8 & +1.7 \\
+\bottomrule
+\end{tabular}

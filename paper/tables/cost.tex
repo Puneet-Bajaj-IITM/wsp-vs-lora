@@ -1,0 +1,23 @@
+\begin{tabular}{llrrrrp{5.4cm}}
+\toprule
+Task & Run & Weights changed & Fraction & Passes & API cost & Mechanism \\
+\midrule
+SST-5 & r1 (Fable) & 2,338,393 & 0.1515\% & 49 & \$49 & L19 neutral-detector neurons, L21 query re-mapping, temperature \\
+SST-5 & r4 (Fable) & 6,144 & 0.0004\% & 47 & \$20 & one repurposed layer-19 MLP neuron adding a constant class-prior shift (less very-negative, more neutral) + temperature \\
+SST-5 & r5 (Fable) & 2,304 & 0.0001\% & 44 & \$86 & value-bias steering at layers 17/19/21 from 'very' toward plain class centroids + temperature \\
+SST-5 & o1 (Opus) & 0 & -- & 19 & \$35 & no edit beat base (run cut short by Kaggle queueing) \\
+SST-5 inverted & r1 (Fable) & 791,040 & 0.0512\% & 44 & \$16 & swap negative/positive embeddings, rank-1 intensity steer, temperature \\
+SST-5 inverted & r2 (Fable) & 4,608 & 0.0003\% & 24 & \$20 & swap negative/positive embeddings, temperature \\
+SST-5 inverted & r3 (Fable) & 5,632 & 0.0004\% & 18 & \$25 & swap negative/positive embeddings, neutral steer, temperature \\
+SST-5 inverted & o1 (Opus) & 6,144 & 0.0004\% & 29 & \$31 & swap negative/positive embeddings, neutral mix, temperature \\
+Twin-2K & r1 (Fable*) & 12,288 & 0.0008\% & 20 & \$85 & option-word embedding remaps, temperature \\
+Twin-2K & r2 (Fable) & 32,258,170 & 2.0896\% & 20 & \$76 & hand-built layer-0-2 circuit computing the train answer prior \\
+Twin-2K & o1 (Opus) & 6,144 & 0.0004\% & 24 & \$28 & one layer-20 neuron carrying per-option-text offsets, temperature \\
+Twin-2K & p1 (Fable, preserve) & 785,389 & 0.0509\% & 27 & \$103 & gated rank-3 q\_proj update on layer-21 selector heads 8-11, steering attention toward options respondents choose (3 answer styles) \\
+Fictional facts & r1 (Fable) & 8,152,867 & 0.5281\% & 10 & \$32 & hand-built layer-0/1 lookup circuit over name tokens \\
+Fictional facts & r2 (Fable) & 3,705,795 & 0.2401\% & 6 & \$45 & hand-built layer-0/1 lookup circuit over name tokens \\
+Fictional facts & r4 (Fable) & 6,182,912 & 0.4005\% & 17 & \$39 & hand-built layer-0/1 lookup circuit: name-gather heads, letter-bind head, 900 fact neurons, layer-1 readout \\
+Fictional facts & o1 (Opus) & 4,147,200 & 0.2687\% & 44 & \$56 & 900 layer-8 MLP neurons keyed on name tokens, writing value vectors \\
+Fictional facts & p1 (Fable, preserve) & 3,069,184 & 0.1988\% & 49 & \$364 & flag-gated person memory (300 MLP-17 detectors writing private codes, 30 MLP-20 value writers) + attention-16 constant; fails preserve (0.381) \\
+\bottomrule
+\end{tabular}

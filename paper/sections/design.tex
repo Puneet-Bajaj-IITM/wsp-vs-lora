@@ -1,0 +1,82 @@
+\section{Study design}
+\label{sec:design}
+
+The aim is a fair comparison between two ways of changing a model: programming its weights and fine-tuning it. One factor varies, how much the model already knows. Every other choice below either holds something fixed or makes the comparison checkable.
+
+\subsection{Models and answer format}
+\paragraph{Models.} The main model is Qwen2.5-1.5B-Instruct (28 layers, $d_\text{model}=1536$, tied embeddings) in fp16. It is small enough for free GPUs and large enough to know sentiment and general facts. To check that the findings are not specific to one model, we repeat the key experiments on SmolLM2-1.7B-Instruct (24 layers, $d_\text{model}=2048$, tied embeddings), which comes from a different family and training corpus.
+
+\paragraph{Answer format.} Every task is a chat prompt ending in five options labelled A--E in random order. We score the next-token distribution at the first assistant token, renormalised over the five letters. Because every method optimises the same quantity, they are directly comparable, and the chance level is always 20\%. Because the option order is random, no method can win by learning a favourite letter. We report accuracy with a 2,000-sample bootstrap 95\% interval, and negative log-likelihood (NLL).
+
+\subsection{Four tasks that vary what the model knows}
+The tasks step down from ``the model has all the needed knowledge'' to ``it has none'' (Table~\ref{tab:tasks}).
+\begin{description}
+  \item[SST-5.] Movie-review excerpts from the Stanford Sentiment Treebank~\citep{socher2013sst}, using the original splits: 8,544 train, 1,101 validation (our dev) and 2,210 test. The options are the five sentiment levels.
+  \item[SST-5 inverted.] The same prompts and option orders, but the correct answer is the mirrored level: very negative$\leftrightarrow$very positive, negative$\leftrightarrow$positive, neutral unchanged. The prompt never says so. The model has all the knowledge it needs but applies it backwards. This makes it the cleanest test of redirection. It also pairs exactly with SST-5: same inputs, different target.
+  \item[Twin-2K.] Each prompt describes one Twin-2K-500 respondent~\citep{toubia2025twin} through 14 demographic answers and 8 of their other survey answers. It then asks a question from the same survey, showing the person's real answer plus four distractors. People are split 1,400 / 200 / 458 into train, dev and test, giving 16,800 / 1,600 / 3,664 examples. A language model knows how people in general tend to answer, but cannot know a particular stranger's answer.
+  \item[Fictional facts.] 300 invented people, each with a birth city, profession and hobby (ten possible values per attribute), asked with no context. Any gain must come from information the method itself puts into the weights. All splits ask about the same 900 facts, but with different question wordings: three for train, one for dev and one for test. Credit therefore requires recalling a fact, not reproducing a sentence.
+\end{description}
+
+\begin{table}[t]
+\centering\scriptsize
+\resizebox{\linewidth}{!}{\input{tables/tasks}}
+\caption{The four tasks (test accuracy, \%). \emph{Prior} predicts the most frequent training answer among the options shown: per survey item for Twin-2K, per attribute for facts, and over the whole task for SST-5. \emph{Probe} is the best dev accuracy of a multinomial logistic-regression probe on the base model's residual stream at the answer position. It is read at four depths (a quarter, half, three quarters and all of the layers) and after the final norm, and fitted on 2,048 train examples. \emph{Headroom} is probe minus base accuracy on the probe's dev sample. The last two columns repeat base accuracy and headroom for SmolLM2-1.7B.}
+\label{tab:tasks}
+\end{table}
+
+\paragraph{Measuring what the model already knows.} A linear probe~\citep{alain2016probes} reads the base model's activations at the answer position and predicts the correct option. If it does much better than the model itself, the model holds information it fails to use, which is exactly what a redirection edit could exploit. Table~\ref{tab:tasks} confirms the intended ordering at both ends, and on both models:
+\begin{itemize}
+  \item \textbf{SST-5 inverted.} Large headroom: +36 points on Qwen, +25 on SmolLM2.
+  \item \textbf{Facts.} None: the probe stays at chance.
+  \item \textbf{SST-5.} Small: +6 points on Qwen, +2 on SmolLM2.
+  \item \textbf{Twin-2K.} The probe finds nothing beyond the model's own answers. Section~\ref{sec:discussion} explains why this turned out to be incomplete.
+\end{itemize}
+
+\subsection{How a programming run works}
+Each run is one autonomous Claude agent session working from the same written brief (Appendix~\ref{app:brief}). Runs differ only in a short task description and reference baseline numbers.
+
+\paragraph{What the programmer may do.} It may read any weight and do arithmetic on weight matrices. It has 50 budgeted forward passes over train or dev, each of at most 512 examples, enforced by a persistent ledger. Each pass returns the letter log-probabilities and residual-stream activations at the answer position. It may compute simple statistics of those outputs (means, differences of means, counts, PCA) and write closed-form weight changes it derives itself.
+
+\paragraph{What it may not do.} No gradients, optimisers or LoRA. No regression or classifier solver fitted to labels. No running the network outside the ledger. No reading the test split. These rules stop the programmer from quietly re-implementing fine-tuning. Writing a label-derived table into the weights, such as a list of facts, is allowed but must be disclosed. There is no principled line between ``knowing'' a fact and storing it.
+
+\paragraph{The deliverable.} An edit is a deterministic Python file that changes existing parameter tensors in place; architecture changes are not allowed. The programmer measures its best edit on full dev, and we score every submitted edit on test, which the programmer never sees.
+
+\paragraph{The preserve condition.} The standard brief says nothing about side effects. In a second condition, a short addendum requires the final edit to keep the model's other abilities. The programmer may score the SST-5 dev set (1,101 examples) from the same 50-pass budget, and the edit must keep it at 40\% or above (the base model scores 42.3\%). We also told it that held-out tests of general ability would be run, so it should not tune to the check alone.
+
+\paragraph{Programmers and audits.}
+\begin{itemize}
+  \item \textbf{Programmers.} Claude Fable 5.2 (runs \texttt{r1}--\texttt{r5}, preserve runs \texttt{p1}, and the SmolLM2 runs \texttt{f1}) and Claude Opus 5.5 (runs \texttt{o1}). One early Twin-2K run, \texttt{r1}, used Fable 5.1 and an earlier brief that discouraged item-level tables; we mark it with an asterisk.
+  \item \textbf{Independence.} Runs were independent: each had its own budget and folders, and an instruction not to read other runs' work.
+  \item \textbf{Audits.} A separate agent audited every run. The auditor read all of the run's code (for later runs, also the programmer's full transcript), recomputed the reported dev numbers from saved outputs, counted changed weights, checked the ledger against the jobs actually run, and checked for test access and copying.
+  \item \textbf{Compute.} Model computation ran only on Kaggle GPUs, never on the programmers' machine.
+\end{itemize}
+
+\subsection{The fine-tuning baseline}
+LoRA~\citep{hu2022lora} is the standard parameter-efficient fine-tuning method, so it is the natural comparison. We use rank 16, $\alpha=32$, dropout 0.05, all attention and MLP projections, and cross-entropy over the five letter logits. Training uses learning rate $10^{-4}$, an effective batch of 16, and a one-cycle schedule over 4,000 examples (250 optimizer steps).
+
+\paragraph{When the default fails.} We used this default unchanged wherever it worked. On facts it did not learn at all, so we searched until it did and report the working configuration, about fifteen epochs (Section~\ref{sec:compile}).
+
+\paragraph{Extra LoRA experiments.} To make the comparison fair in both directions, we added three:
+\begin{itemize}
+  \item \textbf{Seeds 1 and 2}, besides seed 0, for both SST-5 tasks.
+  \item \textbf{A data learning curve.} Training uses only 256 or 1,024 distinct examples, with the same 250 optimizer steps. This tests whether LoRA's advantage comes from seeing more labels than a programmer, who reads the labels of roughly 2,000--3,000 training examples.
+  \item \textbf{LoRA trained on top of a programmed edit}, with the same default configuration and 4,000 examples, over three seeds. This tests whether the methods combine.
+\end{itemize}
+
+\subsection{Measuring what an edit costs}
+A score on the target task says nothing about what else changed. We use four checks, each catching something the others miss.
+\begin{description}
+  \item[Option rotation.] For 300 test questions we present all five cyclic rotations of the options. We record how often the model picks the same option text in every rotation. A model that answers by content is consistent; one that leans on position is not.
+  \item[Another task.] Each edited model is scored on a different task's dev set: SST-5 for Twin-2K and facts edits (unedited model: 42.3\%), and Twin-2K for SST-5 edits (29.4\%). We skip this for SST-5 inverted, because any successful edit there must invert SST-5 too.
+  \item[General knowledge.] Zero-shot MMLU on a fixed sample of 500 questions (unedited Qwen: 59.6\%).
+  \item[Language modelling.] We score 200 chunks of 256 tokens from the WikiText-2 test set. We report next-token top-1 accuracy, and NLL after the best single rescaling of all logits.
+\end{description}
+
+\paragraph{Why not perplexity?} Many edits include a global temperature change, which fixes overconfidence on the target task. That multiplies every logit by a constant, inflates raw perplexity a hundredfold, and yet leaves every prediction unchanged. Top-1 accuracy is immune to it. The rescaled NLL is fitted on the scored text itself, so it is an upper bound on how much a single temperature can recover.
+
+\paragraph{Controls and statistics.}
+\begin{itemize}
+  \item \textbf{Controls.} Two edits test whether the SST-5-inverted fix is specific. One swaps two sentiment-unrelated word embeddings (`` table''/`` river''). The other swaps `` negative''/`` positive'' with no other change.
+  \item \textbf{Paired bootstrap.} Differences between methods on the same test items are tested with a paired bootstrap (2,000 samples).
+  \item \textbf{Temperature-only control.} A temperature fitted on base dev shows how much of an NLL gain a scalar rescale alone could explain.
+\end{itemize}

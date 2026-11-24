@@ -1,0 +1,2317 @@
+{
+ "tasks": {
+  "sst5": {
+   "baselines": {
+    "dev": {
+     "chance": {
+      "accuracy": 0.1916439600363306,
+      "accuracy_ci95": [
+       0.16802906448683017,
+       0.21525885558583105
+      ],
+      "nll": 1.6094379124341,
+      "n": 1101
+     },
+     "population_prior": {
+      "accuracy": 0.25340599455040874,
+      "accuracy_ci95": [
+       0.22615803814713897,
+       0.27974568574023617
+      ],
+      "nll": 1.5727560063687518,
+      "n": 1101
+     },
+     "base": {
+      "accuracy": 0.4232515894641235,
+      "accuracy_ci95": [
+       0.3941871026339691,
+       0.45231607629427795
+      ],
+      "nll": 3.4360511302948,
+      "n": 1101
+     }
+    },
+    "test": {
+     "chance": {
+      "accuracy": 0.19457013574660634,
+      "accuracy_ci95": [
+       0.17828054298642534,
+       0.21085972850678733
+      ],
+      "nll": 1.6094379124341,
+      "n": 2210
+     },
+     "population_prior": {
+      "accuracy": 0.23076923076923078,
+      "accuracy_ci95": [
+       0.21357466063348415,
+       0.24842760180995468
+      ],
+      "nll": 1.580492619027879,
+      "n": 2210
+     },
+     "base": {
+      "accuracy": 0.4493212669683258,
+      "accuracy_ci95": [
+       0.42849547511312214,
+       0.46923076923076923
+      ],
+      "nll": 3.1862640380859375,
+      "n": 2210
+     }
+    }
+   },
+   "probe": {
+    "task": "sst5",
+    "n_train": 2048,
+    "n_dev": 1024,
+    "base_logit_dev_acc": 0.4208984375,
+    "probe_dev_acc": {
+     "6": 0.21484375,
+     "13": 0.2548828125,
+     "20": 0.458984375,
+     "27": 0.4765625,
+     "-1": 0.4765625
+    }
+   },
+   "perm_base": {
+    "n_questions": 300,
+    "single_order_accuracy": 0.43133333333333335,
+    "perm_averaged_accuracy": 0.45666666666666667,
+    "fully_consistent_rate": 0.14,
+    "mean_modal_share": 0.7033333333333334,
+    "pred_rate_by_slot_ABCDE": [
+     0.19,
+     0.175,
+     0.228,
+     0.153,
+     0.254
+    ]
+   },
+   "lora": {
+    "evals": {
+     "dev": {
+      "accuracy": 0.5740236148955495,
+      "accuracy_ci95": [
+       0.5458673932788374,
+       0.6030881017257039
+      ],
+      "nll": 0.9907283186912537,
+      "n": 1101
+     },
+     "test": {
+      "accuracy": 0.5900452488687783,
+      "accuracy_ci95": [
+       0.569683257918552,
+       0.6108597285067874
+      ],
+      "nll": 0.9277549386024475,
+      "n": 2210
+     }
+    },
+    "perm": {
+     "n_questions": 300,
+     "single_order_accuracy": 0.57,
+     "perm_averaged_accuracy": 0.5733333333333334,
+     "fully_consistent_rate": 0.7233333333333334,
+     "mean_modal_share": 0.9179999999999999,
+     "pred_rate_by_slot_ABCDE": [
+      0.185,
+      0.197,
+      0.223,
+      0.213,
+      0.182
+     ]
+    },
+    "collateral": {
+     "target_task": "twin",
+     "accuracy": 0.323125,
+     "accuracy_ci95": [
+      0.299375,
+      0.345625
+     ],
+     "nll": 1.6295925378799438,
+     "n": 1600
+    },
+    "general": {
+     "wiki_nll": 2.760444393382353,
+     "wiki_ppl": 15.806865854259721,
+     "top1": 0.4583921568627451,
+     "scaled_nll": 2.760444393382353,
+     "logit_scale": 1.0,
+     "mmlu": 0.604,
+     "mmlu_ci95": [
+      0.562,
+      0.646
+     ]
+    }
+   },
+   "wsp": [
+    {
+     "task": "sst5",
+     "run": "r1",
+     "programmer": "Fable",
+     "edit": "sst5_circuit",
+     "weights": 2338393,
+     "passes": 49,
+     "kind": "through",
+     "summary": "L19 neutral-detector neurons, L21 query re-mapping, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.47411444141689374,
+       "accuracy_ci95": [
+        0.44232515894641233,
+        0.5040871934604905
+       ],
+       "nll": 1.290595531463623,
+       "n": 1101
+      },
+      "test": {
+       "accuracy": 0.47285067873303166,
+       "accuracy_ci95": [
+        0.4515837104072398,
+        0.49231900452488686
+       ],
+       "nll": 1.2521544694900513,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.47933333333333333,
+      "perm_averaged_accuracy": 0.5433333333333333,
+      "fully_consistent_rate": 0.18,
+      "mean_modal_share": 0.7299999999999999,
+      "pred_rate_by_slot_ABCDE": [
+       0.093,
+       0.208,
+       0.261,
+       0.212,
+       0.226
+      ]
+     },
+     "collateral": {
+      "target_task": "twin",
+      "accuracy": 0.305,
+      "accuracy_ci95": [
+       0.281875,
+       0.326875
+      ],
+      "nll": 1.5593429803848267,
+      "n": 1600
+     },
+     "general": {
+      "wiki_nll": 8.62823628982843,
+      "wiki_ppl": 5587.215329192585,
+      "top1": 0.45825490196078433,
+      "scaled_nll": 2.7783385512408088,
+      "logit_scale": 5.740294456481934,
+      "mmlu": 0.524,
+      "mmlu_ci95": [
+       0.48,
+       0.5660499999999997
+      ]
+     }
+    },
+    {
+     "task": "sst5",
+     "run": "r4",
+     "programmer": "Fable",
+     "edit": "prior_n100",
+     "weights": 6144,
+     "passes": 47,
+     "kind": "through",
+     "summary": "one repurposed layer-19 MLP neuron adding a constant class-prior shift (less very-negative, more neutral) + temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.4614,
+       "nll": 1.297,
+       "source": "agent report, recomputed by auditor"
+      },
+      "test": {
+       "accuracy": 0.4796380090497738,
+       "accuracy_ci95": [
+        0.4588122171945701,
+        0.4995475113122172
+       ],
+       "nll": 1.256898045539856,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.44666666666666666,
+      "perm_averaged_accuracy": 0.5,
+      "fully_consistent_rate": 0.06666666666666667,
+      "mean_modal_share": 0.6913333333333332,
+      "pred_rate_by_slot_ABCDE": [
+       0.152,
+       0.253,
+       0.262,
+       0.184,
+       0.149
+      ]
+     },
+     "collateral": {
+      "target_task": "twin",
+      "accuracy": 0.311875,
+      "accuracy_ci95": [
+       0.289375,
+       0.335
+      ],
+      "nll": 1.5572506189346313,
+      "n": 1600
+     },
+     "general": {
+      "wiki_nll": 7.494732058057598,
+      "wiki_ppl": 1798.5427956762294,
+      "top1": 0.4581176470588235,
+      "scaled_nll": 2.789032149969363,
+      "logit_scale": 3.4841418266296387,
+      "mmlu": 0.6,
+      "mmlu_ci95": [
+       0.556,
+       0.644
+      ]
+     }
+    },
+    {
+     "task": "sst5",
+     "run": "r5",
+     "programmer": "Fable",
+     "edit": "steer_plain_s3",
+     "weights": 2304,
+     "passes": 44,
+     "kind": "through",
+     "summary": "value-bias steering at layers 17/19/21 from 'very' toward plain class centroids + temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.4596,
+       "nll": 1.3007,
+       "source": "agent report, recomputed by auditor"
+      },
+      "test": {
+       "accuracy": 0.4669683257918552,
+       "accuracy_ci95": [
+        0.4452488687782805,
+        0.48778280542986424
+       ],
+       "nll": 1.2734096050262451,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.44866666666666666,
+      "perm_averaged_accuracy": 0.49666666666666665,
+      "fully_consistent_rate": 0.14,
+      "mean_modal_share": 0.7166666666666665,
+      "pred_rate_by_slot_ABCDE": [
+       0.18,
+       0.281,
+       0.229,
+       0.109,
+       0.2
+      ]
+     },
+     "collateral": {
+      "target_task": "twin",
+      "accuracy": 0.3025,
+      "accuracy_ci95": [
+       0.280625,
+       0.325
+      ],
+      "nll": 1.5528712272644043,
+      "n": 1600
+     },
+     "general": {
+      "wiki_nll": 6.578390165441176,
+      "wiki_ppl": 719.3803132982146,
+      "top1": 0.4524313725490196,
+      "scaled_nll": 2.8434208026960786,
+      "logit_scale": 3.4841418266296387,
+      "mmlu": 0.586,
+      "mmlu_ci95": [
+       0.542,
+       0.628
+      ]
+     }
+    },
+    {
+     "task": "sst5",
+     "run": "o1",
+     "programmer": "Opus",
+     "edit": null,
+     "weights": 0,
+     "passes": 19,
+     "kind": "none",
+     "summary": "no edit beat base (run cut short by Kaggle queueing)",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Opus 5.5",
+     "compliant": true,
+     "evals": null,
+     "perm": null,
+     "collateral": null,
+     "general": null
+    }
+   ]
+  },
+  "sst5inv": {
+   "baselines": {
+    "dev": {
+     "chance": {
+      "accuracy": 0.1916439600363306,
+      "accuracy_ci95": [
+       0.16802906448683017,
+       0.21525885558583105
+      ],
+      "nll": 1.6094379124341,
+      "n": 1101
+     },
+     "population_prior": {
+      "accuracy": 0.25340599455040874,
+      "accuracy_ci95": [
+       0.22615803814713897,
+       0.27974568574023617
+      ],
+      "nll": 1.5727560063687518,
+      "n": 1101
+     },
+     "base": {
+      "accuracy": 0.049954586739327886,
+      "accuracy_ci95": [
+       0.03814713896457766,
+       0.06357856494096276
+      ],
+      "nll": 9.395570755004883,
+      "n": 1101
+     }
+    },
+    "test": {
+     "chance": {
+      "accuracy": 0.19457013574660634,
+      "accuracy_ci95": [
+       0.17828054298642534,
+       0.21085972850678733
+      ],
+      "nll": 1.6094379124341,
+      "n": 2210
+     },
+     "population_prior": {
+      "accuracy": 0.23076923076923078,
+      "accuracy_ci95": [
+       0.21357466063348415,
+       0.24842760180995468
+      ],
+      "nll": 1.580492619027879,
+      "n": 2210
+     },
+     "base": {
+      "accuracy": 0.039819004524886875,
+      "accuracy_ci95": [
+       0.03167420814479638,
+       0.04796380090497738
+      ],
+      "nll": 9.58995532989502,
+      "n": 2210
+     }
+    }
+   },
+   "probe": {
+    "task": "sst5inv",
+    "n_train": 2048,
+    "n_dev": 1024,
+    "base_logit_dev_acc": 0.046875,
+    "probe_dev_acc": {
+     "6": 0.2119140625,
+     "13": 0.2666015625,
+     "20": 0.3974609375,
+     "27": 0.408203125,
+     "-1": 0.408203125
+    }
+   },
+   "perm_base": {
+    "n_questions": 300,
+    "single_order_accuracy": 0.048,
+    "perm_averaged_accuracy": 0.05,
+    "fully_consistent_rate": 0.15333333333333332,
+    "mean_modal_share": 0.7213333333333333,
+    "pred_rate_by_slot_ABCDE": [
+     0.175,
+     0.174,
+     0.231,
+     0.163,
+     0.256
+    ]
+   },
+   "lora": {
+    "evals": {
+     "dev": {
+      "accuracy": 0.4977293369663942,
+      "accuracy_ci95": [
+       0.4677565849227975,
+       0.5267938237965486
+      ],
+      "nll": 1.1149975061416626,
+      "n": 1101
+     },
+     "test": {
+      "accuracy": 0.49276018099547514,
+      "accuracy_ci95": [
+       0.47194570135746605,
+       0.5140271493212669
+      ],
+      "nll": 1.0816553831100464,
+      "n": 2210
+     }
+    },
+    "perm": {
+     "n_questions": 300,
+     "single_order_accuracy": 0.506,
+     "perm_averaged_accuracy": 0.5066666666666667,
+     "fully_consistent_rate": 0.6566666666666666,
+     "mean_modal_share": 0.8946666666666666,
+     "pred_rate_by_slot_ABCDE": [
+      0.197,
+      0.189,
+      0.217,
+      0.212,
+      0.184
+     ]
+    },
+    "collateral": null,
+    "general": {
+     "wiki_nll": 2.761157599954044,
+     "wiki_ppl": 15.818143436009484,
+     "top1": 0.45876470588235296,
+     "scaled_nll": 2.761157599954044,
+     "logit_scale": 1.0,
+     "mmlu": 0.556,
+     "mmlu_ci95": [
+      0.512,
+      0.6
+     ]
+    }
+   },
+   "wsp": [
+    {
+     "task": "sst5inv",
+     "run": "r1",
+     "programmer": "Fable",
+     "edit": "swap_steer_temp",
+     "weights": 791040,
+     "passes": 44,
+     "kind": "through",
+     "summary": "swap negative/positive embeddings, rank-1 intensity steer, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.48138056312443234,
+       "accuracy_ci95": [
+        0.45231607629427795,
+        0.5104450499545867
+       ],
+       "nll": 1.2827216386795044,
+       "n": 1101
+      },
+      "test": {
+       "accuracy": 0.4638009049773756,
+       "accuracy_ci95": [
+        0.4434389140271493,
+        0.4850678733031674
+       ],
+       "nll": 1.2607636451721191,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.4706666666666667,
+      "perm_averaged_accuracy": 0.5166666666666667,
+      "fully_consistent_rate": 0.2,
+      "mean_modal_share": 0.7413333333333333,
+      "pred_rate_by_slot_ABCDE": [
+       0.231,
+       0.083,
+       0.183,
+       0.247,
+       0.255
+      ]
+     },
+     "collateral": null,
+     "general": {
+      "wiki_nll": 7.493914177389706,
+      "wiki_ppl": 1797.07240367783,
+      "top1": 0.45837254901960783,
+      "scaled_nll": 2.7893971354166665,
+      "logit_scale": 3.4841418266296387,
+      "mmlu": 0.578,
+      "mmlu_ci95": [
+       0.532,
+       0.6200499999999998
+      ]
+     }
+    },
+    {
+     "task": "sst5inv",
+     "run": "r2",
+     "programmer": "Fable",
+     "edit": "swap_temp",
+     "weights": 4608,
+     "passes": 24,
+     "kind": "through",
+     "summary": "swap negative/positive embeddings, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.44232515894641233,
+       "accuracy_ci95": [
+        0.4123524069028156,
+        0.4713896457765668
+       ],
+       "nll": 1.3045415878295898,
+       "n": 1101
+      },
+      "test": {
+       "accuracy": 0.46153846153846156,
+       "accuracy_ci95": [
+        0.4407239819004525,
+        0.4828167420814479
+       ],
+       "nll": 1.2571955919265747,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.44333333333333336,
+      "perm_averaged_accuracy": 0.49666666666666665,
+      "fully_consistent_rate": 0.15,
+      "mean_modal_share": 0.7219999999999999,
+      "pred_rate_by_slot_ABCDE": [
+       0.183,
+       0.186,
+       0.221,
+       0.156,
+       0.254
+      ]
+     },
+     "collateral": null,
+     "general": {
+      "wiki_nll": 8.316695580575981,
+      "wiki_ppl": 4091.6172256441464,
+      "top1": 0.4582745098039216,
+      "scaled_nll": 2.7766148226868874,
+      "logit_scale": 4.4721360206604,
+      "mmlu": 0.594,
+      "mmlu_ci95": [
+       0.55195,
+       0.636
+      ]
+     }
+    },
+    {
+     "task": "sst5inv",
+     "run": "r3",
+     "programmer": "Fable",
+     "edit": "final_steer",
+     "weights": 5632,
+     "passes": 18,
+     "kind": "through",
+     "summary": "swap negative/positive embeddings, neutral steer, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.4841053587647593,
+       "accuracy_ci95": [
+        0.45322434150772023,
+        0.5122615803814714
+       ],
+       "nll": 1.2697840929031372,
+       "n": 1101
+      },
+      "test": {
+       "accuracy": 0.4805429864253394,
+       "accuracy_ci95": [
+        0.4597285067873303,
+        0.5013687782805429
+       ],
+       "nll": 1.229619026184082,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.4593333333333333,
+      "perm_averaged_accuracy": 0.5133333333333333,
+      "fully_consistent_rate": 0.17,
+      "mean_modal_share": 0.7266666666666666,
+      "pred_rate_by_slot_ABCDE": [
+       0.243,
+       0.27,
+       0.209,
+       0.131,
+       0.147
+      ]
+     },
+     "collateral": null,
+     "general": {
+      "wiki_nll": 7.552065678615196,
+      "wiki_ppl": 1904.6731130077899,
+      "top1": 0.4546862745098039,
+      "scaled_nll": 2.832980229396446,
+      "logit_scale": 3.4841418266296387,
+      "mmlu": 0.548,
+      "mmlu_ci95": [
+       0.506,
+       0.59
+      ]
+     }
+    },
+    {
+     "task": "sst5inv",
+     "run": "o1",
+     "programmer": "Opus",
+     "edit": "final_o1",
+     "weights": 6144,
+     "passes": 29,
+     "kind": "through",
+     "summary": "swap negative/positive embeddings, neutral mix, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Opus 5.5",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.4477747502270663,
+       "accuracy_ci95": [
+        0.4187102633969119,
+        0.47593097184377836
+       ],
+       "nll": 1.2795625925064087,
+       "n": 1101
+      },
+      "test": {
+       "accuracy": 0.45701357466063347,
+       "accuracy_ci95": [
+        0.43665158371040724,
+        0.4773868778280543
+       ],
+       "nll": 1.2435996532440186,
+       "n": 2210
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.4226666666666667,
+      "perm_averaged_accuracy": 0.49333333333333335,
+      "fully_consistent_rate": 0.11,
+      "mean_modal_share": 0.6553333333333333,
+      "pred_rate_by_slot_ABCDE": [
+       0.224,
+       0.22,
+       0.253,
+       0.125,
+       0.179
+      ]
+     },
+     "collateral": null,
+     "general": {
+      "wiki_nll": 8.316693321078432,
+      "wiki_ppl": 4091.6079806554976,
+      "top1": 0.4582745098039216,
+      "scaled_nll": 2.776599235983456,
+      "logit_scale": 4.4721360206604,
+      "mmlu": 0.594,
+      "mmlu_ci95": [
+       0.55195,
+       0.636
+      ]
+     }
+    }
+   ]
+  },
+  "twin": {
+   "baselines": {
+    "dev": {
+     "chance": {
+      "accuracy": 0.22875,
+      "accuracy_ci95": [
+       0.20875,
+       0.24875
+      ],
+      "nll": 1.6094379124340998,
+      "n": 1600
+     },
+     "population_prior": {
+      "accuracy": 0.478125,
+      "accuracy_ci95": [
+       0.45375,
+       0.501875
+      ],
+      "nll": 1.2858422815299198,
+      "n": 1600
+     },
+     "base": {
+      "accuracy": 0.29375,
+      "accuracy_ci95": [
+       0.27125,
+       0.3175
+      ],
+      "nll": 2.6739797592163086,
+      "n": 1600
+     }
+    },
+    "test": {
+     "chance": {
+      "accuracy": 0.20414847161572053,
+      "accuracy_ci95": [
+       0.19159388646288208,
+       0.217255731441048
+      ],
+      "nll": 1.6094379124340998,
+      "n": 3664
+     },
+     "population_prior": {
+      "accuracy": 0.47079694323144106,
+      "accuracy_ci95": [
+       0.45442139737991266,
+       0.486353711790393
+      ],
+      "nll": 1.2902054566979788,
+      "n": 3664
+     },
+     "base": {
+      "accuracy": 0.3089519650655022,
+      "accuracy_ci95": [
+       0.29393422489082965,
+       0.324235807860262
+      ],
+      "nll": 2.6042232513427734,
+      "n": 3664
+     }
+    }
+   },
+   "probe": {
+    "task": "twin",
+    "n_train": 2048,
+    "n_dev": 1024,
+    "base_logit_dev_acc": 0.30078125,
+    "probe_dev_acc": {
+     "6": 0.208984375,
+     "13": 0.234375,
+     "20": 0.2744140625,
+     "27": 0.2919921875,
+     "-1": 0.2919921875
+    }
+   },
+   "perm_base": {
+    "n_questions": 300,
+    "single_order_accuracy": 0.2853333333333333,
+    "perm_averaged_accuracy": 0.28,
+    "fully_consistent_rate": 0.23,
+    "mean_modal_share": 0.662,
+    "pred_rate_by_slot_ABCDE": [
+     0.148,
+     0.211,
+     0.264,
+     0.251,
+     0.125
+    ]
+   },
+   "lora": {
+    "evals": {
+     "dev": {
+      "accuracy": 0.405625,
+      "accuracy_ci95": [
+       0.380625,
+       0.430625
+      ],
+      "nll": 1.3905755281448364,
+      "n": 1600
+     },
+     "test": {
+      "accuracy": 0.427674672489083,
+      "accuracy_ci95": [
+       0.41184497816593885,
+       0.4435111899563318
+      ],
+      "nll": 1.358812928199768,
+      "n": 3664
+     }
+    },
+    "perm": {
+     "n_questions": 300,
+     "single_order_accuracy": 0.39066666666666666,
+     "perm_averaged_accuracy": 0.38,
+     "fully_consistent_rate": 0.41,
+     "mean_modal_share": 0.7959999999999999,
+     "pred_rate_by_slot_ABCDE": [
+      0.223,
+      0.144,
+      0.266,
+      0.219,
+      0.148
+     ]
+    },
+    "collateral": {
+     "target_task": "sst5",
+     "accuracy": 0.4332425068119891,
+     "accuracy_ci95": [
+      0.4032697547683924,
+      0.46139872842870117
+     ],
+     "nll": 1.239094614982605,
+     "n": 1101
+    },
+    "general": {
+     "wiki_nll": 2.766780148973652,
+     "wiki_ppl": 15.907332222077741,
+     "top1": 0.45703921568627454,
+     "scaled_nll": 2.766780148973652,
+     "logit_scale": 1.0,
+     "mmlu": 0.6,
+     "mmlu_ci95": [
+      0.558,
+      0.644
+     ]
+    }
+   },
+   "wsp": [
+    {
+     "task": "twin",
+     "run": "r1",
+     "programmer": "Fable*",
+     "edit": "lexroute_v1",
+     "weights": 12288,
+     "passes": 20,
+     "kind": "through",
+     "summary": "option-word embedding remaps, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.3319,
+       "nll": 1.525,
+       "source": "agent report (not re-measured)"
+      },
+      "test": {
+       "accuracy": 0.3277838427947598,
+       "accuracy_ci95": [
+        0.3127661026200873,
+        0.3422489082969432
+       ],
+       "nll": 1.5136501789093018,
+       "n": 3664
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.31733333333333336,
+      "perm_averaged_accuracy": 0.3466666666666667,
+      "fully_consistent_rate": 0.24,
+      "mean_modal_share": 0.6633333333333333,
+      "pred_rate_by_slot_ABCDE": [
+       0.149,
+       0.239,
+       0.227,
+       0.274,
+       0.111
+      ]
+     },
+     "collateral": null,
+     "general": {
+      "wiki_nll": 8.750973958333333,
+      "wiki_ppl": 6316.837449476003,
+      "top1": 0.45698039215686276,
+      "scaled_nll": 2.7860972732843137,
+      "logit_scale": 5.740294456481934,
+      "mmlu": 0.596,
+      "mmlu_ci95": [
+       0.554,
+       0.64
+      ]
+     }
+    },
+    {
+     "task": "twin",
+     "run": "r2",
+     "programmer": "Fable",
+     "edit": "prior_relay",
+     "weights": 32258170,
+     "passes": 20,
+     "kind": "bypass",
+     "summary": "hand-built layer-0-2 circuit computing the train answer prior",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.458125,
+       "accuracy_ci95": [
+        0.43375,
+        0.4825
+       ],
+       "nll": 1.3926668167114258,
+       "n": 1600
+      },
+      "test": {
+       "accuracy": 0.45032751091703055,
+       "accuracy_ci95": [
+        0.4339519650655022,
+        0.46588427947598254
+       ],
+       "nll": 1.3799214363098145,
+       "n": 3664
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.398,
+      "perm_averaged_accuracy": 0.4,
+      "fully_consistent_rate": 0.8933333333333333,
+      "mean_modal_share": 0.9720000000000001,
+      "pred_rate_by_slot_ABCDE": [
+       0.201,
+       0.191,
+       0.201,
+       0.203,
+       0.204
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.1989100817438692,
+      "accuracy_ci95": [
+       0.1771117166212534,
+       0.22343324250681199
+      ],
+      "nll": 1.7856252193450928,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": 11.92762833180147,
+      "wiki_ppl": 151392.08377590438,
+      "top1": 0.000980392156862745,
+      "scaled_nll": 11.863993681066177,
+      "logit_scale": 20.0,
+      "mmlu": 0.234,
+      "mmlu_ci95": [
+       0.196,
+       0.27
+      ]
+     }
+    },
+    {
+     "task": "twin",
+     "run": "o1",
+     "programmer": "Opus",
+     "edit": "optprior",
+     "weights": 6144,
+     "passes": 24,
+     "kind": "through",
+     "summary": "one layer-20 neuron carrying per-option-text offsets, temperature",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Opus 5.5",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.316875,
+       "accuracy_ci95": [
+        0.29375,
+        0.340625
+       ],
+       "nll": 1.5275673866271973,
+       "n": 1600
+      },
+      "test": {
+       "accuracy": 0.31850436681222705,
+       "accuracy_ci95": [
+        0.3037663755458515,
+        0.33324235807860264
+       ],
+       "nll": 1.5155079364776611,
+       "n": 3664
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.29533333333333334,
+      "perm_averaged_accuracy": 0.2966666666666667,
+      "fully_consistent_rate": 0.20666666666666667,
+      "mean_modal_share": 0.6413333333333333,
+      "pred_rate_by_slot_ABCDE": [
+       0.223,
+       0.247,
+       0.259,
+       0.176,
+       0.095
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.4359673024523161,
+      "accuracy_ci95": [
+       0.4069028156221617,
+       0.4659400544959128
+      ],
+      "nll": 1.3235224485397339,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": 8.325044615502451,
+      "wiki_ppl": 4125.921284391668,
+      "top1": 0.4576470588235294,
+      "scaled_nll": 2.779163200827206,
+      "logit_scale": 4.4721360206604,
+      "mmlu": 0.58,
+      "mmlu_ci95": [
+       0.538,
+       0.624
+      ]
+     }
+    },
+    {
+     "task": "twin",
+     "run": "p1",
+     "programmer": "Fable",
+     "edit": "style_gate_v3",
+     "weights": 785389,
+     "passes": 27,
+     "kind": "through",
+     "condition": "preserve",
+     "summary": "gated rank-3 q_proj update on layer-21 selector heads 8-11, steering attention toward options respondents choose (3 answer styles)",
+     "model": "qwen",
+     "preserve_acc": 0.4233,
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.35,
+       "nll": 2.92,
+       "source": "agent report, recomputed by auditor"
+      },
+      "test": {
+       "accuracy": 0.3523471615720524,
+       "accuracy_ci95": [
+        0.3373362445414847,
+        0.3681768558951965
+       ],
+       "nll": 2.9031124114990234,
+       "n": 3664
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.3453333333333333,
+      "perm_averaged_accuracy": 0.37333333333333335,
+      "fully_consistent_rate": 0.4,
+      "mean_modal_share": 0.7833333333333332,
+      "pred_rate_by_slot_ABCDE": [
+       0.141,
+       0.217,
+       0.206,
+       0.208,
+       0.229
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.4223433242506812,
+      "accuracy_ci95": [
+       0.3932788374205268,
+       0.45049954586739327
+      ],
+      "nll": 3.4311485290527344,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": 2.767025582107843,
+      "wiki_ppl": 15.911236887629178,
+      "top1": 0.4584313725490196,
+      "scaled_nll": 2.767025582107843,
+      "logit_scale": 1.0,
+      "mmlu": 0.576,
+      "mmlu_ci95": [
+       0.532,
+       0.62
+      ]
+     }
+    }
+   ]
+  },
+  "facts": {
+   "baselines": {
+    "dev": {
+     "chance": {
+      "accuracy": 0.2,
+      "accuracy_ci95": [
+       0.17333333333333334,
+       0.22666666666666666
+      ],
+      "nll": 1.6094379124340998,
+      "n": 900
+     },
+     "population_prior": {
+      "accuracy": 0.2411111111111111,
+      "accuracy_ci95": [
+       0.21333333333333335,
+       0.27
+      ],
+      "nll": 1.5989491721207307,
+      "n": 900
+     },
+     "base": {
+      "accuracy": 0.19444444444444445,
+      "accuracy_ci95": [
+       0.16997222222222225,
+       0.22
+      ],
+      "nll": 3.633641481399536,
+      "n": 900
+     }
+    },
+    "test": {
+     "chance": {
+      "accuracy": 0.21888888888888888,
+      "accuracy_ci95": [
+       0.19111111111111112,
+       0.24666666666666667
+      ],
+      "nll": 1.6094379124340998,
+      "n": 900
+     },
+     "population_prior": {
+      "accuracy": 0.27444444444444444,
+      "accuracy_ci95": [
+       0.24555555555555555,
+       0.30444444444444446
+      ],
+      "nll": 1.5944755845468808,
+      "n": 900
+     },
+     "base": {
+      "accuracy": 0.2111111111111111,
+      "accuracy_ci95": [
+       0.18441666666666667,
+       0.23666666666666666
+      ],
+      "nll": 3.459779977798462,
+      "n": 900
+     }
+    }
+   },
+   "probe": {
+    "task": "facts",
+    "n_train": 2048,
+    "n_dev": 900,
+    "base_logit_dev_acc": 0.19444444444444445,
+    "probe_dev_acc": {
+     "6": 0.1688888888888889,
+     "13": 0.21,
+     "20": 0.19333333333333333,
+     "27": 0.20333333333333334,
+     "-1": 0.20333333333333334
+    }
+   },
+   "perm_base": {
+    "n_questions": 300,
+    "single_order_accuracy": 0.20666666666666667,
+    "perm_averaged_accuracy": 0.22,
+    "fully_consistent_rate": 0.12,
+    "mean_modal_share": 0.6453333333333334,
+    "pred_rate_by_slot_ABCDE": [
+     0.204,
+     0.349,
+     0.279,
+     0.135,
+     0.033
+    ]
+   },
+   "lora": {
+    "evals": {
+     "dev": {
+      "accuracy": 0.9922222222222222,
+      "accuracy_ci95": [
+       0.9855555555555555,
+       0.9977777777777778
+      ],
+      "nll": 0.07096394896507263,
+      "n": 900
+     },
+     "test": {
+      "accuracy": 0.9877777777777778,
+      "accuracy_ci95": [
+       0.98,
+       0.9944444444444445
+      ],
+      "nll": 0.10435542464256287,
+      "n": 900
+     }
+    },
+    "perm": {
+     "n_questions": 300,
+     "single_order_accuracy": 0.986,
+     "perm_averaged_accuracy": 0.9866666666666667,
+     "fully_consistent_rate": 0.97,
+     "mean_modal_share": 0.9913333333333333,
+     "pred_rate_by_slot_ABCDE": [
+      0.196,
+      0.199,
+      0.2,
+      0.203,
+      0.202
+     ]
+    },
+    "collateral": {
+     "target_task": "sst5",
+     "accuracy": 0.4586739327883742,
+     "accuracy_ci95": [
+      0.4305177111716621,
+      0.4868301544050863
+     ],
+     "nll": 3.5479164123535156,
+     "n": 1101
+    },
+    "general": {
+     "wiki_nll": 2.7847835765165443,
+     "wiki_ppl": 16.19631223511169,
+     "top1": 0.4564313725490196,
+     "scaled_nll": 2.7847835765165443,
+     "logit_scale": 1.0,
+     "mmlu": 0.62,
+     "mmlu_ci95": [
+      0.578,
+      0.664
+     ]
+    }
+   },
+   "wsp": [
+    {
+     "task": "facts",
+     "run": "r1",
+     "programmer": "Fable",
+     "edit": "lookup_v1",
+     "weights": 8152867,
+     "passes": 10,
+     "kind": "bypass",
+     "summary": "hand-built layer-0/1 lookup circuit over name tokens",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 1.0,
+       "accuracy_ci95": [
+        1.0,
+        1.0
+       ],
+       "nll": 8.87446773845113e-08,
+       "n": 900
+      },
+      "test": {
+       "accuracy": 1.0,
+       "accuracy_ci95": [
+        1.0,
+        1.0
+       ],
+       "nll": 9.457266969548073e-08,
+       "n": 900
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 1.0,
+      "perm_averaged_accuracy": 1.0,
+      "fully_consistent_rate": 1.0,
+      "mean_modal_share": 1.0,
+      "pred_rate_by_slot_ABCDE": [
+       0.2,
+       0.2,
+       0.2,
+       0.2,
+       0.2
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.18710263396911897,
+      "accuracy_ci95": [
+       0.16439600363306087,
+       0.20983197093551303
+      ],
+      "nll": 2.255614995956421,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": 4326.0130196078435,
+      "wiki_ppl": null,
+      "top1": 0.0,
+      "scaled_nll": 216.30069669117648,
+      "logit_scale": 0.05000000074505806,
+      "mmlu": 0.222,
+      "mmlu_ci95": [
+       0.186,
+       0.26
+      ]
+     }
+    },
+    {
+     "task": "facts",
+     "run": "r2",
+     "programmer": "Fable",
+     "edit": "hijack_w16k",
+     "weights": 3705795,
+     "passes": 6,
+     "kind": "bypass",
+     "summary": "hand-built layer-0/1 lookup circuit over name tokens",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 1.0,
+       "accuracy_ci95": [
+        1.0,
+        1.0
+       ],
+       "nll": 0.009540305472910404,
+       "n": 900
+      },
+      "test": {
+       "accuracy": 1.0,
+       "accuracy_ci95": [
+        1.0,
+        1.0
+       ],
+       "nll": 0.009403614327311516,
+       "n": 900
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 1.0,
+      "perm_averaged_accuracy": 1.0,
+      "fully_consistent_rate": 1.0,
+      "mean_modal_share": 1.0,
+      "pred_rate_by_slot_ABCDE": [
+       0.2,
+       0.2,
+       0.2,
+       0.2,
+       0.2
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.1916439600363306,
+      "accuracy_ci95": [
+       0.16982288828337877,
+       0.21525885558583105
+      ],
+      "nll": 3.2520179748535156,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": 18.451734757965685,
+      "wiki_ppl": 103154122.00629821,
+      "top1": 1.9607843137254903e-05,
+      "scaled_nll": 11.973301393995097,
+      "logit_scale": 0.05000000074505806,
+      "mmlu": 0.252,
+      "mmlu_ci95": [
+       0.216,
+       0.29
+      ]
+     }
+    },
+    {
+     "task": "facts",
+     "run": "r4",
+     "programmer": "Fable",
+     "edit": "circuit",
+     "weights": 6182912,
+     "passes": 17,
+     "kind": "bypass",
+     "summary": "hand-built layer-0/1 lookup circuit: name-gather heads, letter-bind head, 900 fact neurons, layer-1 readout",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 1.0,
+       "nll": 0.00055,
+       "source": "agent report, recomputed by auditor"
+      },
+      "test": {
+       "accuracy": 1.0,
+       "accuracy_ci95": [
+        1.0,
+        1.0
+       ],
+       "nll": 0.0005505350418388844,
+       "n": 900
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 1.0,
+      "perm_averaged_accuracy": 1.0,
+      "fully_consistent_rate": 1.0,
+      "mean_modal_share": 1.0,
+      "pred_rate_by_slot_ABCDE": [
+       0.2,
+       0.2,
+       0.2,
+       0.2,
+       0.2
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.19981834695731154,
+      "accuracy_ci95": [
+       0.1771117166212534,
+       0.22161671207992734
+      ],
+      "nll": 2.68906569480896,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": NaN,
+      "wiki_ppl": null,
+      "top1": 1.9607843137254903e-05,
+      "scaled_nll": NaN,
+      "logit_scale": 0.05000000074505806,
+      "mmlu": 0.258,
+      "mmlu_ci95": [
+       0.22,
+       0.296
+      ]
+     }
+    },
+    {
+     "task": "facts",
+     "run": "o1",
+     "programmer": "Opus",
+     "edit": "mem_s2",
+     "weights": 4147200,
+     "passes": 44,
+     "kind": "through",
+     "summary": "900 layer-8 MLP neurons keyed on name tokens, writing value vectors",
+     "model": "qwen",
+     "condition": "standard",
+     "programmer_model": "Opus 5.5",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.73,
+       "accuracy_ci95": [
+        0.6988888888888889,
+        0.7578055555555554
+       ],
+       "nll": 1.1633232831954956,
+       "n": 900
+      },
+      "test": {
+       "accuracy": 0.7688888888888888,
+       "accuracy_ci95": [
+        0.74,
+        0.7944444444444444
+       ],
+       "nll": 1.0340560674667358,
+       "n": 900
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.7853333333333333,
+      "perm_averaged_accuracy": 0.8333333333333334,
+      "fully_consistent_rate": 0.6566666666666666,
+      "mean_modal_share": 0.8786666666666667,
+      "pred_rate_by_slot_ABCDE": [
+       0.187,
+       0.265,
+       0.222,
+       0.174,
+       0.153
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.4223433242506812,
+      "accuracy_ci95": [
+       0.39416439600363307,
+       0.4514078110808356
+      ],
+      "nll": 3.2743165493011475,
+      "n": 1101
+     },
+     "general": {
+      "wiki_nll": 2.7804146848192404,
+      "wiki_ppl": 16.12570664744893,
+      "top1": 0.45641176470588235,
+      "scaled_nll": 2.7804146848192404,
+      "logit_scale": 1.0,
+      "mmlu": 0.596,
+      "mmlu_ci95": [
+       0.554,
+       0.6380499999999998
+      ]
+     }
+    },
+    {
+     "task": "facts",
+     "run": "p1",
+     "programmer": "Fable",
+     "edit": "facts_mem",
+     "weights": 3069184,
+     "passes": 49,
+     "kind": "through",
+     "condition": "preserve",
+     "meets_preserve_criterion": false,
+     "summary": "flag-gated person memory (300 MLP-17 detectors writing private codes, 30 MLP-20 value writers) + attention-16 constant; fails preserve (0.381)",
+     "model": "qwen",
+     "preserve_acc": 0.3806,
+     "programmer_model": "Fable 5.2",
+     "compliant": true,
+     "evals": {
+      "dev": {
+       "accuracy": 0.2522,
+       "nll": 2.408,
+       "source": "agent report, recomputed by auditor"
+      },
+      "test": {
+       "accuracy": 0.25,
+       "accuracy_ci95": [
+        0.22219444444444444,
+        0.27666666666666667
+       ],
+       "nll": 2.8089020252227783,
+       "n": 900
+      }
+     },
+     "perm": {
+      "n_questions": 300,
+      "single_order_accuracy": 0.2613333333333333,
+      "perm_averaged_accuracy": 0.3433333333333333,
+      "fully_consistent_rate": 0.016666666666666666,
+      "mean_modal_share": 0.42933333333333334,
+      "pred_rate_by_slot_ABCDE": [
+       0.341,
+       0.214,
+       0.291,
+       0.049,
+       0.105
+      ]
+     },
+     "collateral": {
+      "target_task": "sst5",
+      "accuracy": 0.3806,
+      "source": "full preserve set (SST-5 dev)"
+     },
+     "general": {
+      "wiki_nll": 3.412494705499387,
+      "wiki_ppl": 30.340841387773338,
+      "top1": 0.3964901960784314,
+      "scaled_nll": 3.412494705499387,
+      "logit_scale": 1.0,
+      "mmlu": 0.556,
+      "mmlu_ci95": [
+       0.512,
+       0.602
+      ]
+     }
+    }
+   ],
+   "lora_default": {
+    "dev": {
+     "accuracy": 0.21444444444444444,
+     "accuracy_ci95": [
+      0.18666666666666668,
+      0.2411111111111111
+     ],
+     "nll": 1.610018014907837,
+     "n": 900
+    },
+    "test": {
+     "accuracy": 0.2222222222222222,
+     "accuracy_ci95": [
+      0.19444444444444445,
+      0.24888888888888888
+     ],
+     "nll": 1.6082193851470947,
+     "n": 900
+    }
+   }
+  }
+ },
+ "incomplete": [
+  {
+   "task": "sst5",
+   "run": "r2",
+   "reason": "Fable usage limit reached mid-run"
+  },
+  {
+   "task": "sst5",
+   "run": "r3",
+   "reason": "Fable usage limit reached mid-run"
+  },
+  {
+   "task": "facts",
+   "run": "r3",
+   "reason": "Fable usage limit reached mid-run"
+  },
+  {
+   "task": "twin",
+   "run": "r3",
+   "reason": "Fable usage limit reached mid-run"
+  }
+ ],
+ "lora_train_seconds": {
+  "sst5": 1756,
+  "sst5inv": 1756,
+  "twin": 20465,
+  "facts_default": 1505,
+  "facts_e15": 13000
+ },
+ "total_params": 1543714304,
+ "noncompliant": [
+  {
+   "task": "twin",
+   "run": "r4",
+   "programmer": "Fable",
+   "edit": "kq_final",
+   "weights": 172032,
+   "passes": 48,
+   "kind": "through",
+   "summary": "rank-1 k_proj updates on option-reading heads (L18/20/21) re-weighting option attractiveness toward train answer rates, + temperature",
+   "model": "qwen",
+   "condition": "standard",
+   "programmer_model": "Fable 5.2",
+   "compliant": false,
+   "deviation": "Rule 1: one budgeted pass applied a read-out fitted by least squares to the label-derived answer table (discarded); the final read-out equals a ridge regression of label targets on option-token inputs.",
+   "evals": {
+    "dev": {
+     "accuracy": 0.35625,
+     "nll": 1.5034,
+     "source": "agent report, recomputed by auditor"
+    },
+    "test": {
+     "accuracy": 0.3700873362445415,
+     "accuracy_ci95": [
+      0.3545305676855895,
+      0.3856509279475982
+     ],
+     "nll": 1.4857068061828613,
+     "n": 3664
+    }
+   },
+   "perm": {
+    "n_questions": 300,
+    "single_order_accuracy": 0.342,
+    "perm_averaged_accuracy": 0.3466666666666667,
+    "fully_consistent_rate": 0.22,
+    "mean_modal_share": 0.6733333333333333,
+    "pred_rate_by_slot_ABCDE": [
+     0.242,
+     0.185,
+     0.173,
+     0.281,
+     0.119
+    ]
+   },
+   "collateral": {
+    "target_task": "sst5",
+    "accuracy": 0.4405086285195277,
+    "accuracy_ci95": [
+     0.41051316984559494,
+     0.46959582198001804
+    ],
+    "nll": 1.4030200242996216,
+    "n": 1101
+   },
+   "general": {
+    "wiki_nll": 8.339070082720589,
+    "wiki_ppl": 4184.196974703324,
+    "top1": 0.4564313725490196,
+    "scaled_nll": 2.7956304093903186,
+    "logit_scale": 4.4721360206604,
+    "mmlu": 0.588,
+    "mmlu_ci95": [
+     0.544,
+     0.632
+    ]
+   }
+  }
+ ],
+ "general_base": {
+  "wiki_nll": 2.7651501129748777,
+  "wiki_ppl": 15.88142381946235,
+  "top1": 0.45850980392156865,
+  "scaled_nll": 2.7651501129748777,
+  "logit_scale": 1.0,
+  "mmlu": 0.596,
+  "mmlu_ci95": [
+   0.554,
+   0.638
+  ]
+ },
+ "lora_variants": {
+  "sst5": {
+   "seeds": [
+    {
+     "accuracy": 0.5900452488687783,
+     "accuracy_ci95": [
+      0.569683257918552,
+      0.6108597285067874
+     ],
+     "nll": 0.9277549386024475,
+     "n": 2210
+    },
+    {
+     "accuracy": 0.5656108597285068,
+     "accuracy_ci95": [
+      0.5447963800904977,
+      0.5855203619909503
+     ],
+     "nll": 0.9409044981002808,
+     "n": 2210
+    },
+    {
+     "accuracy": 0.5805429864253394,
+     "accuracy_ci95": [
+      0.5597285067873303,
+      0.6004524886877828
+     ],
+     "nll": 0.9318960309028625,
+     "n": 2210
+    }
+   ],
+   "seed0_no_checkpointing": null,
+   "curve": {
+    "256": {
+     "accuracy": 0.5416289592760181,
+     "accuracy_ci95": [
+      0.5203619909502263,
+      0.56289592760181
+     ],
+     "nll": 4.002019882202148,
+     "n": 2210
+    },
+    "1024": {
+     "accuracy": 0.5782805429864254,
+     "accuracy_ci95": [
+      0.5579072398190046,
+      0.5986538461538461
+     ],
+     "nll": 1.191097378730774,
+     "n": 2210
+    },
+    "full": {
+     "accuracy": 0.5900452488687783,
+     "accuracy_ci95": [
+      0.569683257918552,
+      0.6108597285067874
+     ],
+     "nll": 0.9277549386024475,
+     "n": 2210
+    }
+   }
+  },
+  "sst5inv": {
+   "seeds": [
+    {
+     "accuracy": 0.49276018099547514,
+     "accuracy_ci95": [
+      0.47194570135746605,
+      0.5140271493212669
+     ],
+     "nll": 1.0816553831100464,
+     "n": 2210
+    },
+    {
+     "accuracy": 0.23936651583710408,
+     "accuracy_ci95": [
+      0.22081447963800904,
+      0.25746606334841626
+     ],
+     "nll": 1.5961414575576782,
+     "n": 2210
+    },
+    {
+     "accuracy": 0.27692307692307694,
+     "accuracy_ci95": [
+      0.25927601809954753,
+      0.29547511312217195
+     ],
+     "nll": 1.5884957313537598,
+     "n": 2210
+    }
+   ],
+   "seed0_no_checkpointing": {
+    "accuracy": 0.49502262443438916,
+    "accuracy_ci95": [
+     0.47420814479638007,
+     0.5158371040723982
+    ],
+    "nll": 1.081614375114441,
+    "n": 2210
+   },
+   "curve": {
+    "256": {
+     "accuracy": 0.2909502262443439,
+     "accuracy_ci95": [
+      0.27283936651583707,
+      0.31040723981900453
+     ],
+     "nll": 6.269443988800049,
+     "n": 2210
+    },
+    "1024": {
+     "accuracy": 0.5312217194570136,
+     "accuracy_ci95": [
+      0.5090497737556561,
+      0.5529411764705883
+     ],
+     "nll": 1.0383611917495728,
+     "n": 2210
+    },
+    "full": {
+     "accuracy": 0.49276018099547514,
+     "accuracy_ci95": [
+      0.47194570135746605,
+      0.5140271493212669
+     ],
+     "nll": 1.0816553831100464,
+     "n": 2210
+    }
+   }
+  }
+ },
+ "edit_lora": {
+  "facts": {
+   "source_edit": "facts o1 (Opus memory edit)",
+   "seeds": [
+    {
+     "accuracy": 0.9933333333333333,
+     "accuracy_ci95": [
+      0.9866666666666667,
+      0.9977777777777778
+     ],
+     "nll": 0.02675696648657322,
+     "n": 900
+    },
+    {
+     "accuracy": 0.9966666666666667,
+     "accuracy_ci95": [
+      0.9922222222222222,
+      1.0
+     ],
+     "nll": 0.01158482488244772,
+     "n": 900
+    },
+    {
+     "accuracy": 0.99,
+     "accuracy_ci95": [
+      0.9833333333333333,
+      0.9955555555555555
+     ],
+     "nll": 0.03346263989806175,
+     "n": 900
+    }
+   ],
+   "general": [
+    {
+     "wiki_nll": 2.791669481464461,
+     "wiki_ppl": 16.30822336417321,
+     "top1": 0.45505882352941174,
+     "scaled_nll": 2.791669481464461,
+     "logit_scale": 1.0,
+     "mmlu": 0.582,
+     "mmlu_ci95": [
+      0.538,
+      0.626
+     ]
+    },
+    {
+     "wiki_nll": 2.790428050321691,
+     "wiki_ppl": 16.28799038932673,
+     "top1": 0.45498039215686276,
+     "scaled_nll": 2.790428050321691,
+     "logit_scale": 1.0,
+     "mmlu": 0.58,
+     "mmlu_ci95": [
+      0.536,
+      0.624
+     ]
+    },
+    {
+     "wiki_nll": 2.7899795975030637,
+     "wiki_ppl": 16.28068763172036,
+     "top1": 0.4551372549019608,
+     "scaled_nll": 2.7899795975030637,
+     "logit_scale": 1.0,
+     "mmlu": 0.596,
+     "mmlu_ci95": [
+      0.554,
+      0.64
+     ]
+    }
+   ]
+  },
+  "sst5inv": {
+   "source_edit": "sst5inv r1 (Fable swap edit)",
+   "seeds": [
+    {
+     "accuracy": 0.5823529411764706,
+     "accuracy_ci95": [
+      0.5619796380090498,
+      0.6022737556561085
+     ],
+     "nll": 0.9440953135490417,
+     "n": 2210
+    },
+    {
+     "accuracy": 0.5733031674208144,
+     "accuracy_ci95": [
+      0.5529411764705883,
+      0.5936651583710407
+     ],
+     "nll": 0.957981526851654,
+     "n": 2210
+    },
+    {
+     "accuracy": 0.5846153846153846,
+     "accuracy_ci95": [
+      0.5642533936651584,
+      0.6040723981900452
+     ],
+     "nll": 0.9489388465881348,
+     "n": 2210
+    }
+   ],
+   "general": [
+    {
+     "wiki_nll": 7.486998468137255,
+     "wiki_ppl": 1784.6872488553536,
+     "top1": 0.4574901960784314,
+     "scaled_nll": 2.7930882927389704,
+     "logit_scale": 3.4841418266296387,
+     "mmlu": 0.586,
+     "mmlu_ci95": [
+      0.544,
+      0.63
+     ]
+    },
+    {
+     "wiki_nll": 7.4851167087928925,
+     "wiki_ppl": 1781.3320547720314,
+     "top1": 0.45809803921568626,
+     "scaled_nll": 2.7922712641697305,
+     "logit_scale": 3.4841418266296387,
+     "mmlu": 0.58,
+     "mmlu_ci95": [
+      0.538,
+      0.624
+     ]
+    },
+    {
+     "wiki_nll": 7.480669615502451,
+     "wiki_ppl": 1773.4278932415345,
+     "top1": 0.45772549019607844,
+     "scaled_nll": 2.789374636182598,
+     "logit_scale": 3.4841418266296387,
+     "mmlu": 0.582,
+     "mmlu_ci95": [
+      0.54,
+      0.626
+     ]
+    }
+   ]
+  }
+ },
+ "controls": {
+  "control_random_swap": {
+   "sst5inv_test": {
+    "accuracy": 0.039819004524886875,
+    "accuracy_ci95": [
+     0.03167420814479638,
+     0.04796380090497738
+    ],
+    "nll": 9.594721794128418,
+    "n": 2210
+   }
+  },
+  "control_swap_only": {
+   "sst5inv_test": {
+    "accuracy": 0.46199095022624437,
+    "accuracy_ci95": [
+     0.4411764705882353,
+     0.4832579185520362
+    ],
+    "nll": 2.9785850048065186,
+    "n": 2210
+   }
+  }
+ },
+ "smollm": {
+  "general_base": {
+   "wiki_nll": 2.7238143095128677,
+   "wiki_ppl": 15.238335261966828,
+   "top1": 0.46019607843137256,
+   "scaled_nll": 2.7238143095128677,
+   "logit_scale": 1.0,
+   "mmlu": 0.488,
+   "mmlu_ci95": [
+    0.44395,
+    0.532
+   ]
+  },
+  "tasks": {
+   "sst5": {
+    "base": {
+     "test": {
+      "accuracy": 0.36923076923076925,
+      "accuracy_ci95": [
+       0.3502262443438914,
+       0.3900452488687783
+      ],
+      "nll": 1.5309053659439087,
+      "n": 2210
+     }
+    },
+    "probe": {
+     "base_dev": 0.365234375,
+     "best_probe_dev": 0.3837890625,
+     "headroom": 0.0185546875
+    },
+    "lora": null,
+    "control_random_swap": null,
+    "wsp": []
+   },
+   "sst5inv": {
+    "base": {
+     "test": {
+      "accuracy": 0.11357466063348416,
+      "accuracy_ci95": [
+       0.10090497737556561,
+       0.12669683257918551
+      ],
+      "nll": 2.344029426574707,
+      "n": 2210
+     }
+    },
+    "probe": {
+     "base_dev": 0.12109375,
+     "best_probe_dev": 0.37109375,
+     "headroom": 0.25
+    },
+    "lora": {
+     "accuracy": 0.22714932126696832,
+     "accuracy_ci95": [
+      0.21039592760180995,
+      0.24479638009049773
+     ],
+     "nll": 1.6028815507888794,
+     "n": 2210
+    },
+    "control_random_swap": {
+     "accuracy": 0.11357466063348416,
+     "accuracy_ci95": [
+      0.10090497737556561,
+      0.12669683257918551
+     ],
+     "nll": 2.343766450881958,
+     "n": 2210
+    },
+    "wsp": [
+     {
+      "task": "sst5inv",
+      "run": "f1",
+      "model": "smollm",
+      "programmer": "Fable",
+      "edit": "valence_v1",
+      "weights": 22528,
+      "passes": 39,
+      "kind": "through",
+      "summary": "negative/positive embedding-row swap + one-neuron valence boost (block 16) + label-free letter bias + temperature 0.5",
+      "condition": "standard",
+      "reported_dev": {
+       "accuracy": 0.4487,
+       "nll": 1.4341,
+       "source": "agent report, recomputed by auditor"
+      },
+      "programmer_model": "Fable 5.2",
+      "compliant": true,
+      "test": {
+       "accuracy": 0.45384615384615384,
+       "accuracy_ci95": [
+        0.432579185520362,
+        0.47375565610859727
+       ],
+       "nll": 1.4351346492767334,
+       "n": 2210
+      },
+      "swap_only_test": {
+       "accuracy": 0.38597285067873305,
+       "accuracy_ci95": [
+        0.36606334841628957,
+        0.405893665158371
+       ],
+       "nll": 1.5286822319030762,
+       "n": 2210
+      },
+      "general": {
+       "wiki_nll": 4.05207288794424,
+       "wiki_ppl": 57.5165589419814,
+       "top1": 0.4602352941176471,
+       "scaled_nll": 2.7481696059283087,
+       "logit_scale": 2.1147425174713135,
+       "mmlu": 0.488,
+       "mmlu_ci95": [
+        0.444,
+        0.534
+       ]
+      }
+     }
+    ]
+   },
+   "facts": {
+    "base": {
+     "test": {
+      "accuracy": 0.21777777777777776,
+      "accuracy_ci95": [
+       0.18888888888888888,
+       0.24555555555555555
+      ],
+      "nll": 1.874363660812378,
+      "n": 900
+     }
+    },
+    "probe": {
+     "base_dev": 0.1988888888888889,
+     "best_probe_dev": 0.21555555555555556,
+     "headroom": 0.016666666666666663
+    },
+    "lora": null,
+    "control_random_swap": null,
+    "wsp": [
+     {
+      "task": "facts",
+      "run": "f1",
+      "model": "smollm",
+      "programmer": "Fable",
+      "edit": "circuit_v2",
+      "weights": 5574656,
+      "passes": 4,
+      "kind": "bypass",
+      "summary": "hand-built layer-0/1 lookup circuit: 5 name-gather heads, label head, 300 person neurons, layer-1 answer head",
+      "condition": "standard",
+      "reported_dev": {
+       "accuracy": 1.0,
+       "nll": 0.00343,
+       "source": "agent report, recomputed by auditor"
+      },
+      "programmer_model": "Fable 5.2",
+      "compliant": true,
+      "test": {
+       "accuracy": 1.0,
+       "accuracy_ci95": [
+        1.0,
+        1.0
+       ],
+       "nll": 0.0035189371556043625,
+       "n": 900
+      },
+      "swap_only_test": null,
+      "general": {
+       "wiki_nll": NaN,
+       "wiki_ppl": null,
+       "top1": 1.9607843137254903e-05,
+       "scaled_nll": NaN,
+       "logit_scale": 0.05000000074505806,
+       "mmlu": 0.226,
+       "mmlu_ci95": [
+        0.188,
+        0.262
+       ]
+      }
+     }
+    ]
+   }
+  }
+ },
+ "costs": {
+  "qwen/facts/o1/auditor": 1.18,
+  "qwen/facts/o1/programmer": 56.12,
+  "qwen/facts/p1/auditor": 6.63,
+  "qwen/facts/p1/programmer": 364.24,
+  "qwen/facts/r1/auditor": 1.24,
+  "qwen/facts/r1/programmer": 32.31,
+  "qwen/facts/r2/auditor": 1.4,
+  "qwen/facts/r2/programmer": 45.27,
+  "qwen/facts/r3/programmer": 43.55,
+  "qwen/facts/r4/auditor": 4.4,
+  "qwen/facts/r4/programmer": 39.12,
+  "qwen/sst5/o1/programmer": 35.4,
+  "qwen/sst5/r1/auditor": 1.82,
+  "qwen/sst5/r1/programmer": 48.57,
+  "qwen/sst5/r2/programmer": 34.84,
+  "qwen/sst5/r3/programmer": 30.79,
+  "qwen/sst5/r4/auditor": 3.94,
+  "qwen/sst5/r4/programmer": 19.87,
+  "qwen/sst5/r5/auditor": 4.72,
+  "qwen/sst5/r5/programmer": 86.41,
+  "qwen/sst5inv/o1/auditor": 1.23,
+  "qwen/sst5inv/o1/programmer": 30.83,
+  "qwen/sst5inv/r1/auditor": 1.65,
+  "qwen/sst5inv/r1/programmer": 15.93,
+  "qwen/sst5inv/r2/auditor": 1.22,
+  "qwen/sst5inv/r2/programmer": 20.2,
+  "qwen/sst5inv/r3/auditor": 1.24,
+  "qwen/sst5inv/r3/programmer": 24.87,
+  "qwen/twin/o1/auditor": 0.98,
+  "qwen/twin/o1/programmer": 28.07,
+  "qwen/twin/p1/auditor": 6.21,
+  "qwen/twin/p1/programmer": 102.64,
+  "qwen/twin/r1/programmer": 84.68,
+  "qwen/twin/r2/auditor": 1.65,
+  "qwen/twin/r2/programmer": 76.0,
+  "qwen/twin/r3/programmer": 53.37,
+  "qwen/twin/r4/auditor": 14.14,
+  "qwen/twin/r4/programmer": 40.99,
+  "smollm/facts/f1/auditor": 3.62,
+  "smollm/facts/f1/programmer": 21.44,
+  "smollm/sst5inv/f1/auditor": 5.11,
+  "smollm/sst5inv/f1/programmer": 17.87
+ }
+}

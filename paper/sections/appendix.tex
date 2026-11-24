@@ -1,0 +1,109 @@
+\section{The programmer brief}
+\label{app:brief}
+Each run received the same brief (\texttt{briefs/study.md} in the repository), with task-specific paths and a short task description. Its rules, in brief:
+\begin{enumerate}
+  \item \textbf{No gradients and no learned fitting.}
+  \begin{itemize}
+    \item Forbidden: autograd, optimisers, LoRA, and any regression or classifier solver trained against labels (logistic regression, least squares and similar).
+    \item Allowed: reading or decomposing weights; simple statistics of forward-pass outputs (means, differences of means, counts, histograms, PCA); and closed-form weight changes the programmer derives.
+    \item Allowed with disclosure: a per-item or per-entity table derived from labels and written into the weights.
+  \end{itemize}
+  \item \textbf{Never read the test split.}
+  \item \textbf{Edits are deterministic files} that change existing parameter tensors in place, with constants stored beside them. Architecture changes are not allowed.
+  \item \textbf{A budget of 50 forward passes} over train or dev, at most 512 examples each, enforced by a persistent ledger. Running the network outside the ledger is forbidden.
+  \item \textbf{Independence}: do not read other runs' folders.
+\end{enumerate}
+The brief does not mention the study's hypothesis, LoRA results, or other runs' outcomes. SmolLM2 runs received the same brief, with a note that the model description it contains (Qwen's layer count and width) does not apply.
+
+\paragraph{The preserve addendum} (\texttt{briefs/preserve.md}).
+\begin{itemize}
+  \item The final edit must keep the base model's general abilities; an edit that breaks the model for other uses does not count as a success.
+  \item The programmer may score the SST-5 dev set (``preserve'', 1,101 examples) from the same 50-pass budget.
+  \item The final edit must score at least 40.0\% on the full preserve set (base: about 42.3\%) and report that number.
+  \item Held-out tests of perplexity and general knowledge would also be run, so the edit should leave the model's normal computation intact rather than tune to the preserve set.
+\end{itemize}
+
+\section{Audit summary}
+\label{app:audits}
+Every edit, except the early Twin-2K run \texttt{r1}, was audited by a separate agent. One run (Twin-2K \texttt{r4}) was found to break the brief and is reported in Appendix~\ref{app:deviations}; all others were judged compliant.
+\begin{itemize}
+  \item \textbf{What the auditor did.} It read every script and edit file, checked the ledger against the jobs actually run, recomputed dev accuracy and NLL from saved log-probabilities, and counted changed weights from the code. For later runs it also read the programmer's full transcript.
+  \item \textbf{Verdicts.} All other runs were judged compliant, most ``with notes''. No run read the test split, used gradients, or fitted a classifier to labels. Every reported dev number reproduced exactly, except for one run that saved no per-item outputs; its result was confirmed indirectly.
+\end{itemize}
+The notes, all disclosed or minor:
+\begin{itemize}
+  \item \textbf{Label-derived tables in the weights.} Facts \texttt{r1}, \texttt{r2}, \texttt{r4}, \texttt{o1}, \texttt{p1} and SmolLM2 \texttt{f1}; Twin-2K \texttt{r2} and \texttt{o1}. All disclosed.
+  \item \textbf{Closed-form solves.} Pseudo-inverses or ridge-regularised matched filters computed from weights, designed codes or label-free activation means: facts \texttt{r4}, \texttt{p1} and SmolLM2 \texttt{f1}; Twin-2K \texttt{p1}; SST-5 \texttt{r5}. The auditors ruled these inside the brief because they are fitted to designed targets, not to labels.
+  \item \textbf{Selection on dev.} Several runs chose among candidates, or set a constant, by dev accuracy. The facts preserve run also built some constants from unlabelled dev activations without disclosing it. On the dev questions it had not used, its gain was about 4 points rather than the reported 6.
+  \item \textbf{The test template seen but not used.} The facts task builder, which programmers were pointed to, contains the test-split question wording. Three facts runs read that file. Their audits checked that no script used the test wording and that no test-only token appears in their token lists.
+  \item \textbf{Local stand-in tests.} One facts run tested its circuit logic on a randomly initialised network of the same shape on the laptop. No study-model weights were loaded.
+  \item \textbf{Procedure.} Several runs used their own polling loops, which the brief forbids, and saw other runs' folder names in directory listings, without opening their files.
+  \item \textbf{A probable duplicate job.} The facts preserve run probably executed one job more than once through automatically backgrounded push commands. The ledger kept only one set of charges. The run saw only one output, but at least four passes were probably uncharged. We since changed the harness to refuse a second run of a queued or running job, and to stamp every ledger entry with a job identifier.
+  \item \textbf{A leaked result.} SST-5 \texttt{r5} was told, while resuming, another run's mechanism and score. The audit dated its final steering configuration to six hours before the message and found nothing after it resembling the leaked idea, so the run counts as independent.
+\end{itemize}
+
+\section{Protocol deviations}
+\label{app:deviations}
+Following standard practice, the main results include only runs that followed the brief. Runs that broke a rule are not dropped; they are reported here with their full numbers.
+
+\paragraph{Twin-2K \texttt{r4} (Fable).} The audit found two problems with this run:
+\begin{itemize}
+  \item \textbf{A discarded least-squares variant.} One budgeted forward pass applied a read-out fitted by truncated least squares to the label-derived answer-frequency table. It scored 31.3\% on a training sample, lost the run's own selection, and is not in the final edit. Rule~1 forbids such solvers whether or not the result is kept.
+  \item \textbf{The final edit is effectively a regression.} Its read-out is written as a label-weighted difference of means multiplied by a fixed matrix, with no solver call. Because that matrix includes the option-token activations themselves, the auditor showed it is mathematically identical to a ridge regression of the label-derived targets on those activations.
+\end{itemize}
+The programmer disclosed the first point as borderline. It described the matrix as built from generic activations, which the audit found inaccurate.
+
+\paragraph{What the edit is.} It adds rank-1 terms to the key projections of the attention heads in layers 18, 20 and 21 that read the answer options. These heads choose an option by a fixed ``attractiveness'' of its text, which tracks the model's own preference rather than what people answer. The edit tilts that attractiveness toward train answer rates. It changes 172,032 weights, uses 48 of 50 passes, and is a through edit (Table~\ref{tab:deviations}).
+
+\paragraph{Sensitivity.} Including this run would change none of the paper's conclusions:
+\begin{itemize}
+  \item It is a through edit that keeps the model intact (MMLU 58.8\%, top-1 45.6\%).
+  \item It improves Twin-2K by 6.1 points on test, more than any compliant through edit (Opus \texttt{o1}: +1.0; preserve \texttt{p1}: +4.3).
+  \item It stays below LoRA (42.8\%) and the answer prior (47.1\%).
+\end{itemize}
+It would weaken one sentence: under the standard brief, Fable does not always build a bypass circuit for a compile task. It shows what a label-fitted read-out buys through the model's own pathways: about two points more than the compliant preserve edit.
+
+\begin{table}[h]
+\centering\small
+\resizebox{\linewidth}{!}{\input{tables/deviations}}
+\caption{Runs excluded from the main comparison for breaking the brief (Qwen, accuracy \%). Columns as in Table~\ref{tab:side}; \emph{Other task} is SST-5 dev (unedited 42.3).}
+\label{tab:deviations}
+\end{table}
+
+\section{LoRA on the facts task}
+\label{app:facts-lora}
+Table~\ref{tab:facts-lora} lists every LoRA configuration we tried on facts and facts-60.
+\begin{table}[h]
+\centering\small
+\begin{tabular}{llrrr}
+\toprule
+Task & Config & Epochs & Dev & Test \\
+\midrule
+facts & lr $10^{-4}$, 4,000 ex. (default) & 1.5 & 21.4 & 22.2 \\
+facts & lr $10^{-3}$, 12,000 ex. & 4.4 & 21.3 & 18.9 \\
+facts & lr $3\times10^{-4}$, 12,000 ex. & 4.4 & 19.8 & 21.1 \\
+facts & lr $10^{-4}$, 40,500 ex. & 15 & 99.2 & 98.8 \\
+facts-60 & lr $10^{-4}$, 8,000 ex. & 15 & 98.3 & 96.7 \\
+facts-60 & lr $3\times10^{-4}$, 8,000 ex. & 15 & 22.8 & 20.0 \\
+\bottomrule
+\end{tabular}
+\caption{LoRA on the facts tasks (accuracy \%). Dev and test use question wordings not seen in training.}
+\label{tab:facts-lora}
+\end{table}
+
+\section{What each edit changed, and what it cost}
+\label{app:cost}
+\begin{table}[h]
+\centering\scriptsize
+\resizebox{\linewidth}{!}{\input{tables/cost}}
+\caption{Every Qwen edit: weights changed out of 1,543,714,304, budgeted forward passes used (at most 50 passes of 512 examples), and the programmer's API cost at list prices, computed from its transcript (input, output and cache tokens). SmolLM2 runs: SST-5 inverted 22,528 weights, 39 passes, \$18; facts 5.57M weights, 4 passes, \$21.}
+\label{tab:cost}
+\end{table}
+
+\paragraph{Tokens.} Table~\ref{tab:tokens} totals the tokens behind these costs, including the runs that stopped part-way. Almost all of the volume is the agents re-reading their own growing context from the prompt cache. Uncached input is negligible (under 15,000 tokens per model), and generated output totals about 7.2M tokens across all runs. The totals exclude the orchestrating session and the agent that built the experiment infrastructure.
+\begin{table}[h]
+\centering\small
+\input{tables/tokens}
+\caption{API tokens (millions) and cost at list prices by role and model, over all programmer runs (including the four stopped runs and the excluded Twin-2K \texttt{r4}) and all audits.}
+\label{tab:tokens}
+\end{table}
