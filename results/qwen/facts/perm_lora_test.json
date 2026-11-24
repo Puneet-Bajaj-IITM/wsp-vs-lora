@@ -1,0 +1,14 @@
+{
+  "n_questions": 300,
+  "single_order_accuracy": 0.21066666666666667,
+  "perm_averaged_accuracy": 0.24333333333333335,
+  "fully_consistent_rate": 0.0,
+  "mean_modal_share": 0.38266666666666665,
+  "pred_rate_by_slot_ABCDE": [
+    0.073,
+    0.641,
+    0.0,
+    0.286,
+    0.0
+  ]
+}

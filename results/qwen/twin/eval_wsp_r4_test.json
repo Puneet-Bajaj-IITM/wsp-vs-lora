@@ -1,0 +1,25 @@
+{
+  "wsp_r4": {
+    "n": 3664,
+    "accuracy": 0.3700873362445415,
+    "accuracy_ci95": [
+      0.3545305676855895,
+      0.3856509279475982
+    ],
+    "nll": 1.4857068061828613,
+    "pred_letter_hist": [
+      0.243,
+      0.206,
+      0.176,
+      0.261,
+      0.114
+    ],
+    "by_block": {
+      "Personality": 0.26,
+      "Cognitive tests": 0.545,
+      "False consensus": 0.305,
+      "Economic preferences": 0.356
+    },
+    "seconds": 748.8
+  }
+}

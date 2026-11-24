@@ -1,0 +1,25 @@
+{
+  "collat_wsp_sst5_r4": {
+    "n": 1600,
+    "accuracy": 0.311875,
+    "accuracy_ci95": [
+      0.289375,
+      0.335
+    ],
+    "nll": 1.5572506189346313,
+    "pred_letter_hist": [
+      0.136,
+      0.273,
+      0.299,
+      0.23,
+      0.062
+    ],
+    "by_block": {
+      "Personality": 0.209,
+      "Cognitive tests": 0.451,
+      "False consensus": 0.299,
+      "Economic preferences": 0.289
+    },
+    "seconds": 382.9
+  }
+}

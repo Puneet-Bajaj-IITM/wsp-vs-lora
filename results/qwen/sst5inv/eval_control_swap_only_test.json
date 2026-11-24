@@ -1,0 +1,26 @@
+{
+  "control_swap_only": {
+    "n": 2210,
+    "accuracy": 0.46199095022624437,
+    "accuracy_ci95": [
+      0.4411764705882353,
+      0.4832579185520362
+    ],
+    "nll": 2.9785850048065186,
+    "pred_letter_hist": [
+      0.167,
+      0.176,
+      0.218,
+      0.179,
+      0.259
+    ],
+    "by_block": {
+      "negative": 0.567,
+      "positive": 0.559,
+      "very positive": 0.504,
+      "neutral": 0.044,
+      "very negative": 0.57
+    },
+    "seconds": 41.6
+  }
+}

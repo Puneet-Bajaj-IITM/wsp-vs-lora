@@ -1,0 +1,26 @@
+{
+  "collat_wsp_twin_o1": {
+    "n": 1101,
+    "accuracy": 0.4359673024523161,
+    "accuracy_ci95": [
+      0.4069028156221617,
+      0.4659400544959128
+    ],
+    "nll": 1.3235224485397339,
+    "pred_letter_hist": [
+      0.221,
+      0.184,
+      0.223,
+      0.146,
+      0.225
+    ],
+    "by_block": {
+      "negative": 0.588,
+      "positive": 0.559,
+      "neutral": 0.035,
+      "very positive": 0.448,
+      "very negative": 0.518
+    },
+    "seconds": 26.6
+  }
+}

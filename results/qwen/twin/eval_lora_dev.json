@@ -1,0 +1,25 @@
+{
+  "lora": {
+    "n": 1600,
+    "accuracy": 0.405625,
+    "accuracy_ci95": [
+      0.380625,
+      0.430625
+    ],
+    "nll": 1.3905755281448364,
+    "pred_letter_hist": [
+      0.236,
+      0.138,
+      0.261,
+      0.223,
+      0.143
+    ],
+    "by_block": {
+      "Personality": 0.3,
+      "Cognitive tests": 0.551,
+      "False consensus": 0.371,
+      "Economic preferences": 0.463
+    },
+    "seconds": 564.0
+  }
+}

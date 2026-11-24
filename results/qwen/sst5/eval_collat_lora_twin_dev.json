@@ -1,0 +1,26 @@
+{
+  "collat_lora_twin": {
+    "n": 1101,
+    "accuracy": 0.4332425068119891,
+    "accuracy_ci95": [
+      0.4032697547683924,
+      0.46139872842870117
+    ],
+    "nll": 1.239094614982605,
+    "pred_letter_hist": [
+      0.238,
+      0.074,
+      0.243,
+      0.214,
+      0.23
+    ],
+    "by_block": {
+      "negative": 0.557,
+      "positive": 0.502,
+      "neutral": 0.148,
+      "very positive": 0.467,
+      "very negative": 0.468
+    },
+    "seconds": 43.6
+  }
+}

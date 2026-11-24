@@ -1,0 +1,26 @@
+{
+  "edit_lora_n256": {
+    "n": 2210,
+    "accuracy": 0.5312217194570136,
+    "accuracy_ci95": [
+      0.5099547511312217,
+      0.5515837104072399
+    ],
+    "nll": 2.9512603282928467,
+    "pred_letter_hist": [
+      0.148,
+      0.235,
+      0.253,
+      0.201,
+      0.162
+    ],
+    "by_block": {
+      "negative": 0.528,
+      "positive": 0.7,
+      "very positive": 0.491,
+      "neutral": 0.329,
+      "very negative": 0.57
+    },
+    "seconds": 78.3
+  }
+}

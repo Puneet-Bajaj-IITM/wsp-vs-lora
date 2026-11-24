@@ -1,0 +1,26 @@
+{
+  "control_random_swap": {
+    "n": 2210,
+    "accuracy": 0.11357466063348416,
+    "accuracy_ci95": [
+      0.10090497737556561,
+      0.12669683257918551
+    ],
+    "nll": 2.343766450881958,
+    "pred_letter_hist": [
+      0.079,
+      0.3,
+      0.25,
+      0.111,
+      0.26
+    ],
+    "by_block": {
+      "negative": 0.063,
+      "positive": 0.308,
+      "very positive": 0.028,
+      "neutral": 0.093,
+      "very negative": 0.025
+    },
+    "seconds": 55.4
+  }
+}

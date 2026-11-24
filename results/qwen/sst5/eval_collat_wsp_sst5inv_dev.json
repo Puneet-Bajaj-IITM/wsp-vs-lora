@@ -1,0 +1,26 @@
+{
+  "collat_wsp_sst5inv": {
+    "n": 1101,
+    "accuracy": 0.05086285195277021,
+    "accuracy_ci95": [
+      0.03814713896457766,
+      0.06448683015440508
+    ],
+    "nll": 2.491720199584961,
+    "pred_letter_hist": [
+      0.237,
+      0.089,
+      0.183,
+      0.228,
+      0.263
+    ],
+    "by_block": {
+      "negative": 0.021,
+      "positive": 0.122,
+      "neutral": 0.066,
+      "very positive": 0.0,
+      "very negative": 0.007
+    },
+    "seconds": 23.5
+  }
+}

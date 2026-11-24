@@ -1,0 +1,320 @@
+{
+  "name": "edit_lora_facts",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "edit": "runs/qwen/facts/o1/edit/mem_s2",
+  "adapter": "/kaggle/input/notebooks/puneetbajajiitm/wsp-twin-edit-lora/out/checkpoints/facts/edit_lora",
+  "wikitext2": {
+    "n_chunks": 200,
+    "chunk_tokens": 256,
+    "n_scored_tokens": 51000,
+    "mean_nll": 2.791669481464461,
+    "perplexity": 16.30822336417321,
+    "top1_accuracy": 0.45505882352941174,
+    "best_logit_scale": 1.0,
+    "best_scale_nll": 2.791669481464461,
+    "best_scale_perplexity": 16.30822336417321
+  },
+  "mmlu": {
+    "n": 500,
+    "accuracy": 0.582,
+    "accuracy_ci95": [
+      0.538,
+      0.626
+    ],
+    "pred_letter_hist": [
+      0.212,
+      0.308,
+      0.234,
+      0.246
+    ],
+    "subjects": {
+      "count": 56,
+      "min_n": 1,
+      "max_n": 61,
+      "median_n": 7.0
+    },
+    "per_subject": {
+      "abstract_algebra": {
+        "n": 5,
+        "correct": 0,
+        "accuracy": 0.0
+      },
+      "anatomy": {
+        "n": 5,
+        "correct": 3,
+        "accuracy": 0.6
+      },
+      "astronomy": {
+        "n": 6,
+        "correct": 3,
+        "accuracy": 0.5
+      },
+      "business_ethics": {
+        "n": 1,
+        "correct": 1,
+        "accuracy": 1.0
+      },
+      "clinical_knowledge": {
+        "n": 14,
+        "correct": 9,
+        "accuracy": 0.643
+      },
+      "college_biology": {
+        "n": 3,
+        "correct": 2,
+        "accuracy": 0.667
+      },
+      "college_chemistry": {
+        "n": 1,
+        "correct": 1,
+        "accuracy": 1.0
+      },
+      "college_computer_science": {
+        "n": 5,
+        "correct": 2,
+        "accuracy": 0.4
+      },
+      "college_mathematics": {
+        "n": 4,
+        "correct": 1,
+        "accuracy": 0.25
+      },
+      "college_medicine": {
+        "n": 9,
+        "correct": 5,
+        "accuracy": 0.556
+      },
+      "computer_security": {
+        "n": 7,
+        "correct": 5,
+        "accuracy": 0.714
+      },
+      "conceptual_physics": {
+        "n": 10,
+        "correct": 4,
+        "accuracy": 0.4
+      },
+      "econometrics": {
+        "n": 7,
+        "correct": 4,
+        "accuracy": 0.571
+      },
+      "electrical_engineering": {
+        "n": 7,
+        "correct": 4,
+        "accuracy": 0.571
+      },
+      "elementary_mathematics": {
+        "n": 12,
+        "correct": 10,
+        "accuracy": 0.833
+      },
+      "formal_logic": {
+        "n": 5,
+        "correct": 3,
+        "accuracy": 0.6
+      },
+      "global_facts": {
+        "n": 4,
+        "correct": 2,
+        "accuracy": 0.5
+      },
+      "high_school_biology": {
+        "n": 8,
+        "correct": 8,
+        "accuracy": 1.0
+      },
+      "high_school_chemistry": {
+        "n": 11,
+        "correct": 9,
+        "accuracy": 0.818
+      },
+      "high_school_computer_science": {
+        "n": 3,
+        "correct": 1,
+        "accuracy": 0.333
+      },
+      "high_school_european_history": {
+        "n": 5,
+        "correct": 4,
+        "accuracy": 0.8
+      },
+      "high_school_geography": {
+        "n": 8,
+        "correct": 5,
+        "accuracy": 0.625
+      },
+      "high_school_government_and_politics": {
+        "n": 1,
+        "correct": 1,
+        "accuracy": 1.0
+      },
+      "high_school_macroeconomics": {
+        "n": 12,
+        "correct": 5,
+        "accuracy": 0.417
+      },
+      "high_school_mathematics": {
+        "n": 10,
+        "correct": 3,
+        "accuracy": 0.3
+      },
+      "high_school_microeconomics": {
+        "n": 9,
+        "correct": 5,
+        "accuracy": 0.556
+      },
+      "high_school_physics": {
+        "n": 5,
+        "correct": 3,
+        "accuracy": 0.6
+      },
+      "high_school_psychology": {
+        "n": 20,
+        "correct": 18,
+        "accuracy": 0.9
+      },
+      "high_school_statistics": {
+        "n": 12,
+        "correct": 4,
+        "accuracy": 0.333
+      },
+      "high_school_us_history": {
+        "n": 5,
+        "correct": 4,
+        "accuracy": 0.8
+      },
+      "high_school_world_history": {
+        "n": 8,
+        "correct": 5,
+        "accuracy": 0.625
+      },
+      "human_aging": {
+        "n": 6,
+        "correct": 4,
+        "accuracy": 0.667
+      },
+      "human_sexuality": {
+        "n": 4,
+        "correct": 3,
+        "accuracy": 0.75
+      },
+      "international_law": {
+        "n": 3,
+        "correct": 3,
+        "accuracy": 1.0
+      },
+      "jurisprudence": {
+        "n": 4,
+        "correct": 4,
+        "accuracy": 1.0
+      },
+      "logical_fallacies": {
+        "n": 4,
+        "correct": 4,
+        "accuracy": 1.0
+      },
+      "machine_learning": {
+        "n": 4,
+        "correct": 3,
+        "accuracy": 0.75
+      },
+      "management": {
+        "n": 3,
+        "correct": 3,
+        "accuracy": 1.0
+      },
+      "marketing": {
+        "n": 5,
+        "correct": 5,
+        "accuracy": 1.0
+      },
+      "medical_genetics": {
+        "n": 6,
+        "correct": 3,
+        "accuracy": 0.5
+      },
+      "miscellaneous": {
+        "n": 27,
+        "correct": 19,
+        "accuracy": 0.704
+      },
+      "moral_disputes": {
+        "n": 5,
+        "correct": 3,
+        "accuracy": 0.6
+      },
+      "moral_scenarios": {
+        "n": 34,
+        "correct": 12,
+        "accuracy": 0.353
+      },
+      "nutrition": {
+        "n": 10,
+        "correct": 8,
+        "accuracy": 0.8
+      },
+      "philosophy": {
+        "n": 14,
+        "correct": 8,
+        "accuracy": 0.571
+      },
+      "prehistory": {
+        "n": 10,
+        "correct": 4,
+        "accuracy": 0.4
+      },
+      "professional_accounting": {
+        "n": 11,
+        "correct": 5,
+        "accuracy": 0.455
+      },
+      "professional_law": {
+        "n": 61,
+        "correct": 21,
+        "accuracy": 0.344
+      },
+      "professional_medicine": {
+        "n": 7,
+        "correct": 6,
+        "accuracy": 0.857
+      },
+      "professional_psychology": {
+        "n": 12,
+        "correct": 7,
+        "accuracy": 0.583
+      },
+      "public_relations": {
+        "n": 5,
+        "correct": 1,
+        "accuracy": 0.2
+      },
+      "security_studies": {
+        "n": 12,
+        "correct": 7,
+        "accuracy": 0.583
+      },
+      "sociology": {
+        "n": 9,
+        "correct": 6,
+        "accuracy": 0.667
+      },
+      "us_foreign_policy": {
+        "n": 3,
+        "correct": 2,
+        "accuracy": 0.667
+      },
+      "virology": {
+        "n": 12,
+        "correct": 9,
+        "accuracy": 0.75
+      },
+      "world_religions": {
+        "n": 7,
+        "correct": 7,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "seconds": 84.1
+}

@@ -1,0 +1,25 @@
+{
+  "collat_lora_sst5": {
+    "n": 1600,
+    "accuracy": 0.323125,
+    "accuracy_ci95": [
+      0.299375,
+      0.345625
+    ],
+    "nll": 1.6295925378799438,
+    "pred_letter_hist": [
+      0.17,
+      0.326,
+      0.161,
+      0.209,
+      0.134
+    ],
+    "by_block": {
+      "Personality": 0.213,
+      "Cognitive tests": 0.503,
+      "False consensus": 0.253,
+      "Economic preferences": 0.273
+    },
+    "seconds": 598.8
+  }
+}

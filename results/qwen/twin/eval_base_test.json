@@ -1,0 +1,69 @@
+{
+  "chance": {
+    "n": 3664,
+    "accuracy": 0.20414847161572053,
+    "accuracy_ci95": [
+      0.19159388646288208,
+      0.217255731441048
+    ],
+    "nll": 1.6094379124340998,
+    "pred_letter_hist": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "by_block": {
+      "Personality": 0.21,
+      "Cognitive tests": 0.191,
+      "False consensus": 0.212,
+      "Economic preferences": 0.201
+    }
+  },
+  "population_prior": {
+    "n": 3664,
+    "accuracy": 0.47079694323144106,
+    "accuracy_ci95": [
+      0.45442139737991266,
+      0.486353711790393
+    ],
+    "nll": 1.2902054566979788,
+    "pred_letter_hist": [
+      0.192,
+      0.2,
+      0.207,
+      0.195,
+      0.206
+    ],
+    "by_block": {
+      "Personality": 0.349,
+      "Cognitive tests": 0.646,
+      "False consensus": 0.374,
+      "Economic preferences": 0.527
+    }
+  },
+  "base": {
+    "n": 3664,
+    "accuracy": 0.3089519650655022,
+    "accuracy_ci95": [
+      0.29393422489082965,
+      0.324235807860262
+    ],
+    "nll": 2.6042232513427734,
+    "pred_letter_hist": [
+      0.143,
+      0.235,
+      0.256,
+      0.244,
+      0.121
+    ],
+    "by_block": {
+      "Personality": 0.214,
+      "Cognitive tests": 0.501,
+      "False consensus": 0.223,
+      "Economic preferences": 0.171
+    },
+    "seconds": 726.3
+  }
+}

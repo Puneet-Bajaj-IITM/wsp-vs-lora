@@ -1,0 +1,72 @@
+{
+  "chance": {
+    "n": 1101,
+    "accuracy": 0.1916439600363306,
+    "accuracy_ci95": [
+      0.16802906448683017,
+      0.21525885558583105
+    ],
+    "nll": 1.6094379124341,
+    "pred_letter_hist": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "by_block": {
+      "negative": 0.194,
+      "positive": 0.197,
+      "neutral": 0.192,
+      "very positive": 0.176,
+      "very negative": 0.194
+    }
+  },
+  "population_prior": {
+    "n": 1101,
+    "accuracy": 0.25340599455040874,
+    "accuracy_ci95": [
+      0.22615803814713897,
+      0.27974568574023617
+    ],
+    "nll": 1.5727560063687518,
+    "pred_letter_hist": [
+      0.21,
+      0.217,
+      0.186,
+      0.192,
+      0.195
+    ],
+    "by_block": {
+      "negative": 0.0,
+      "positive": 1.0,
+      "neutral": 0.0,
+      "very positive": 0.0,
+      "very negative": 0.0
+    }
+  },
+  "base": {
+    "n": 1101,
+    "accuracy": 0.4232515894641235,
+    "accuracy_ci95": [
+      0.3941871026339691,
+      0.45231607629427795
+    ],
+    "nll": 3.4360511302948,
+    "pred_letter_hist": [
+      0.163,
+      0.175,
+      0.224,
+      0.174,
+      0.263
+    ],
+    "by_block": {
+      "negative": 0.554,
+      "positive": 0.48,
+      "neutral": 0.044,
+      "very positive": 0.515,
+      "very negative": 0.554
+    },
+    "seconds": 19.4
+  }
+}

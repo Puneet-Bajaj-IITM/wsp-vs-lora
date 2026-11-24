@@ -1,0 +1,26 @@
+{
+  "collat_wsp_facts_o1": {
+    "n": 1101,
+    "accuracy": 0.4223433242506812,
+    "accuracy_ci95": [
+      0.39416439600363307,
+      0.4514078110808356
+    ],
+    "nll": 3.2743165493011475,
+    "pred_letter_hist": [
+      0.131,
+      0.203,
+      0.224,
+      0.158,
+      0.284
+    ],
+    "by_block": {
+      "negative": 0.543,
+      "positive": 0.434,
+      "neutral": 0.026,
+      "very positive": 0.606,
+      "very negative": 0.583
+    },
+    "seconds": 24.7
+  }
+}

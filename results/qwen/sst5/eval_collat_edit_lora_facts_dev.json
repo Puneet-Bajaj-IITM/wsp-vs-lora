@@ -1,0 +1,26 @@
+{
+  "collat_edit_lora_facts": {
+    "n": 1101,
+    "accuracy": 0.4359673024523161,
+    "accuracy_ci95": [
+      0.407788374205268,
+      0.46503178928247046
+    ],
+    "nll": 2.2180089950561523,
+    "pred_letter_hist": [
+      0.185,
+      0.195,
+      0.184,
+      0.235,
+      0.2
+    ],
+    "by_block": {
+      "negative": 0.651,
+      "positive": 0.462,
+      "neutral": 0.035,
+      "very positive": 0.552,
+      "very negative": 0.46
+    },
+    "seconds": 42.7
+  }
+}
