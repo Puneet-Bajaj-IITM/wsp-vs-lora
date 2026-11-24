@@ -4,8 +4,8 @@ title: "wsp-vs-lora: code, run records and results for 'Compile, Learn, or Both?
 authors:
   - family-names: Bajaj
     given-names: Puneet
-version: 1.0.0
-date-released: 2026-11-24
+version: 1.1.0
+date-released: 2026-11-25
 license: MIT
 repository-code: "https://github.com/Puneet-Bajaj-IITM/wsp-vs-lora"
 keywords:
