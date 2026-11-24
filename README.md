@@ -1,9 +1,14 @@
 # Compile, Learn, or Both?
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24515793.svg)](https://doi.org/10.5281/zenodo.24515793)
+[![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
+[![Paper and results: CC BY 4.0](https://img.shields.io/badge/paper%20%26%20results-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 Code, data builders, every programmer run and results for *Compile, Learn, or Both? When Weight-Space Programming
 Helps, What It Breaks, and Why Combining It with LoRA Matters* (Puneet Bajaj, 2026).
 
-- **Paper** (6 pages): [`compile_learn_or_both.pdf`](compile_learn_or_both.pdf)
+- **Paper** (6 pages): [`compile_learn_or_both.pdf`](compile_learn_or_both.pdf), archived on Zenodo as
+  [doi:10.5281/zenodo.24515793](https://doi.org/10.5281/zenodo.24515793)
 - **Full technical report** (31 pages, every table, the programmer brief, audits and protocol deviations):
   [`paper/main.pdf`](paper/main.pdf)
 
@@ -181,12 +186,14 @@ result = lab.forward("train", list(range(512)), note="why this pass", capture_la
 Cite the paper; GitHub's "Cite this repository" button reads [`CITATION.cff`](CITATION.cff).
 
 ```bibtex
-@techreport{bajaj2026compile,
-  author      = {Bajaj, Puneet},
-  title       = {Compile, Learn, or Both? When Weight-Space Programming Helps, What It Breaks, and Why Combining It with LoRA Matters},
-  institution = {Working paper},
-  year        = {2026},
-  url         = {https://github.com/Puneet-Bajaj-IITM/wsp-vs-lora}
+@misc{bajaj2026compile,
+  author    = {Bajaj, Puneet},
+  title     = {Compile, Learn, or Both? When Weight-Space Programming Helps, What It Breaks, and Why Combining It with LoRA Matters},
+  year      = {2026},
+  publisher = {Zenodo},
+  note      = {Preprint},
+  doi       = {10.5281/zenodo.24515793},
+  url       = {https://doi.org/10.5281/zenodo.24515793}
 }
 ```
 
