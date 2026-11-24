@@ -42,9 +42,9 @@ The first three separated bypass from through edits without exception. The last 
 \paragraph{Program first, then fine-tune.} The most useful practical result is that the two methods combine. Fine-tuning failed in two ways that a programmed edit fixed:
 \begin{itemize}
   \item \textbf{Slow storage of new facts.} The edit cut the training needed about tenfold.
-  \item \textbf{A stall on a confidently wrong start.} The edit removed the plateau that stopped two of three seeds.
+  \item \textbf{A stall on a confidently wrong start.} The edit removed the plateau that stopped two of three seeds on Qwen and all three on SmolLM2. LoRA alone needed three times the data to get past it.
 \end{itemize}
-In return, fine-tuning took each edit far past its own ceiling, and the combined models kept general ability. This suggests a workflow. A programmer inspects the model and writes a small, readable edit for whatever can be redirected or compiled, which takes minutes of GPU time (though \$16--\$86 of programmer API time for a typical run, at list prices), and gradient training does the rest. The edit also documents what the model was missing.
+In return, fine-tuning took each edit far past its own ceiling, and the combined models kept general ability. On SST-5 inverted, the part of the edit that mattered is a two-row swap anyone could write once they know the readout is mirrored; the programmer's contribution was finding it without being told. This suggests a workflow. A programmer inspects the model and writes a small, readable edit for whatever can be redirected or compiled, which takes minutes of GPU time (though \$16--\$86 of programmer API time for a typical run, at list prices), and gradient training does the rest. The edit also documents what the model was missing.
 
 \paragraph{A rule of thumb.} Table~\ref{tab:guide} condenses the results into a choice of tool.
 

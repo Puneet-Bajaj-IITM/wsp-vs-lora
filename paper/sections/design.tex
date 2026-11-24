@@ -56,11 +56,12 @@ LoRA~\citep{hu2022lora} is the standard parameter-efficient fine-tuning method, 
 
 \paragraph{When the default fails.} We used this default unchanged wherever it worked. On facts it did not learn at all, so we searched until it did and report the working configuration, about fifteen epochs (Section~\ref{sec:compile}).
 
-\paragraph{Extra LoRA experiments.} To make the comparison fair in both directions, we added three:
+\paragraph{Extra LoRA experiments.} To make the comparison fair in both directions, we added four:
 \begin{itemize}
   \item \textbf{Seeds 1 and 2}, besides seed 0, for both SST-5 tasks.
   \item \textbf{A data learning curve.} Training uses only 256 or 1,024 distinct examples, with the same 250 optimizer steps. This tests whether LoRA's advantage comes from seeing more labels than a programmer, who reads the labels of roughly 2,000--3,000 training examples.
-  \item \textbf{LoRA trained on top of a programmed edit}, with the same default configuration and 4,000 examples, over three seeds. This tests whether the methods combine.
+  \item \textbf{LoRA trained on top of a programmed edit}, with the same default configuration and 4,000 examples, over three seeds. This tests whether the methods combine. On SST-5 inverted we also trained it on a hand-written swap of the two label words, and on SmolLM2's edit.
+  \item \textbf{Two ways past the SST-5-inverted plateau} for LoRA alone, over three seeds each: a three times larger learning rate ($3\times10^{-4}$), and three times the data (12,000 examples, 750 optimizer steps). This tests whether the edit does anything that tuning LoRA cannot.
 \end{itemize}
 
 \subsection{Measuring what an edit costs}

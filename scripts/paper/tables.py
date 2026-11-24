@@ -1,7 +1,7 @@
 """Render the paper's LaTeX tables.
 
 Reads paper/data/summary.json (collect.py) and paper/data/costs.json (cost.py).
-Writes paper/tables/{tasks,main,side_effects,cost,tokens,reliability,combine,smollm,deviations}.tex.
+Writes paper/tables/{tasks,main,side_effects,cost,tokens,reliability,combine,plateau,smollm,deviations}.tex.
 """
 import json
 import math
@@ -45,6 +45,16 @@ def acc_ci(m: dict) -> str:
 def seed_list(ms: list[dict | None]) -> str:
     vals = [pct(m["accuracy"]) for m in ms if m]
     return " / ".join(vals) if vals else DASH
+
+
+def seed_mean(ms: list[dict | None]) -> str:
+    vals = [m["accuracy"] for m in ms if m]
+    return pct(sum(vals) / len(vals)) if vals else DASH
+
+
+def value_range(xs: list[float]) -> str:
+    low, high = pct(min(xs)), pct(max(xs))
+    return low if low == high else f"{low}--{high}"
 
 
 def consistency(perm: dict | None) -> str:
@@ -187,10 +197,11 @@ def reliability_table(s: dict) -> str:
 
 def combine_table(s: dict) -> str:
     facts = s["tasks"]["facts"]
-    # Facts has one default-configuration LoRA plus the long run; SST-5 inverted has three seeds and no long run.
+    # Facts has one default-configuration LoRA and one 10x run; SST-5 inverted has three seeds of each, longer at 3x.
     lora_alone = {"facts": acc(facts["lora_default"]["test"]),
                   "sst5inv": seed_list(s["lora_variants"]["sst5inv"]["seeds"])}
-    long_lora = {"facts": f"{acc(facts['lora']['evals']['test'])}$^\\ddagger$", "sst5inv": DASH}
+    long_lora = {"facts": f"{acc(facts['lora']['evals']['test'])}$^\\ddagger$",
+                 "sst5inv": f"{seed_list(s['plateau']['data_3x'])}$^\\S$"}
 
     rows = []
     for task, (run, description) in EDIT_LORA_SOURCE.items():
@@ -200,8 +211,38 @@ def combine_table(s: dict) -> str:
         rows.append(f"{TASK_LABEL[task]} & {description} ({run}) & {acc(edit['evals']['test'])} & {lora_alone[task]} & "
                     f"{seed_list(combined['seeds'])} & {combined_mmlu} & {long_lora[task]}")
     header = ("Task & Starting edit & Edit alone & LoRA alone & Edit, then LoRA & MMLU, edit then LoRA & "
-              "LoRA, 10$\\times$ data")
+              "LoRA alone, more data")
     return tabular("llccccc", header, rows)
+
+
+def plateau_table(s: dict) -> str:
+    """Every way we got LoRA past the SST-5-inverted plateau, on both models (start = accuracy before LoRA)."""
+    t = s["tasks"]["sst5inv"]
+    run, description = EDIT_LORA_SOURCE["sst5inv"]
+    smol = s["smollm"]["tasks"]["sst5inv"]
+    smol_run = smol["edit_lora"]["source_run"]
+    base, default = t["baselines"]["test"]["base"], "4,000 examples"
+    groups = {
+        "Qwen2.5-1.5B": [
+            ("Base model", base, default, s["lora_variants"]["sst5inv"]["seeds"]),
+            ("Base model", base, "4,000 examples, learning rate $3\\times10^{-4}$", s["plateau"]["lr_3x"]),
+            ("Base model", base, "12,000 examples", s["plateau"]["data_3x"]),
+            (f"{description} ({run})", find_run(t["wsp"], run)["evals"]["test"], default,
+             s["edit_lora"]["sst5inv"]["seeds"]),
+            ("Hand-written label swap", s["controls"]["control_swap_only"]["sst5inv_test"], default,
+             s["plateau"]["swap_only_then_lora"]),
+        ],
+        "SmolLM2-1.7B": [
+            ("Base model", smol["base"]["test"], default, smol["lora_seeds"]),
+            (f"Fable edit ({smol_run})", find_run(smol["wsp"], smol_run)["test"], default, smol["edit_lora"]["seeds"]),
+        ],
+    }
+    rows = []
+    for model, entries in groups.items():
+        rows.append(f"\\multicolumn{{5}}{{l}}{{\\textit{{{model}}}}}")
+        rows += [f"\\quad {start} & {acc(before)} & {training} & {seed_list(seeds)} & {seed_mean(seeds)}"
+                 for start, before, training, seeds in entries]
+    return tabular("lclcc", "LoRA starts from & Start & LoRA training & Seeds 0 / 1 / 2 & Mean", rows)
 
 
 def deviations_table(s: dict) -> str:
@@ -223,7 +264,9 @@ def smollm_table(s: dict) -> str:
         t = sm["tasks"][task]
         rows.append(f"\\multicolumn{{5}}{{l}}{{\\textit{{{TASK_LABEL[task]}}}: base {acc(t['base']['test'])}, "
                     f"probe headroom {signed_points(t['probe']['headroom'])}}}")
-        if t["lora"]:
+        if t.get("lora_seeds"):
+            rows.append(f"\\quad LoRA (seeds 0 / 1 / 2) & -- & {seed_list(t['lora_seeds'])} & -- & --")
+        elif t["lora"]:
             rows.append(f"\\quad LoRA (seed 0) & -- & {acc(t['lora'])} & -- & --")
         if t["control_random_swap"]:
             rows.append(f"\\quad Control: swap two unrelated words & -- & {acc(t['control_random_swap'])} & -- & --")
@@ -233,6 +276,11 @@ def smollm_table(s: dict) -> str:
                             f"{acc(w['swap_only_test'])} & -- & --")
             rows.append(f"\\quad {run_label(w)}, final edit & {w['kind']} & {acc(w['test'])} & "
                         f"{mmlu_top1(w['general'])}")
+        if t.get("edit_lora"):
+            combined = t["edit_lora"]
+            rows.append(f"\\quad WSP {combined['source_run']}, then LoRA (seeds 0 / 1 / 2) & -- & "
+                        f"{seed_list(combined['seeds'])} & {value_range([g['mmlu'] for g in combined['general']])} & "
+                        f"{value_range([g['top1'] for g in combined['general']])}")
     return tabular("llccc", "Method & Edit type & Test acc. & MMLU & Top-1", rows)
 
 
@@ -246,6 +294,7 @@ def main() -> None:
               "tokens": tokens_table(costs),
               "reliability": reliability_table(s),
               "combine": combine_table(s),
+              "plateau": plateau_table(s),
               "smollm": smollm_table(s),
               "deviations": deviations_table(s)}
     TABLE_DIR.mkdir(parents=True, exist_ok=True)

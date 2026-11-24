@@ -4,10 +4,11 @@ Method & Edit type & Test acc. & MMLU & Top-1 \\
 \midrule
 Base model & -- & -- & 48.8 & 46.0 \\
 \multicolumn{5}{l}{\textit{SST-5 inverted}: base 11.4, probe headroom +25.0} \\
-\quad LoRA (seed 0) & -- & 22.7 & -- & -- \\
+\quad LoRA (seeds 0 / 1 / 2) & -- & 22.7 / 21.5 / 22.3 & -- & -- \\
 \quad Control: swap two unrelated words & -- & 11.4 & -- & -- \\
 \quad WSP f1, embedding swap alone & through & 38.6 & -- & -- \\
 \quad WSP f1, final edit & through & 45.4 & 48.8 & 46.0 \\
+\quad WSP f1, then LoRA (seeds 0 / 1 / 2) & -- & 55.9 / 56.6 / 56.1 & 46.6--48.0 & 46.0 \\
 \multicolumn{5}{l}{\textit{Fictional facts}: base 21.8, probe headroom +1.7} \\
 \quad WSP f1, final edit & bypass & 100.0 & 22.6 & 0.0 \\
 \multicolumn{5}{l}{\textit{SST-5}: base 36.9, probe headroom +1.9} \\

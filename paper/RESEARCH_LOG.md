@@ -198,6 +198,22 @@ Each experiment here answers a specific weakness of phase 2.
   - one run (SST-5 r5) was told another run's result mid-run; the audit showed its design predated the message;
   - kernel deletions removed some remote copies; local copies were kept.
 
+### E16. Controls on the combination (SST-5 inverted)
+- **Weakness addressed.** E13 compared the combination only with default LoRA. Three questions a reviewer would ask: does tuned LoRA alone get there, is the programmer's edit needed or would any swap do, and does it hold on the second model?
+- **Result** (3 seeds each, test accuracy):
+
+  | Setup | Seeds | Mean |
+  |---|---|---|
+  | Qwen, LoRA alone, 4,000 examples, lr 3e-4 | 19.4 / 19.5 / 20.0% | 19.6% |
+  | Qwen, LoRA alone, 12,000 examples | 60.5 / 61.2 / 58.1% | 60.0% |
+  | Qwen, hand-written label swap (46.2% alone), then LoRA | 58.5 / 57.6 / 58.0% | 58.0% |
+  | SmolLM2, LoRA alone | 22.7 / 21.5 / 22.3% | 22.2% |
+  | SmolLM2, Fable f1 edit, then LoRA | 55.9 / 56.6 / 56.1% | 56.2% |
+
+- **Training curves.** Every LoRA run sits at the uniform-guess loss (about 1.6) before it learns. With 12,000 examples all three seeds left it between batches 250 and 750 of 1,500; with 4,000 only seed 0 did. A larger learning rate kept all three on it.
+- **Side effects (SmolLM2 combination).** MMLU 46.6–48.0% (base 48.8%), top-1 46.0% (base 46.0%).
+- **What changed.** The combination claim narrows. The edit lets LoRA learn on every seed of both models at 4,000 examples, but LoRA alone matches it with three times the data, so the edit saves data rather than raising the ceiling. The useful part is the two-row swap, which can be written by hand; the programmer's further changes add nothing after LoRA.
+
 ---
 
 ## So what: why these findings matter
@@ -216,5 +232,5 @@ Each experiment here answers a specific weakness of phase 2.
    - an unrelated task;
    - option-order consistency.
 3. **The instruction decides the edit type.** Asked to preserve the model, the same programmer moved from a bypass circuit to an edit through the model's own pathways. Preservation has a price: most of the compiled gain on Twin-2K, and all of it on facts. Any brief for a programmer should state what must be preserved, and any evaluation should check it.
-4. **Programming and fine-tuning are complements.** A programmed edit makes a good starting point for LoRA. It turned a fact-storage problem that took LoRA about 4 GPU-hours into a 4,000-example run at 99%+, and it removed LoRA's plateau on SST-5 inverted. This suggests a workflow: program first (minutes, readable), then fine-tune.
+4. **Programming and fine-tuning are complements.** A programmed edit makes a good starting point for LoRA. It turned a fact-storage problem that took LoRA about 4 GPU-hours into a 4,000-example run at 99%+, and it removed LoRA's plateau on SST-5 inverted on both models. LoRA alone gets there with about ten times (facts) or three times (SST-5 inverted) the data, so the edit saves data rather than raising the ceiling. This suggests a workflow: program first (minutes, readable), then fine-tune.
 5. **Programming behaves like a compiler, not a learner.** In every case where it beat fine-tuning, the programmer wrote an explicit object into the weights: a swapped word pair, a fact table, an answer-rate table. That explains both its strengths and its ceiling.

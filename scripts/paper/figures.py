@@ -67,15 +67,17 @@ DEFAULT_LABEL_OFFSET = (6, 2)
 
 COMBO_SIZE = (6.4, 3.0)
 COMBO_YLIM = (0, 105)
-BAR_WIDTH = 0.26
+BAR_WIDTH = 0.2
 BAR_FILL = 0.9
 BAR_ALPHA = 0.35
 SEED_MARKER_SIZE = 18
 SEED_EDGE_WIDTH = 0.6
-COMBO_LEGEND_ANCHOR = (0.5, 1.14)
-COMBO_COLORS = {"edit": STYLE["through"]["color"], "lora": STYLE["lora"]["color"], "both": "#7c3aed"}
+COMBO_LEGEND_ANCHOR = (0.5, 1.2)
+COMBO_LEGEND_COLUMNS = 2
+COMBO_COLORS = {"edit": STYLE["through"]["color"], "lora": STYLE["lora"]["color"], "both": "#7c3aed",
+                "more": MUTED}
 COMBO_LABELS = {"edit": "Programmed edit alone", "lora": "LoRA alone (4,000 examples)",
-                "both": "Edit, then LoRA (4,000 examples)"}
+                "both": "Edit, then LoRA (4,000 examples)", "more": "LoRA alone, more data"}
 
 
 # ---------------------------------------------------------------- shared drawing
@@ -221,10 +223,12 @@ def combo_series(s: dict) -> dict[str, dict[str, list[float]]]:
     return {
         "Fictional facts": {"edit": [edit_accuracy(s, "facts")],
                             "lora": [100 * s["tasks"]["facts"]["lora_default"]["test"]["accuracy"]],
-                            "both": accuracies(s["edit_lora"]["facts"]["seeds"])},
+                            "both": accuracies(s["edit_lora"]["facts"]["seeds"]),
+                            "more": [100 * s["tasks"]["facts"]["lora"]["evals"]["test"]["accuracy"]]},
         "SST-5 inverted": {"edit": [edit_accuracy(s, "sst5inv")],
                            "lora": accuracies(s["lora_variants"]["sst5inv"]["seeds"]),
-                           "both": accuracies(s["edit_lora"]["sst5inv"]["seeds"])},
+                           "both": accuracies(s["edit_lora"]["sst5inv"]["seeds"]),
+                           "more": accuracies(s["plateau"]["data_3x"])},
     }
 
 
@@ -234,7 +238,7 @@ def combination(s: dict):
     for i, groups in enumerate(series.values()):
         for j, (key, label) in enumerate(COMBO_LABELS.items()):
             vals = groups[key]
-            x = i + (j - 1) * BAR_WIDTH
+            x = i + (j - (len(COMBO_LABELS) - 1) / 2) * BAR_WIDTH
             ax.bar(x, sum(vals) / len(vals), BAR_WIDTH * BAR_FILL, color=COMBO_COLORS[key], alpha=BAR_ALPHA, zorder=2,
                    label=label if i == 0 else None)
             ax.scatter([x] * len(vals), vals, s=SEED_MARKER_SIZE, color=COMBO_COLORS[key], edgecolor="white",
@@ -243,7 +247,7 @@ def combination(s: dict):
     ax.set_ylabel("Test accuracy (%)", fontsize=AXIS_FONT, color=INK)
     ax.set_ylim(*COMBO_YLIM)
     style_axes(ax)
-    ax.legend(fontsize=SMALL_FONT, frameon=False, loc="upper center", ncol=len(COMBO_LABELS),
+    ax.legend(fontsize=SMALL_FONT, frameon=False, loc="upper center", ncol=COMBO_LEGEND_COLUMNS,
               bbox_to_anchor=COMBO_LEGEND_ANCHOR)
     fig.tight_layout()
     return fig

@@ -11,9 +11,9 @@
   Opus has one run per Qwen task, and the preserve condition has one run per compile task. Four further Fable runs stopped part-way when a usage limit was reached and are excluded. A second Twin-2K Fable run (\texttt{r4}) finished but broke the no-fitting rule, and is reported separately (Appendix~\ref{app:deviations}).
   \item \textbf{LoRA seeds and tuning.}
   \begin{itemize}
-    \item \textbf{Seeds.} SST-5 and SST-5 inverted have three seeds each. Twin-2K, facts and SmolLM2 have one, because those runs take hours.
-    \item \textbf{Tuning.} LoRA used one default configuration everywhere except facts, where we searched until it learned.
-    \item \textbf{The plateau.} A learning-rate warmup or larger learning rate might help it escape the plateau on SST-5 inverted. We report the failure as a property of the default configuration, not of LoRA in general.
+    \item \textbf{Seeds.} SST-5 and SST-5 inverted have three seeds each, on both models for SST-5 inverted. Twin-2K and facts have one, because those runs take hours.
+    \item \textbf{Tuning.} LoRA used one default configuration everywhere except facts, where we searched until it learned, and SST-5 inverted, where we also tried a larger learning rate and more data.
+    \item \textbf{The plateau.} A three times larger learning rate did not get LoRA past the plateau on SST-5 inverted; three times the data did, on every seed. We did not try a warmup, and we did not train the combination on the larger budget, so we cannot say whether an edit also raises what LoRA finally reaches.
   \end{itemize}
   \item \textbf{Dev use by programmers.} Programmers measured candidates on dev, and some chose among candidates by dev accuracy, or built constants from unlabelled dev activations. The auditors quantified this where possible; on facts it inflated the preserve run's dev gain from about 4 to 6 points. Test numbers, which no programmer saw, are the reliable comparison.
   \item \textbf{Rule boundaries.} Three permissions in the brief are judgement calls:
@@ -40,7 +40,7 @@ The answer has four parts.
   \item \textbf{Redirect.} When the model has the knowledge and misreads it, programmers reliably find tiny fixes that match fine-tuning and fail less often.
   \item \textbf{Compile.} When the answer is a table, programmers compile it into the weights and can beat fine-tuning. The most accurate way to do so bypasses the network and leaves the model at chance on general knowledge. An instruction to preserve the model changes the edit the programmer builds, at a cost in accuracy.
   \item \textbf{Learn.} When the improvement has to be learned, fine-tuning wins, even with far fewer labels.
-  \item \textbf{Combine.} A programmed edit makes fine-tuning faster and more reliable, and at the same training budget the combination beats both.
+  \item \textbf{Combine.} A programmed edit makes fine-tuning faster and more reliable: at the same training budget the combination beats both methods alone, and LoRA alone needs three to ten times the data to catch up.
 \end{itemize}
 
 In our runs, weight-space programming acted as a compiler for rules and tables and a starting point for learning, not a replacement for it. Anyone using or evaluating it should state what must be preserved and measure what an edit does to the rest of the model, with measures a temperature change cannot fake.

@@ -34,7 +34,8 @@ SST-5 inverted is built to answer this. The base model scores 4.0\%, far below t
   \item \textbf{Seed 0: a statistical tie.} LoRA reached 49.3\% with seed 0. The best programmed edit (48.1\%) is not significantly different from it (paired bootstrap, $p=0.37$). The other three are 2.9--3.6 points lower ($p\le0.023$).
   \item \textbf{Other seeds: LoRA mostly fails.} Seeds 1 and 2 never learned the task: 23.9\% and 27.7\% (Table~\ref{tab:reliability}). Training starts confidently wrong (loss 3.9), falls to the uniform-guess plateau ($\ln 5\approx1.61$), and stays there.
   \item \textbf{Seed 0 barely escaped.} It sat on the same plateau for about 200 of its 500 batches. Rerunning it with the same settings as seeds 1--2 reproduced 49.5\%, so the failures are not an artefact of a configuration change.
-  \item \textbf{The same failure on SmolLM2.} Its LoRA run stuck on the same plateau (22.7\%).
+  \item \textbf{The same failure on SmolLM2.} Its LoRA runs stuck on the same plateau on all three seeds (21.5--22.7\%).
+  \item \textbf{More steps get LoRA out; a larger step size does not.} With three times the data (12,000 examples, so three times the steps), all three seeds escaped the plateau between batches 250 and 750 of 1,500 and reached 58.1--61.2\%. With a three times larger learning rate, all three stayed on it (19.4--20.0\%; Table~\ref{tab:plateau}).
 \end{itemize}
 Programming found the fix in every one of its five attempts.
 
@@ -47,7 +48,7 @@ Programming found the fix in every one of its five attempts.
 \begin{table}[t]
 \centering\small
 \input{tables/reliability}
-\caption{How reliable LoRA is, and how much data it needs (Qwen, test accuracy, \%). Seeds use the default configuration (4,000 examples, 500 steps). The learning curve keeps 500 steps but draws them from only $n$ distinct training examples (seed 0). The last column is the range over all programmed edits for the task.}
+\caption{How reliable LoRA is, and how much data it needs (Qwen, test accuracy, \%). Seeds use the default configuration (4,000 examples, 250 optimizer steps). The learning curve keeps 250 optimizer steps but draws them from only $n$ distinct training examples (seed 0). The last column is the range over all programmed edits for the task.}
 \label{tab:reliability}
 \end{table}
 
@@ -161,20 +162,21 @@ All three fix the same defect. The model almost never answers ``neutral'' (1.5\%
 Table~\ref{tab:smollm} repeats the central experiments on SmolLM2-1.7B-Instruct.
 \begin{itemize}
   \item \textbf{The knowledge map is the same.} The probe finds large headroom on SST-5 inverted (+25 points) and almost none on SST-5 or facts.
-  \item \textbf{The redirect regime replicates.} The programmer independently found the same embedding swap. The final edit reached 45.4\% from 11.4\%, with MMLU and top-1 unchanged. Default LoRA stuck on the plateau (22.7\%).
+  \item \textbf{The redirect regime replicates.} The programmer independently found the same embedding swap. The final edit reached 45.4\% from 11.4\%, with MMLU and top-1 unchanged. Default LoRA stuck on the plateau on all three seeds (21.5--22.7\%).
   \item \textbf{The compile regime replicates, damage included.} The programmer built a layer-0/1 lookup circuit that scored 100\% on test and reduced the model to chance on MMLU, with 0\% top-1.
+  \item \textbf{The combination replicates.} LoRA trained on top of the final SST-5-inverted edit reached 55.9--56.6\% on every seed (Section~\ref{sec:combine}).
 \end{itemize}
 
 \begin{table}[t]
 \centering\small
 \input{tables/smollm}
-\caption{The second model family: SmolLM2-1.7B-Instruct (test accuracy, \%). MMLU and top-1 are general-ability measures as in Table~\ref{tab:side} (unedited: 48.8 and 46.0). The final SST-5-inverted edit adds a label-free letter-bias correction and a temperature to the embedding swap.}
+\caption{The second model family: SmolLM2-1.7B-Instruct (test accuracy, \%). MMLU and top-1 are general-ability measures as in Table~\ref{tab:side} (unedited: 48.8 and 46.0). The final SST-5-inverted edit adds a label-free letter-bias correction and a temperature to the embedding swap. For LoRA on top of it, MMLU and top-1 are ranges over the three seeds.}
 \label{tab:smollm}
 \end{table}
 
 \subsection{Programming, then fine-tuning}
 \label{sec:combine}
-The regimes suggest the two methods fail in different places. Can they cover for each other? We trained LoRA, with the default configuration and 4,000 examples, on top of two programmed edits, over three seeds (Table~\ref{tab:combine}, Figure~\ref{fig:combination}).
+The regimes suggest the two methods fail in different places. Can they cover for each other? We trained LoRA, with the default configuration and 4,000 examples, on top of two programmed edits, over three seeds (Table~\ref{tab:combine}, Figure~\ref{fig:combination}). On SST-5 inverted we also checked what the edit does that tuning LoRA cannot (Table~\ref{tab:plateau}).
 
 \paragraph{Facts.} Starting from the Opus memory edit (76.9\% alone), LoRA reached 99.0--99.7\% on test.
 \begin{itemize}
@@ -185,32 +187,42 @@ The regimes suggest the two methods fail in different places. Can they cover for
 
 \paragraph{SST-5 inverted.} Starting from the Fable swap edit (46.4\% alone), LoRA reached 57.3--58.5\% on every seed.
 \begin{itemize}
-  \item \textbf{Against LoRA alone.} 23.9--49.3\%, learning on one seed of three.
-  \item \textbf{Why it helps.} The edit removes the confidently-wrong start that traps LoRA on its plateau. LoRA then improves the sentiment mapping well beyond what the edit can.
+  \item \textbf{Against LoRA alone, same budget.} 23.9--49.3\%, learning on one seed of three.
+  \item \textbf{Against LoRA alone, more data.} With three times the data, LoRA alone learned on every seed and reached 58.1--61.2\% (mean 60.0\%, against 58.0\% for the combination). The edit saves data; it does not raise the ceiling. We did not train the combination on the larger budget.
+  \item \textbf{The swap is what matters.} LoRA on a hand-written swap of the two label words (46.2\% alone) reached 57.6--58.5\%, the same as on the programmer's full edit. Once LoRA trains, the programmer's further changes add nothing; its contribution was finding the swap.
+  \item \textbf{It replicates on SmolLM2.} LoRA alone stuck on all three seeds (21.5--22.7\%). On top of the Fable edit (45.4\% alone) it reached 55.9--56.6\% on every seed.
+  \item \textbf{Why it helps.} The edit removes the confidently-wrong start, so LoRA does not spend its steps escaping the plateau. LoRA then improves the sentiment mapping well beyond what the edit can.
 \end{itemize}
 
 \begin{table}[t]
 \centering\small
 \resizebox{\linewidth}{!}{\input{tables/combine}}
-\caption{Programming, then fine-tuning (Qwen, test accuracy, \%). LoRA uses the default configuration (4,000 examples, 250 optimizer steps); values separated by ``/'' are seeds 0, 1 and 2. The MMLU column is for the edit-then-LoRA models (base model 59.6). $^\ddagger$Fifteen epochs (40,500 examples, 3.6 T4-hours).}
+\caption{Programming, then fine-tuning (Qwen, test accuracy, \%). LoRA uses the default configuration (4,000 examples, 250 optimizer steps); values separated by ``/'' are seeds 0, 1 and 2. The MMLU column is for the edit-then-LoRA models (base model 59.6). $^\ddagger$Fifteen epochs (40,500 examples, 3.6 T4-hours). $^\S$12,000 examples, three times the default.}
 \label{tab:combine}
+\end{table}
+
+\begin{table}[t]
+\centering\small
+\resizebox{\linewidth}{!}{\input{tables/plateau}}
+\caption{Getting LoRA past the SST-5-inverted plateau (test accuracy, \%). \emph{Start}: accuracy before LoRA. LoRA uses the default configuration unless stated; 12,000 examples means three times the optimizer steps. The hand-written swap exchanges the embedding rows of `` negative'' and `` positive'' and changes nothing else.}
+\label{tab:plateau}
 \end{table}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.8\linewidth]{figures/combination.pdf}
-\caption{A programmed edit makes a strong starting point for fine-tuning (Qwen, test accuracy). Bars are means; dots are individual seeds.}
+\caption{A programmed edit saves fine-tuning data (Qwen, test accuracy). With 4,000 examples, LoRA from the edit reaches about what LoRA alone reaches with ten times (facts) or three times (SST-5 inverted) the data. Bars are means; dots are individual seeds.}
 \label{fig:combination}
 \end{figure}
 
 \paragraph{Side effects.} The combined models kept general ability (Table~\ref{tab:combine}).
 \begin{itemize}
   \item \textbf{Facts.} MMLU was 58.0--59.6\% over the three seeds (base and edit alone 59.6\%), next-token top-1 45.5\% (base 45.9\%), and accuracy on SST-5 dev 42.6--43.6\% (base 42.3\%).
-  \item \textbf{SST-5 inverted.} MMLU was 58.0--58.6\% (edit alone 57.8\%, LoRA alone 55.6\%) and top-1 45.7--45.8\%. Raw perplexity stays high only because of the swap edit's temperature change; one logit rescaling removes it (rescaled NLL 2.79, base 2.77).
+  \item \textbf{SST-5 inverted.} MMLU was 58.0--58.6\% (edit alone 57.8\%, LoRA alone 55.6\%) and top-1 45.7--45.8\%. Raw perplexity stays high only because of the swap edit's temperature change; one logit rescaling removes it (rescaled NLL 2.79, base 2.77). On SmolLM2, MMLU was 46.6--48.0\% (base 48.8\%) and top-1 46.0\% (base 46.0\%).
 \end{itemize}
 Every MMLU difference is within its 95\% interval of about $\pm4$ points. \citet{yang2026writing} saw the opposite when they trained LoRA on top of a written patch: the adapter broke neighbouring tasks, as it did when trained from the base model.
 
-\paragraph{Takeaway.} The methods are complements. A programmed edit is cheap and readable but limited. Fine-tuning is general but slow to store new facts and can stall on a confidently wrong start. A programmed edit fixed both of fine-tuning's failure modes we saw, and fine-tuning took both edits well past what programming alone reached.
+\paragraph{Takeaway.} The methods are complements. A programmed edit is cheap and readable but limited. Fine-tuning is general but slow to store new facts and can stall on a confidently wrong start. A programmed edit worked around both of fine-tuning's failure modes we saw, and fine-tuning took both edits well past what programming alone reached. More data fixes both failures too, so what the edit buys is training data: about ten times less on facts and three times less on SST-5 inverted, for about the same final accuracy.
 
 \subsection{Does the programmer matter, and what does programming cost?}
 \label{sec:programmer}

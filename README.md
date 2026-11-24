@@ -4,7 +4,7 @@ Code, data builders, every programmer run and results for *Compile, Learn, or Bo
 Helps, What It Breaks, and Why Combining It with LoRA Matters* (Puneet Bajaj, 2026).
 
 - **Paper** (6 pages): [`compile_learn_or_both.pdf`](compile_learn_or_both.pdf)
-- **Full technical report** (29 pages, every table, the programmer brief, audits and protocol deviations):
+- **Full technical report** (31 pages, every table, the programmer brief, audits and protocol deviations):
   [`paper/main.pdf`](paper/main.pdf)
 
 In weight-space programming (WSP), a frontier language model improves a smaller model by reading and editing its
@@ -34,8 +34,9 @@ Main results on Qwen (test accuracy %; the unedited model scores 59.6 on MMLU):
   the network score highest but drop MMLU to chance and next-token top-1 to 0–0.1%, on both models. Edits
   written through the model's own pathways keep it intact.
 - **Learn.** When the task needs a better input-to-answer mapping, LoRA wins, even with ten times fewer labels.
-- **The methods combine.** LoRA on top of a programmed edit reaches 99–100% on facts with a tenth of the data,
-  and 57–59% on `sst5inv`.
+- **The methods combine.** LoRA on top of a programmed edit reaches 99–100% on facts with a tenth of the data. On
+  `sst5inv` it learns on every seed of both models (56–59%) with a third of the data LoRA alone needs, and a
+  hand-written two-word swap works as well as the programmer's edit.
 
 ## Repository layout
 
@@ -142,8 +143,9 @@ python scripts/general_eval.py --name wsp_sst5inv_r1 --edit runs/qwen/sst5inv/r1
 
 Program, then fine-tune: `train_lora.py --edit <edit>` trains the adapter on top of the edit and records it, and
 evaluation takes both `--edit` and `--adapter`. The control edits are `--edit controls/random_swap` and
-`--edit controls/swap_only`, and `WSP_MODEL=smollm` selects the second base model. The result names behind each
-number in the paper are in `scripts/paper/collect.py`.
+`--edit controls/swap_only`, the LoRA-alone controls on `sst5inv` are `--lr 3e-4` and `--max-examples 12000`, and
+`WSP_MODEL=smollm` selects the second base model. The result names behind each number in the paper are in
+`scripts/paper/collect.py`.
 
 Rebuilding the paper's numbers, tables and figures from `results/` runs on the CPU:
 

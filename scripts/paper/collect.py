@@ -63,6 +63,15 @@ EDIT_LORA_SEEDS = ("edit_lora", "edit_lora_s1", "edit_lora_s2")
 CONTROL_TASK = "sst5inv"
 CONTROL_NAMES = ("control_random_swap", "control_swap_only")
 
+# Ways past the SST-5-inverted plateau, three seeds each: LoRA alone with a 3x learning rate or 3x the data,
+# and LoRA on the hand-written label swap
+PLATEAU_RUNS = {"lr_3x": ("lora_lr3e4_s0", "lora_lr3e4_s1", "lora_lr3e4_s2"),
+                "data_3x": ("lora_x3_s0", "lora_x3_s1", "lora_x3_s2"),
+                "swap_only_then_lora": ("edit_swaponly_lora_s0", "edit_swaponly_lora_s1", "edit_swaponly_lora_s2")}
+
+# SmolLM2 tasks with LoRA seeds 1-2 and edit-then-LoRA runs, and the run whose edit LoRA started from
+SMOLLM_EDIT_LORA_SOURCE = {"sst5inv": "f1"}
+
 
 # ---------------------------------------------------------------- result files
 
@@ -202,20 +211,26 @@ def lora_variants() -> dict:
             for task in LORA_SEED_TASKS}
 
 
-def edit_lora() -> dict:
+def edit_lora_seeds(model: str, task: str) -> dict:
     """Test accuracy and general ability of LoRA trained on top of an edit, per seed.
 
     The general-ability files carry the task in their name (general_edit_lora_facts_s1.json).
     """
-    return {task: {"source_edit": f"{task} {run} ({description})",
-                   "seeds": [test_eval(task, name) for name in EDIT_LORA_SEEDS],
-                   "general": [general(PRIMARY_MODEL, name.replace("edit_lora", f"edit_lora_{task}"))
-                               for name in EDIT_LORA_SEEDS]}
+    return {"seeds": [test_eval(task, name, model) for name in EDIT_LORA_SEEDS],
+            "general": [general(model, name.replace("edit_lora", f"edit_lora_{task}")) for name in EDIT_LORA_SEEDS]}
+
+
+def edit_lora() -> dict:
+    return {task: {"source_edit": f"{task} {run} ({description})", **edit_lora_seeds(PRIMARY_MODEL, task)}
             for task, (run, description) in EDIT_LORA_SOURCE.items()}
 
 
 def controls() -> dict:
     return {name: {f"{CONTROL_TASK}_test": test_eval(CONTROL_TASK, name)} for name in CONTROL_NAMES}
+
+
+def plateau() -> dict:
+    return {key: [test_eval(CONTROL_TASK, name) for name in names] for key, names in PLATEAU_RUNS.items()}
 
 
 # ---------------------------------------------------------------- SmolLM2
@@ -238,6 +253,10 @@ def smollm(runs: list[dict]) -> dict:
             "control_random_swap": test_eval(task, "control_random_swap", SECOND_MODEL),
             "wsp": [smollm_result(r) for r in runs if r["model"] == SECOND_MODEL and r["task"] == task],
         }
+        if task in SMOLLM_EDIT_LORA_SOURCE:
+            tasks[task]["lora_seeds"] = [test_eval(task, name, SECOND_MODEL) for name in LORA_SEEDS]
+            tasks[task]["edit_lora"] = {"source_run": SMOLLM_EDIT_LORA_SOURCE[task],
+                                        **edit_lora_seeds(SECOND_MODEL, task)}
     return {"general_base": general(SECOND_MODEL, "base"), "tasks": tasks}
 
 
@@ -266,6 +285,7 @@ def collect() -> dict:
     summary["lora_variants"] = lora_variants()
     summary["edit_lora"] = edit_lora()
     summary["controls"] = controls()
+    summary["plateau"] = plateau()
     summary["smollm"] = smollm(meta["runs"])
     summary["costs"] = costs()
     return summary

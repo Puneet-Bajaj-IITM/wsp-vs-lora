@@ -39,7 +39,7 @@ The second half did not hold.
 \paragraph{Two follow-up experiments changed the picture.}
 \begin{itemize}
   \item \textbf{Telling the programmer to preserve the model changes the edit it builds.} The brief said nothing about side effects, so we added a requirement to preserve the model's other abilities. On survey answers, the same programmer then switched from a destructive circuit to a gated edit that gains 4.3 points and leaves the model's other abilities unchanged. On facts, it could not find an edit that both added knowledge and passed the preserve check.
-  \item \textbf{Programming and fine-tuning combine.} Running LoRA on top of a programmed edit raised facts accuracy to 99.0--99.7\% with 4,000 training examples. LoRA alone needed about ten times as much data. On mirrored labels the combination reached 57--59\%, well above either method alone.
+  \item \textbf{Programming and fine-tuning combine.} Running LoRA on top of a programmed edit raised facts accuracy to 99.0--99.7\% with 4,000 training examples. LoRA alone needed about ten times as much data. On mirrored labels the combination reached 57--59\% on every seed, and 56--57\% on SmolLM2, where default LoRA alone learned on one Qwen seed of three and no SmolLM2 seed. LoRA alone caught up with three times the data, and a hand-written swap did as well as the programmer's edit, so the gain is data saved, not a higher ceiling.
 \end{itemize}
 
 \paragraph{So what.} For anyone deciding how to change a model, the results give a usable map:
@@ -47,7 +47,7 @@ The second half did not hold.
   \item \textbf{Redirect.} When the model has the knowledge but uses it wrongly, program it. The fixes are tiny, readable and reproducible, and more reliable than default fine-tuning.
   \item \textbf{Compile.} When the answer is a table that can be written from the labels, programming matches or beats fine-tuning. But its most accurate route disables the model, so the edit must be checked, and the brief must ask for preservation.
   \item \textbf{Learn.} When the improvement needs a better mapping from inputs to answers, fine-tune.
-  \item \textbf{Combine.} In both regimes where we tried it, a programmed edit was a good starting point for fine-tuning, and the combined models kept general ability.
+  \item \textbf{Combine.} In both regimes where we tried it, a programmed edit cut the data fine-tuning needed, by about ten times on facts and three times on mirrored labels, and the combined models kept general ability.
 \end{itemize}
 For anyone evaluating edits, target-task accuracy is not enough. The highest-scoring edits are the most damaging. Raw perplexity misleads in the opposite direction: it flags harmless temperature changes as damage. We propose a small side-effect protocol that avoids both traps.
 
@@ -56,6 +56,6 @@ For anyone evaluating edits, target-task accuracy is not enough. The highest-sco
   \item A controlled comparison of weight-space programming with gradient fine-tuning on pretrained language models that varies how much the model already knows, with 20 independent programmer runs across two programmer models and two model families. Every edit and log is released, and every run that produced an edit, apart from an early pilot, is independently audited.
   \item A map of three regimes (redirect, compile, learn), with independent replications. That includes a fix five programmers found separately and three different SST-5 mechanisms that hit the same ceiling.
   \item Evidence that the most accurate programmed edits bypass the network and destroy general ability, on both model families. Edits through the model's pathways do not, and an instruction to preserve the model moves the programmer from one kind to the other.
-  \item Evidence that programming and fine-tuning are complementary: a programmed edit fixes both LoRA failure modes we observed, slow storage of new facts and a stuck start on a confidently wrong task. The combined models keep general ability.
+  \item Evidence that programming and fine-tuning are complementary: a programmed edit works around both LoRA failure modes we observed, slow storage of new facts and a stuck start on a confidently wrong task. More data also fixes both, so the edit's value is the data it saves. The combined models keep general ability.
   \item An evaluation protocol for weight-space programming: a fixed brief, a ledgered budget, independent audits, and side-effect measures that a temperature change cannot fake.
 \end{enumerate}
