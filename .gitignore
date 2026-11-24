@@ -1,0 +1,34 @@
+# Environment and caches
+.venv/
+__pycache__/
+.uv-cache/
+.remember/
+.claude/
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+
+# Downloaded and rebuilt by src/wsp/tasks/build.py
+/data/
+
+# Kaggle job bundles and raw job outputs
+kaggle_runner/build/
+kaggle_runner/out/
+kaggle_runner/datasets/
+
+# LoRA adapters (trained and kept on Kaggle)
+checkpoints/
+
+# Programmer activation caches (large, regenerable, not needed to check any result)
+runs/*/*/*/cache/
+*.npz
+
+# Local copy of the compiled paper; the tracked one is paper/main.pdf
+/wsp_vs_lora_draft.pdf
+
+# Word drafts of the paper (shared separately)
+/*.docx

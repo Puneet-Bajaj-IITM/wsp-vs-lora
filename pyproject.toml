@@ -1,0 +1,22 @@
+[project]
+name = "wsp-vs-lora"
+version = "1.0.0"
+description = "Weight-space programming versus LoRA fine-tuning: code, run records and paper"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.15.0",
+    "numpy>=2.5.4",
+    "pandas>=3.1.1",
+    "peft>=0.21.2",
+    "pyarrow>=26.0.1",
+    "scikit-learn>=1.9.1",
+    "torch>=2.15.0",
+    "transformers>=5.22.2",
+]
+
+[dependency-groups]
+dev = [
+    "kaggle>=2.2.5",
+    "matplotlib>=3.11.2",
+    "six>=1.17.0",
+]
