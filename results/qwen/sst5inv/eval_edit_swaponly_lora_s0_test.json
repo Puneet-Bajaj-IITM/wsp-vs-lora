@@ -1,0 +1,26 @@
+{
+  "edit_swaponly_lora_s0": {
+    "n": 2210,
+    "accuracy": 0.5846153846153846,
+    "accuracy_ci95": [
+      0.5628846153846154,
+      0.6045361990950225
+    ],
+    "nll": 0.9317530989646912,
+    "pred_letter_hist": [
+      0.199,
+      0.214,
+      0.215,
+      0.213,
+      0.159
+    ],
+    "by_block": {
+      "negative": 0.75,
+      "positive": 0.733,
+      "very positive": 0.536,
+      "neutral": 0.308,
+      "very negative": 0.391
+    },
+    "seconds": 92.1
+  }
+}
