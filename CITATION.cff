@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the paper."
+title: "wsp-vs-lora: code, run records and results for 'Compile, Learn, or Both?'"
+authors:
+  - family-names: Bajaj
+    given-names: Puneet
+version: 1.0.0
+date-released: 2026-11-24
+license: MIT
+repository-code: "https://github.com/Puneet-Bajaj-IITM/wsp-vs-lora"
+keywords:
+  - weight-space programming
+  - LoRA
+  - fine-tuning
+  - model editing
+preferred-citation:
+  type: report
+  title: "Compile, Learn, or Both? When Weight-Space Programming Helps, What It Breaks, and Why Combining It with LoRA Matters"
+  authors:
+    - family-names: Bajaj
+      given-names: Puneet
+  year: 2026
+  month: 11
+  notes: "Working paper"
+  url: "https://github.com/Puneet-Bajaj-IITM/wsp-vs-lora"
