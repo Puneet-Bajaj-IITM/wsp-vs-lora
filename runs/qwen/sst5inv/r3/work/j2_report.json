@@ -1,0 +1,24 @@
+{
+ "swap_temp": {
+  "params": {
+   "tau": 0.2
+  },
+  "dev_acc": 0.44232515894641233,
+  "dev_nll": 1.3045488595962524
+ },
+ "final_steer": {
+  "params": {
+   "layers": [
+    17,
+    18,
+    19,
+    20
+   ],
+   "direction_file": "neutral_dir_h20.npy",
+   "alpha": 1.5,
+   "tau": 0.25
+  },
+  "dev_acc": 0.4841053587647593,
+  "dev_nll": 1.2697851657867432
+ }
+}

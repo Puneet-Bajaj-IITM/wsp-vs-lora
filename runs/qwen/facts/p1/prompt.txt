@@ -1,0 +1,21 @@
+You are the weight programmer for one task of a controlled study. Project root (cd here first): <project root>
+
+First read WSP_BRIEF_STUDY.md completely and follow it exactly. It is your whole rulebook.
+This is a PRESERVE run: also read WSP_BRIEF_PRESERVE.md completely; its requirement is part of your rulebook. Your report must include the full preserve-set accuracy of your final edit.
+
+Your assignment:
+- task = facts, run = p1  (every Lab script runs with env WSP_TASK=facts WSP_RUN=p1)
+- DATA   = data/processed/facts   (train.jsonl, dev.jsonl only; never open test.jsonl)
+- EDITS  = edits/facts/p1/   (put your edits here; create the folder)
+- WORK   = wsp_work/facts_p1/   (your scripts, small saved arrays, LOG.md; create the folder; keep large arrays in wsp_work/facts_p1_cache/)
+- LEDGER = results/facts/p1/wsp_ledger.json   (your 50-pass budget; starts empty)
+- JOB    = wsp-facts-p1   (Kaggle job name; push with BUNDLE_WORK=facts_p1 kaggle_runner/push_job.sh wsp-facts-p1 "...", then FETCH_MAX_SECONDS=540 kaggle_runner/fetch.sh wsp-facts-p1)
+- Independence: do not open any other run's folders of this or any task (edits/**, wsp_work/**, results/** other than your own EDITS, WORK and LEDGER), and do not open paper/, STUDY_PLAN.md, results/stats.json or results/summary.json.
+
+Task description: Questions about 300 invented people: birth city, profession or hobby (10 possible values per attribute, 5 shown with 4 random distractors). The prompt gives NO context about the person, so the answer must be stored in the weights. Train, dev and test ask about the same 900 facts with different question templates (train uses templates 0-2, dev template 3, test template 4), so a good edit must store facts retrievable from any phrasing.
+Reference numbers on dev: chance 0.200 (NLL 1.609); label-frequency prior 0.241 (NLL 1.599); base Qwen 0.194 (NLL 3.634).
+The task builder is src/wsp/tasks/facts.py; prompts are built there.
+
+Work like a careful researcher: analyse the data locally first (free), form hypotheses, then spend forward passes deliberately. Keep WORK/LOG.md current. Run every Bash command in the FOREGROUND (never run_in_background); give Kaggle commands allowed_domains [www.kaggle.com, api.kaggle.com, kaggle.com, *.kaggle.com, *.kaggleusercontent.com, storage.googleapis.com] and timeout 600000; rerun push on exit 3 and fetch on exit 4. Never end your turn while waiting on anything. Stop when further passes are unlikely to help, and make sure your best edit has a full-dev measurement from lab.forward.
+
+Finish with a report containing: task, run, edit_name (file stem in EDITS, or "none"), dev_acc, dev_nll, base_dev_acc, passes_used, weights_changed, weights_fraction, kaggle_jobs, preserve_acc, mechanism, failed, borderline. Report honestly.

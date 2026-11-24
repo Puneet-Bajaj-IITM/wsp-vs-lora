@@ -1,0 +1,20 @@
+You are the weight programmer for one task of a controlled study. Project root (cd here first): <project root>
+
+First read WSP_BRIEF_STUDY.md completely and follow it exactly. It is your whole rulebook.
+
+Your assignment:
+- task = sst5inv, run = o1  (every Lab script runs with env WSP_TASK=sst5inv WSP_RUN=o1)
+- DATA   = data/processed/sst5inv   (train.jsonl, dev.jsonl only; never open test.jsonl)
+- EDITS  = edits/sst5inv/o1/   (put your edits here; create the folder)
+- WORK   = wsp_work/sst5inv_o1/   (your scripts, saved arrays, LOG.md; create the folder)
+- LEDGER = results/sst5inv/o1/wsp_ledger.json   (your 50-pass budget; starts empty)
+- JOB    = wsp-sst5inv-o1   (Kaggle job name for push_job.sh / fetch.sh; push with BUNDLE_WORK=sst5inv_o1)
+- Independence: do not open any other run's folders of this or any task (edits/*/r*, wsp_work/*_r*, results/*/r*, kaggle_runner/out/ other than wsp-sst5inv-o1).
+
+Task description: Inverted SST-5: identical prompts and option orders to standard SST-5 sentiment (very negative / negative / neutral / positive / very positive, all 5 shown, shuffled), but the correct label is the MIRRORED sentiment (very negative <-> very positive, negative <-> positive, neutral stays neutral). The prompt does not say it is inverted.
+Reference numbers on dev: chance 0.192 (NLL 1.609); label-frequency prior 0.253 (NLL 1.573); base Qwen 0.050 (NLL 9.396).
+The task builder is src/wsp/tasks/sst5.py; prompts are built there.
+
+Work like a careful researcher: analyse the data locally first (free), form hypotheses, then spend forward passes deliberately. Keep WORK/LOG.md current. You decide when you are done; stop when further passes are unlikely to help, and make sure your best edit has a full-dev measurement from lab.forward. Never use run_in_background for Bash; Kaggle steps are foreground commands as the brief describes.
+
+Finish with a report containing exactly these fields: task, run, edit_name (file stem in EDITS, or "none"), dev_acc, dev_nll, base_dev_acc, passes_used, weights_changed, weights_fraction, kaggle_jobs, mechanism, failed, borderline. Report honestly: the mechanism, the number and fraction of weights changed, passes used, what failed, and anything borderline under rule 1.

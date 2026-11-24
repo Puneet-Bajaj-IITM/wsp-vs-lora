@@ -1,0 +1,122 @@
+[
+ {
+  "t": "20:54:02",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture 0"
+ },
+ {
+  "t": "21:00:26",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture 1"
+ },
+ {
+  "t": "21:06:51",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture 2"
+ },
+ {
+  "t": "21:13:20",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture 3"
+ },
+ {
+  "t": "21:19:51",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture 4"
+ },
+ {
+  "t": "21:26:26",
+  "split": "train",
+  "n": 512,
+  "note": "job1 lexswap_v1 on block0"
+ },
+ {
+  "t": "21:47:52",
+  "split": "train",
+  "n": 512,
+  "note": "job2 fc_base"
+ },
+ {
+  "t": "21:53:59",
+  "split": "train",
+  "n": 512,
+  "note": "job2 cube_base"
+ },
+ {
+  "t": "22:00:38",
+  "split": "train",
+  "n": 512,
+  "note": "job2 fc_weak"
+ },
+ {
+  "t": "22:06:47",
+  "split": "train",
+  "n": 512,
+  "note": "job2 fc_neutral"
+ },
+ {
+  "t": "22:13:03",
+  "split": "train",
+  "n": 512,
+  "note": "job2 cube_swap"
+ },
+ {
+  "t": "22:19:25",
+  "split": "train",
+  "n": 512,
+  "note": "job2 pers_lex"
+ },
+ {
+  "t": "22:30:09",
+  "split": "train",
+  "n": 512,
+  "note": "job3 lexroute_v1 train (alpha=1)"
+ },
+ {
+  "t": "22:36:06",
+  "split": "dev",
+  "n": 400,
+  "note": "job3 lexroute_v1 FINAL dev 0-399"
+ },
+ {
+  "t": "22:37:45",
+  "split": "dev",
+  "n": 400,
+  "note": "job3 lexroute_v1 FINAL dev 400-799"
+ },
+ {
+  "t": "22:39:23",
+  "split": "dev",
+  "n": 400,
+  "note": "job3 lexroute_v1 FINAL dev 800-1199"
+ },
+ {
+  "t": "22:41:02",
+  "split": "dev",
+  "n": 400,
+  "note": "job3 lexroute_v1 FINAL dev 1200-1599"
+ },
+ {
+  "t": "22:51:29",
+  "split": "train",
+  "n": 512,
+  "note": "job4 probe lik_v2a"
+ },
+ {
+  "t": "22:57:24",
+  "split": "train",
+  "n": 512,
+  "note": "job4 probe lik_v2b"
+ },
+ {
+  "t": "23:03:41",
+  "split": "train",
+  "n": 512,
+  "note": "job4 probe fc_odd"
+ }
+]

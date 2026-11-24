@@ -1,0 +1,22 @@
+"""Where does the token-table prior lose against the exact item prior? (train sample, in-sample for both)"""
+import collections, numpy as np
+import sim, spec
+from prompts_local import load_split, load_tokenizer, prompt_ids, option_strings
+from test_toy import load_edit, tables_from_edit
+import tables
+tok=load_tokenizer(); train=load_split("train"); tabs=tables_from_edit(load_edit())
+items=tables.collect_items(tok,train)
+rng=np.random.default_rng(1); sample=[train[i] for i in rng.permutation(len(train))[:3500]]
+loss=collections.Counter(); n=collections.Counter(); ex_show={}
+tot=[0,0]
+for ex in sample:
+    ids=prompt_ids(tok,ex); s=sim.prior(ids,tabs); it=items[ex["column"]]
+    rate=[it["rate"][o] for o in ex["shown_option_ids"]]
+    a=int(np.argmax(s))==ex["label"]; b=int(np.argmax(rate))==ex["label"]
+    tot[0]+=a; tot[1]+=b
+    loss[ex["column"]]+=int(b)-int(a); n[ex["column"]]+=1
+    if int(np.argmax(s))!=int(np.argmax(rate)) and ex["column"] not in ex_show:
+        ex_show[ex["column"]]=([o[:16] for o in option_strings(ex)],np.round(s,2),np.round(rate,2))
+print("sim acc",tot[0]/len(sample),"item prior acc",tot[1]/len(sample))
+for c,l in loss.most_common(22):
+    print(c,items[c]["example"]["block"][:10],"n",n[c],"lost hits",l,"(%.2f pts)"%(100*l/len(sample)),ex_show.get(c))

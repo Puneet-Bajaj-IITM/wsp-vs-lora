@@ -1,0 +1,29 @@
+import json, collections, numpy as np, glob, os, sys
+os.environ["HF_HUB_OFFLINE"]="1"
+from transformers import AutoTokenizer
+p=glob.glob(os.path.expanduser("~/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-0.5B-Instruct/snapshots/*"))[0]
+tok=AutoTokenizer.from_pretrained(p)
+sys.path.insert(0,"src")
+from wsp.prompts import build_chat
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+LET=[32,33,34,35,36]; DOT=13
+def ids(e):
+    x=tok.apply_chat_template(build_chat(e["user_message"]),tokenize=True,add_generation_prompt=True)
+    return x if isinstance(x,list) else x["input_ids"]
+n=0
+cnt=collections.Counter()
+for e in tr[:3000]:
+    x=ids(e)
+    pos=[i for i in range(len(x)-1) if x[i]==3798 and x[i+1]==510]
+    c3798=sum(1 for t in x if t==3798)
+    cnt[(len(pos),c3798)]+=1
+    if len(pos)!=1 and n<3:
+        n+=1; i=[j for j,t in enumerate(x) if t==271][-2] if True else 0
+        print(repr(tok.decode(x[-120:-20])))
+    if pos:
+        st=pos[-1]+2
+        L=[i for i in range(st,len(x)) if x[i] in LET and x[i+1]==DOT and x[i-1] in (510,198)]
+        if [x[i] for i in L]!=LET and n<8:
+            n+=1; print("LETTERS",[tok.decode([x[i-1],x[i],x[i+1]]) for i in L]); print(repr(tok.decode(x[st-6:])))
+print(cnt)

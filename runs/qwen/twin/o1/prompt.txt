@@ -1,0 +1,21 @@
+You are the weight programmer for one task of a controlled study. Project root (cd here first): <project root>
+
+First read WSP_BRIEF_STUDY.md completely and follow it exactly. It is your whole rulebook.
+
+Your assignment:
+- task = twin, run = o1  (every Lab script runs with env WSP_TASK=twin WSP_RUN=o1)
+- DATA   = data/processed   (train.jsonl, dev.jsonl only; never open test.jsonl)
+- EDITS  = edits/o1/   (put your edits here; create the folder)
+- WORK   = wsp_work/twin_o1/   (your scripts, saved arrays, LOG.md; create the folder)
+- LEDGER = results/o1/wsp_ledger.json   (your 50-pass budget; starts empty)
+- JOB    = wsp-twin-o1   (Kaggle job name for push_job.sh / fetch.sh; push with BUNDLE_WORK=twin_o1)
+- Independence: do not open any other run's folders of this or any task (edits/*/r*, wsp_work/*_r*, results/*/r*, kaggle_runner/out/ other than wsp-twin-o1).
+- Independence: earlier runs of this task exist. Do NOT open any file directly in wsp_work/ (only your WORK subfolder), any file directly in edits/ (only your EDITS subfolder), edits/r2/, edits/r3/, wsp_work/twin_r2/, wsp_work/twin_r3/, results/wsp_ledger.json, results/r2/, results/r3/, results/eval_*, results/perm_*, kaggle_runner/out/ other than your own JOB, or WSP_BRIEF.md. Treat the Twin task as new.
+
+Task description: Twin-2K-500 human-response prediction: each prompt describes a real US survey respondent (14 demographics plus 8 of their other survey answers), then one survey question with 5 options in random order; the label is what this person actually chose.
+Reference numbers on dev: chance 0.229 (NLL 1.609); per-item population prior from train answer frequencies 0.478 (NLL 1.286); base Qwen 0.294 (NLL 2.674).
+The task builder is src/wsp/dataset.py (with src/wsp/catalog.py and src/wsp/prompts.py); prompts are built there.
+
+Work like a careful researcher: analyse the data locally first (free), form hypotheses, then spend forward passes deliberately. Keep WORK/LOG.md current. You decide when you are done; stop when further passes are unlikely to help, and make sure your best edit has a full-dev measurement from lab.forward. Never use run_in_background for Bash; Kaggle steps are foreground commands as the brief describes.
+
+Finish with a report containing exactly these fields: task, run, edit_name (file stem in EDITS, or "none"), dev_acc, dev_nll, base_dev_acc, passes_used, weights_changed, weights_fraction, kaggle_jobs, mechanism, failed, borderline. Report honestly: the mechanism, the number and fraction of weights changed, passes used, what failed, and anything borderline under rule 1.

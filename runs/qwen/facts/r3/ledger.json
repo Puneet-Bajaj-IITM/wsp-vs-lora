@@ -1,0 +1,68 @@
+[
+ {
+  "t": "21:47:35",
+  "split": "train",
+  "n": 512,
+  "note": "base capture train 0"
+ },
+ {
+  "t": "21:47:55",
+  "split": "train",
+  "n": 512,
+  "note": "base capture train 512"
+ },
+ {
+  "t": "21:48:11",
+  "split": "train",
+  "n": 512,
+  "note": "base capture train 1024"
+ },
+ {
+  "t": "21:48:27",
+  "split": "train",
+  "n": 512,
+  "note": "base capture train 1536"
+ },
+ {
+  "t": "21:48:44",
+  "split": "train",
+  "n": 512,
+  "note": "base capture train 2048"
+ },
+ {
+  "t": "21:49:00",
+  "split": "train",
+  "n": 140,
+  "note": "base capture train 2560"
+ },
+ {
+  "t": "21:49:05",
+  "split": "dev",
+  "n": 512,
+  "note": "base capture dev 0"
+ },
+ {
+  "t": "21:49:14",
+  "split": "dev",
+  "n": 388,
+  "note": "base capture dev 512"
+ },
+ {
+  "t": "21:55:17",
+  "split": "dev",
+  "n": 512,
+  "note": "stage A only: code decode check"
+ },
+ {
+  "t": "21:55:26",
+  "split": "dev",
+  "n": 512,
+  "note": "twostage_v1 dev[0:512]"
+ },
+ {
+  "t": "21:55:35",
+  "split": "train",
+  "n": 512,
+  "note": "twostage_v1 train[0:512]"
+ }
+]

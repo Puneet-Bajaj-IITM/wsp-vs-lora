@@ -1,0 +1,260 @@
+[
+ {
+  "t": "19:58:07",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base train 0-511 all-layer capture"
+ },
+ {
+  "t": "19:58:54",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base train 512-1023 all-layer capture"
+ },
+ {
+  "t": "21:23:27",
+  "split": "train",
+  "n": 512,
+  "note": "job2 base train 1024-1535"
+ },
+ {
+  "t": "21:24:12",
+  "split": "train",
+  "n": 512,
+  "note": "job2 zero_L19 train 1024-1535"
+ },
+ {
+  "t": "21:24:55",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s0.5 train 1024-1535"
+ },
+ {
+  "t": "21:25:38",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s1.0 train 1024-1535"
+ },
+ {
+  "t": "21:26:22",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s2.0 train 1024-1535"
+ },
+ {
+  "t": "21:27:06",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s4.0 train 1024-1535"
+ },
+ {
+  "t": "21:27:50",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s8.0 train 1024-1535"
+ },
+ {
+  "t": "21:28:35",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L19_s0.5 train 1024-1535"
+ },
+ {
+  "t": "21:29:20",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L19_s1.0 train 1024-1535"
+ },
+ {
+  "t": "21:30:05",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L19_s2.0 train 1024-1535"
+ },
+ {
+  "t": "21:30:50",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L19_s4.0 train 1024-1535"
+ },
+ {
+  "t": "21:31:35",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L19_s8.0 train 1024-1535"
+ },
+ {
+  "t": "21:32:20",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L20_s0.5 train 1024-1535"
+ },
+ {
+  "t": "21:33:05",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L20_s1.0 train 1024-1535"
+ },
+ {
+  "t": "21:33:50",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L20_s2.0 train 1024-1535"
+ },
+ {
+  "t": "21:34:35",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L20_s4.0 train 1024-1535"
+ },
+ {
+  "t": "21:35:20",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L20_s8.0 train 1024-1535"
+ },
+ {
+  "t": "21:36:05",
+  "split": "train",
+  "n": 512,
+  "note": "job2 raw_L19_s1.0 train 1024-1535"
+ },
+ {
+  "t": "21:36:50",
+  "split": "train",
+  "n": 512,
+  "note": "job2 raw_L19_s2.0 train 1024-1535"
+ },
+ {
+  "t": "21:37:35",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s2.0+neg_minus_vneg_-0.5 train 1024-1535"
+ },
+ {
+  "t": "21:38:20",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s2.0+neg_minus_vneg_0.5 train 1024-1535"
+ },
+ {
+  "t": "21:39:05",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s2.0+neg_minus_vneg_1.0 train 1024-1535"
+ },
+ {
+  "t": "21:39:50",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s2.0+pos_minus_vpos_-0.5 train 1024-1535"
+ },
+ {
+  "t": "21:40:35",
+  "split": "train",
+  "n": 512,
+  "note": "job2 orth_L17_s2.0+pos_minus_vpos_0.5 train 1024-1535"
+ },
+ {
+  "t": "21:41:23",
+  "split": "dev",
+  "n": 512,
+  "note": "job2 neutral_steer dev 0-511"
+ },
+ {
+  "t": "21:41:38",
+  "split": "dev",
+  "n": 512,
+  "note": "job2 neutral_steer dev 512-1023"
+ },
+ {
+  "t": "21:41:53",
+  "split": "dev",
+  "n": 77,
+  "note": "job2 neutral_steer dev 1024-1100"
+ },
+ {
+  "t": "22:36:42",
+  "split": "train",
+  "n": 512,
+  "note": "job3 orth_L17_s2+L19_s1 train B"
+ },
+ {
+  "t": "22:37:25",
+  "split": "train",
+  "n": 512,
+  "note": "job3 orth_L17_s1+L19_s1+L20_s1 train B"
+ },
+ {
+  "t": "22:38:07",
+  "split": "train",
+  "n": 512,
+  "note": "job3 orth_L16_s2 train B"
+ },
+ {
+  "t": "22:38:48",
+  "split": "train",
+  "n": 512,
+  "note": "job3 orth_L18_s1.5 train B"
+ },
+ {
+  "t": "22:39:30",
+  "split": "train",
+  "n": 512,
+  "note": "job3 combo_L17_k1.5 train B"
+ },
+ {
+  "t": "22:40:11",
+  "split": "train",
+  "n": 512,
+  "note": "job3 combo_L17_k0.75 train B"
+ },
+ {
+  "t": "22:40:53",
+  "split": "train",
+  "n": 512,
+  "note": "job3 combo_L19_k0.5 train B"
+ },
+ {
+  "t": "22:41:35",
+  "split": "train",
+  "n": 512,
+  "note": "job3 base train C"
+ },
+ {
+  "t": "22:42:17",
+  "split": "train",
+  "n": 512,
+  "note": "job3 orth_L17_s2.0 train C"
+ },
+ {
+  "t": "22:43:00",
+  "split": "train",
+  "n": 512,
+  "note": "job3 combo_L19_k0.5 train C"
+ },
+ {
+  "t": "22:43:42",
+  "split": "train",
+  "n": 512,
+  "note": "job3 orth_L18_s1.5 train C"
+ },
+ {
+  "t": "22:45:33",
+  "split": "dev",
+  "n": 512,
+  "note": "job3 class_steer dev 0-511"
+ },
+ {
+  "t": "22:45:46",
+  "split": "dev",
+  "n": 512,
+  "note": "job3 class_steer dev 512-1023"
+ },
+ {
+  "t": "22:46:00",
+  "split": "dev",
+  "n": 77,
+  "note": "job3 class_steer dev 1024-1100"
+ }
+]

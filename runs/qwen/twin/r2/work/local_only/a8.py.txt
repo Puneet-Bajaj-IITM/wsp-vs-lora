@@ -1,0 +1,58 @@
+"""How much could persona-conditional priors add? Conditional choice rates given one persona attribute, backed off
+to the item rate; attribute chosen per block on held-out train people, then scored on dev."""
+import collections, json, re
+import numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+dv=[json.loads(l) for l in open(D+"dev.jsonl")]
+def persona(e):
+    sec=e["user_message"].split("\n\nSome of their other survey answers:")[0].split("\n")[1:]
+    return [s[2:] for s in sec]
+ATTR=["region","sex","age","educ","race","citizen","marital","religion","attend","party","income","ideology","hh","employ"]
+KEYS=["Which part of the United States","What is the sex","How old are you","highest level of schooling","What is your race","Are you a citizen","Which of these best describes you","present religion","how often do you attend","In politics today","total family income","describe your political views","how many people currently live","current employment status"]
+def attrs(e):
+    out={}
+    for line in persona(e):
+        for a,k in zip(ATTR,KEYS):
+            if k in line:
+                out[a]=line.split("? ")[-1] if "? " in line else line[-25:]
+    return out
+print(attrs(tr[0]))
+def big(b): return b if b in("Personality","Cognitive tests","False consensus","Economic preferences") else "Other"
+people=sorted({e["pid"] for e in tr}); held=set(people[::5])
+def fit(exs):
+    item=collections.defaultdict(collections.Counter); cond={a:collections.defaultdict(collections.Counter) for a in ATTR}
+    for e in exs:
+        ch=e["shown_option_ids"][e["label"]]; at=attrs(e)
+        for o in e["shown_option_ids"]: item[e["column"]][("s",o)]+=1
+        item[e["column"]][("c",ch)]+=1
+        for a in ATTR:
+            k=(e["column"],at.get(a))
+            for o in e["shown_option_ids"]: cond[a][k][("s",o)]+=1
+            cond[a][k][("c",ch)]+=1
+    return item,cond
+def predict(e,item,cond,a,K=20.0):
+    it=item[e["column"]]; at=attrs(e); s=[]
+    for o in e["shown_option_ids"]:
+        p0=(it[("c",o)]+0.5)/(it[("s",o)]+2.5)
+        if a is None: s.append(p0); continue
+        c=cond[a][(e["column"],at.get(a))]
+        s.append((c[("c",o)]+K*p0)/(c[("s",o)]+K))
+    return int(np.argmax(s))
+item,cond=fit([e for e in tr if e["pid"] not in held]); hold=[e for e in tr if e["pid"] in held]
+res={}
+for a in [None]+ATTR:
+    by=collections.defaultdict(list)
+    for e in hold: by[big(e["block"])].append(predict(e,item,cond,a)==e["label"])
+    res[a]={b:np.mean(v) for b,v in by.items()}
+    print(a,{b:round(float(x),3) for b,x in res[a].items()})
+best={b:max(ATTR,key=lambda a:res[a][b]) for b in res[None]}
+print("best attr per block (holdout)",best,{b:round(float(res[best[b]][b]-res[None][b]),3) for b in best})
+item,cond=fit(tr)
+ok0=[];ok1=[]
+for e in dv:
+    ok0.append(predict(e,item,cond,None)==e["label"]); ok1.append(predict(e,item,cond,best[big(e["block"])])==e["label"])
+print("dev item prior",np.mean(ok0),"dev best-attr conditional",np.mean(ok1))
+for a in ("party","ideology"):
+    print(a, np.mean([predict(e,item,cond,a)==e["label"] for e in dv if e["block"]=="False consensus"]), np.mean([predict(e,item,cond,None)==e["label"] for e in dv if e["block"]=="False consensus"]))
+print(collections.Counter(attrs(e).get("party") for e in tr).most_common(8)); print(collections.Counter(attrs(e).get("ideology") for e in tr).most_common(8))

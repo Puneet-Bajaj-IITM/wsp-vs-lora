@@ -1,0 +1,84 @@
+{
+ "dev_first": {
+  "summary": {
+   "n": 512,
+   "accuracy": 1.0,
+   "accuracy_ci95": [
+    1.0,
+    1.0
+   ],
+   "nll": 0.003365459619089961,
+   "pred_letter_hist": [
+    0.203,
+    0.199,
+    0.205,
+    0.189,
+    0.203
+   ],
+   "by_block": {
+    "city": 1.0,
+    "profession": 1.0,
+    "hobby": 1.0
+   }
+  },
+  "bag_err_mean": 0.018914458431027015,
+  "bag_err_max": 0.0320228636264801,
+  "value_top3_correct": 1.0,
+  "value_coef_top3_mean": 0.5827657580375671,
+  "value_coef_4th_mean": 0.00023056201462168247,
+  "letter_stage_acc": 1.0,
+  "letter_coef_top_mean": 1253.3187255859375,
+  "letter_coef_2nd_mean": 31.774322509765625,
+  "hidden_norms": {
+   "0": 6112.80859375,
+   "1": 6130.70166015625,
+   "22": 6622.0302734375,
+   "-1": 60.40243148803711
+  },
+  "logp_true_mean": -0.003365459619089961,
+  "passes_left": 47
+ },
+ "dev_rest": {
+  "summary": {
+   "n": 388,
+   "accuracy": 1.0,
+   "accuracy_ci95": [
+    1.0,
+    1.0
+   ],
+   "nll": 0.0035102213732898235,
+   "pred_letter_hist": [
+    0.196,
+    0.232,
+    0.183,
+    0.196,
+    0.193
+   ],
+   "by_block": {
+    "hobby": 1.0,
+    "city": 1.0,
+    "profession": 1.0
+   }
+  },
+  "bag_err_mean": 0.018765913577001428,
+  "bag_err_max": 0.03883197158575058,
+  "value_top3_correct": 1.0,
+  "value_coef_top3_mean": 0.5807421803474426,
+  "value_coef_4th_mean": 0.00022190330491866916,
+  "letter_stage_acc": 1.0,
+  "letter_coef_top_mean": 1254.0625,
+  "letter_coef_2nd_mean": 30.61667823791504,
+  "hidden_norms": {
+   "0": 6091.748046875,
+   "1": 6109.94970703125,
+   "22": 6641.7900390625,
+   "-1": 60.4205322265625
+  },
+  "logp_true_mean": -0.0035102213732898235,
+  "passes_left": 46
+ },
+ "dev_full": {
+  "accuracy": 1.0,
+  "nll": 0.003427867777645588
+ }
+}

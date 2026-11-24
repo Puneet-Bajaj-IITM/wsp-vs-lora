@@ -1,0 +1,162 @@
+{
+ "current": {
+  "scale": 407.1023368835449,
+  "omega": 40710.23368835449,
+  "margin": 8.316789127071518
+ },
+ "candidates": {
+  "100.0": {
+   "cfg": {
+    "scale": 1357.0077896118164,
+    "omega": 40710.23368835449,
+    "margin": 9.0
+   },
+   "summary": {
+    "n": 512,
+    "accuracy": 1.0,
+    "accuracy_ci95": [
+     1.0,
+     1.0
+    ],
+    "nll": 0.0005315924063324928,
+    "pred_letter_hist": [
+     0.203,
+     0.199,
+     0.205,
+     0.189,
+     0.203
+    ],
+    "by_block": {
+     "city": 1.0,
+     "profession": 1.0,
+     "hobby": 1.0
+    }
+   },
+   "checks": {
+    "h0_norm_median": 1359.205741352659,
+    "h0_code_part_norm_median": 1359.0588513916562,
+    "h0_offcode_norm_median": 20.365780464669168,
+    "gather_cos_min": 0.9999698463512083,
+    "gather_cos_median": 0.9999786910913212,
+    "const_coord_median": 1.0014466993043603,
+    "own_response_min": 0.9788290667089183,
+    "own_response_median": 1.0025620273494324,
+    "rival_response_max": 0.7317917947114903,
+    "flag_coord_abs_max_at_final": 0.8338490159366998,
+    "read_coef_true_median": 1.052808201744568,
+    "read_coef_true_p10": 1.0355152772049434,
+    "read_coef_argmax_acc": 1.0,
+    "read_coef_abs_sum_median": 1.1234835386406057,
+    "L1_norm_median": 42476.10673421509,
+    "L1_cos_true_dir_median": 0.9991549461463104,
+    "L1_cos_true_dir_p10": 0.9990279763218355,
+    "L1_argmax_dir_acc": 1.0,
+    "L26_norm_median": 42828.470013793725,
+    "L26_cos_true_dir_median": 0.9989844296397181,
+    "L26_cos_true_dir_p10": 0.9986982777224773,
+    "L26_argmax_dir_acc": 1.0,
+    "L27_norm_median": 156.32307719443878,
+    "L27_cos_true_dir_median": 0.9688677354474216,
+    "L27_cos_true_dir_p10": 0.95203593140855,
+    "L27_argmax_dir_acc": 1.0,
+    "L-1_norm_median": 39.19114677379262,
+    "L-1_cos_true_dir_median": 0.9989705683464482,
+    "L-1_cos_true_dir_p10": 0.9986806748173009,
+    "L-1_argmax_dir_acc": 1.0,
+    "headroom_min": 0.768686791200722
+   }
+  },
+  "300.0": {
+   "cfg": {
+    "scale": 4071.023368835449,
+    "omega": 40710.23368835449,
+    "margin": 9.0
+   },
+   "summary": {
+    "n": 512,
+    "accuracy": 1.0,
+    "accuracy_ci95": [
+     1.0,
+     1.0
+    ],
+    "nll": 0.0005506904562935233,
+    "pred_letter_hist": [
+     0.203,
+     0.199,
+     0.205,
+     0.189,
+     0.203
+    ],
+    "by_block": {
+     "city": 1.0,
+     "profession": 1.0,
+     "hobby": 1.0
+    }
+   },
+   "checks": {
+    "h0_norm_median": 4073.773684111758,
+    "h0_code_part_norm_median": 4073.7248708990596,
+    "h0_offcode_norm_median": 20.423746533759978,
+    "gather_cos_min": 0.9999902993391052,
+    "gather_cos_median": 0.9999974535128826,
+    "const_coord_median": 1.000495107839349,
+    "own_response_min": 0.9919352084266893,
+    "own_response_median": 1.000468317583817,
+    "rival_response_max": 0.7313981153304052,
+    "flag_coord_abs_max_at_final": 0.8441041698667746,
+    "read_coef_true_median": 1.0528924796858992,
+    "read_coef_true_p10": 1.042593282635783,
+    "read_coef_argmax_acc": 1.0,
+    "read_coef_abs_sum_median": 1.1247218044978042,
+    "L1_norm_median": 42632.33871598579,
+    "L1_cos_true_dir_median": 0.9951300897131996,
+    "L1_cos_true_dir_p10": 0.9949710370320202,
+    "L1_argmax_dir_acc": 1.0,
+    "L26_norm_median": 42996.848467893215,
+    "L26_cos_true_dir_median": 0.9948655797970807,
+    "L26_cos_true_dir_p10": 0.9945620063392366,
+    "L26_argmax_dir_acc": 1.0,
+    "L27_norm_median": 156.21255267484912,
+    "L27_cos_true_dir_median": 0.965912879700777,
+    "L27_cos_true_dir_p10": 0.9490487837888795,
+    "L27_argmax_dir_acc": 1.0,
+    "L-1_norm_median": 39.191897126041816,
+    "L-1_cos_true_dir_median": 0.9948486520451154,
+    "L-1_cos_true_dir_p10": 0.9945421928699945,
+    "L-1_argmax_dir_acc": 1.0,
+    "headroom_min": 0.9165403563455311
+   }
+  }
+ },
+ "chosen": {
+  "scale": 4071.023368835449,
+  "omega": 40710.23368835449,
+  "margin": 9.0
+ },
+ "final_dev": {
+  "n": 900,
+  "accuracy": 1.0,
+  "nll": 0.000550829223357141,
+  "by_block": {
+   "city": 1.0,
+   "profession": 1.0,
+   "hobby": 1.0
+  },
+  "n_err": 0,
+  "errors": [],
+  "passes_left": 39
+ },
+ "final_train": {
+  "n": 2700,
+  "accuracy": 1.0,
+  "nll": 0.0005507739260792732,
+  "by_block": {
+   "city": 1.0,
+   "profession": 1.0,
+   "hobby": 1.0
+  },
+  "n_err": 0,
+  "errors": [],
+  "passes_left": 33
+ }
+}

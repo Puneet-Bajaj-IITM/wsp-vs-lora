@@ -1,0 +1,107 @@
+{
+ "ld_b1.5_eval1": {
+  "acc": 0.3046875,
+  "nll": 2.7401976585388184,
+  "hist": [
+   0.211,
+   0.219,
+   0.209,
+   0.246,
+   0.115
+  ],
+  "by_block": {
+   "Personality": 0.201,
+   "Cognitive tests": 0.478,
+   "False consensus": 0.317
+  },
+  "base_acc": 0.287109375,
+  "fixed": 36,
+  "broken": 27,
+  "changed_pred": 0.28515625,
+  "left": 15
+ },
+ "ld_b2.5_eval1": {
+  "acc": 0.30859375,
+  "nll": 2.5724642276763916,
+  "hist": [
+   0.229,
+   0.24,
+   0.139,
+   0.258,
+   0.135
+  ],
+  "by_block": {
+   "Personality": 0.19,
+   "Cognitive tests": 0.434,
+   "False consensus": 0.317
+  },
+  "base_acc": 0.287109375,
+  "fixed": 55,
+  "broken": 44,
+  "changed_pred": 0.41796875,
+  "left": 14
+ },
+ "ld_b4.0_eval1": {
+  "acc": 0.26953125,
+  "nll": 2.4326047897338867,
+  "hist": [
+   0.25,
+   0.266,
+   0.1,
+   0.219,
+   0.166
+  ],
+  "by_block": {
+   "Personality": 0.201,
+   "Cognitive tests": 0.301,
+   "False consensus": 0.283
+  },
+  "base_acc": 0.287109375,
+  "fixed": 60,
+  "broken": 69,
+  "changed_pred": 0.53515625,
+  "left": 13
+ },
+ "ld_b2.5_eval2": {
+  "acc": 0.3203125,
+  "nll": 2.5405445098876953,
+  "hist": [
+   0.244,
+   0.217,
+   0.146,
+   0.266,
+   0.127
+  ],
+  "by_block": {
+   "Personality": 0.255,
+   "Cognitive tests": 0.417,
+   "False consensus": 0.34
+  },
+  "base_acc": 0.328125,
+  "fixed": 53,
+  "broken": 57,
+  "changed_pred": 0.3984375,
+  "left": 12
+ },
+ "rome_b1.5_eval2": {
+  "acc": 0.353515625,
+  "nll": 2.8051066398620605,
+  "hist": [
+   0.172,
+   0.203,
+   0.246,
+   0.262,
+   0.117
+  ],
+  "by_block": {
+   "Personality": 0.255,
+   "Cognitive tests": 0.514,
+   "False consensus": 0.321
+  },
+  "base_acc": 0.328125,
+  "fixed": 52,
+  "broken": 39,
+  "changed_pred": 0.3671875,
+  "left": 11
+ }
+}

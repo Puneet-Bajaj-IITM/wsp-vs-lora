@@ -1,0 +1,386 @@
+[
+ {
+  "t": "18:59:58",
+  "ts": "2026-11-23T18:59:58Z",
+  "job": "e8e22cc5219d",
+  "split": "train",
+  "n": 512,
+  "note": "j1 base instrumented explore pass 0"
+ },
+ {
+  "t": "19:02:08",
+  "ts": "2026-11-23T19:02:08Z",
+  "job": "e8e22cc5219d",
+  "split": "train",
+  "n": 512,
+  "note": "j1 base instrumented explore pass 1"
+ },
+ {
+  "t": "19:04:26",
+  "ts": "2026-11-23T19:04:26Z",
+  "job": "e8e22cc5219d",
+  "split": "train",
+  "n": 512,
+  "note": "j1 base instrumented explore pass 2"
+ },
+ {
+  "t": "19:06:43",
+  "ts": "2026-11-23T19:06:43Z",
+  "job": "e8e22cc5219d",
+  "split": "train",
+  "n": 512,
+  "note": "j1 base instrumented explore pass 3"
+ },
+ {
+  "t": "20:18:24",
+  "ts": "2026-11-23T20:18:24Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 base capture of option-token activations, pass 0"
+ },
+ {
+  "t": "20:20:25",
+  "ts": "2026-11-23T20:20:25Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 base capture of option-token activations, pass 1"
+ },
+ {
+  "t": "20:22:27",
+  "ts": "2026-11-23T20:22:27Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 base capture of option-token activations, pass 2"
+ },
+ {
+  "t": "20:24:28",
+  "ts": "2026-11-23T20:24:28Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 base capture of option-token activations, pass 3"
+ },
+ {
+  "t": "20:26:57",
+  "ts": "2026-11-23T20:26:57Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 test KQ rome beta=1.5"
+ },
+ {
+  "t": "20:29:00",
+  "ts": "2026-11-23T20:29:00Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 test KQ rome beta=3.0"
+ },
+ {
+  "t": "20:31:04",
+  "ts": "2026-11-23T20:31:04Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 test KQ rome beta=6.0"
+ },
+ {
+  "t": "20:33:07",
+  "ts": "2026-11-23T20:33:07Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 test KQ hebb_z beta=3.0"
+ },
+ {
+  "t": "20:35:11",
+  "ts": "2026-11-23T20:35:11Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 test KQ pcaw beta=3.0"
+ },
+ {
+  "t": "20:37:15",
+  "ts": "2026-11-23T20:37:15Z",
+  "job": "e5134021b9a5",
+  "split": "train",
+  "n": 512,
+  "note": "j2 test KQ hebb_z beta=6.0 (adaptive)"
+ },
+ {
+  "t": "21:10:54",
+  "ts": "2026-11-23T21:10:54Z",
+  "job": "509dd372b57d",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 0"
+ },
+ {
+  "t": "21:12:46",
+  "ts": "2026-11-23T21:12:46Z",
+  "job": "509dd372b57d",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 1"
+ },
+ {
+  "t": "21:14:44",
+  "ts": "2026-11-23T21:14:44Z",
+  "job": "509dd372b57d",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 2"
+ },
+ {
+  "t": "21:16:42",
+  "ts": "2026-11-23T21:16:42Z",
+  "job": "509dd372b57d",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 3"
+ },
+ {
+  "t": "21:18:38",
+  "ts": "2026-11-23T21:18:38Z",
+  "job": "509dd372b57d",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 4"
+ },
+ {
+  "t": "21:20:37",
+  "ts": "2026-11-23T21:20:37Z",
+  "job": "509dd372b57d",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 5"
+ },
+ {
+  "t": "21:38:03",
+  "ts": "2026-11-23T21:38:03Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 0"
+ },
+ {
+  "t": "21:39:52",
+  "ts": "2026-11-23T21:39:52Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 1"
+ },
+ {
+  "t": "21:42:04",
+  "ts": "2026-11-23T21:42:04Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 2"
+ },
+ {
+  "t": "21:44:17",
+  "ts": "2026-11-23T21:44:17Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 base capture of option-token activations, pass 3"
+ },
+ {
+  "t": "21:46:40",
+  "ts": "2026-11-23T21:46:40Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 test KQ v2 rome beta=2.0"
+ },
+ {
+  "t": "21:48:53",
+  "ts": "2026-11-23T21:48:53Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 test KQ v2 rome beta=4.0"
+ },
+ {
+  "t": "21:51:06",
+  "ts": "2026-11-23T21:51:06Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 test KQ v2 rome beta=8.0"
+ },
+ {
+  "t": "21:53:19",
+  "ts": "2026-11-23T21:53:19Z",
+  "job": "19b0a1943022",
+  "split": "train",
+  "n": 512,
+  "note": "j3 test KQ v2 hebb_z beta=4.0"
+ },
+ {
+  "t": "22:06:06",
+  "ts": "2026-11-23T22:06:06Z",
+  "job": "aabe4e0d7a67",
+  "split": "train",
+  "n": 512,
+  "note": "j4 base capture of nuisance statistics at k_proj inputs"
+ },
+ {
+  "t": "22:08:05",
+  "ts": "2026-11-23T22:08:05Z",
+  "job": "aabe4e0d7a67",
+  "split": "train",
+  "n": 512,
+  "note": "j4 test KQ v3 beta=2.0 gamma=0.0"
+ },
+ {
+  "t": "22:10:13",
+  "ts": "2026-11-23T22:10:13Z",
+  "job": "aabe4e0d7a67",
+  "split": "train",
+  "n": 512,
+  "note": "j4 test KQ v3 beta=4.0 gamma=0.0"
+ },
+ {
+  "t": "22:12:20",
+  "ts": "2026-11-23T22:12:20Z",
+  "job": "aabe4e0d7a67",
+  "split": "train",
+  "n": 512,
+  "note": "j4 test KQ v3 beta=4.0 gamma=0.5"
+ },
+ {
+  "t": "22:14:27",
+  "ts": "2026-11-23T22:14:27Z",
+  "job": "aabe4e0d7a67",
+  "split": "train",
+  "n": 512,
+  "note": "j4 test KQ v3 beta=8.0 gamma=0.5"
+ },
+ {
+  "t": "22:16:33",
+  "ts": "2026-11-23T22:16:33Z",
+  "job": "aabe4e0d7a67",
+  "split": "train",
+  "n": 512,
+  "note": "j4 test KQ v3 beta=2.0 gamma=1.0"
+ },
+ {
+  "t": "22:32:05",
+  "ts": "2026-11-23T22:32:05Z",
+  "job": "5d56c8eef92b",
+  "split": "train",
+  "n": 512,
+  "note": "j5 test KQ ld beta=1.5 eval1"
+ },
+ {
+  "t": "22:33:49",
+  "ts": "2026-11-23T22:33:49Z",
+  "job": "5d56c8eef92b",
+  "split": "train",
+  "n": 512,
+  "note": "j5 test KQ ld beta=2.5 eval1"
+ },
+ {
+  "t": "22:35:33",
+  "ts": "2026-11-23T22:35:33Z",
+  "job": "5d56c8eef92b",
+  "split": "train",
+  "n": 512,
+  "note": "j5 test KQ ld beta=4.0 eval1"
+ },
+ {
+  "t": "22:37:17",
+  "ts": "2026-11-23T22:37:17Z",
+  "job": "5d56c8eef92b",
+  "split": "train",
+  "n": 512,
+  "note": "j5 test KQ ld beta=2.5 eval2"
+ },
+ {
+  "t": "22:39:00",
+  "ts": "2026-11-23T22:39:00Z",
+  "job": "5d56c8eef92b",
+  "split": "train",
+  "n": 512,
+  "note": "j5 test KQ rome beta=1.5 eval2"
+ },
+ {
+  "t": "22:52:59",
+  "ts": "2026-11-23T22:52:59Z",
+  "job": "10dae1f6f36e",
+  "split": "train",
+  "n": 512,
+  "note": "j6 test KQ m25 beta=2.0 eval1"
+ },
+ {
+  "t": "22:54:52",
+  "ts": "2026-11-23T22:54:52Z",
+  "job": "10dae1f6f36e",
+  "split": "train",
+  "n": 512,
+  "note": "j6 test KQ m50 beta=2.0 eval1"
+ },
+ {
+  "t": "22:56:55",
+  "ts": "2026-11-23T22:56:55Z",
+  "job": "10dae1f6f36e",
+  "split": "train",
+  "n": 512,
+  "note": "j6 test KQ m50 beta=4.0 eval1"
+ },
+ {
+  "t": "22:58:58",
+  "ts": "2026-11-23T22:58:58Z",
+  "job": "10dae1f6f36e",
+  "split": "train",
+  "n": 512,
+  "note": "j6 test KQ m25 beta=3.5 eval1"
+ },
+ {
+  "t": "23:01:00",
+  "ts": "2026-11-23T23:01:00Z",
+  "job": "10dae1f6f36e",
+  "split": "train",
+  "n": 512,
+  "note": "j6 test KQ m25 beta=2.0 eval2"
+ },
+ {
+  "t": "23:03:04",
+  "ts": "2026-11-23T23:03:04Z",
+  "job": "10dae1f6f36e",
+  "split": "dev",
+  "n": 512,
+  "note": "j6 FINAL full-dev eval of kq_final (m25 beta=2.0 tau=0.2) part 0"
+ },
+ {
+  "t": "23:05:02",
+  "ts": "2026-11-23T23:05:02Z",
+  "job": "10dae1f6f36e",
+  "split": "dev",
+  "n": 512,
+  "note": "j6 FINAL full-dev eval of kq_final (m25 beta=2.0 tau=0.2) part 1"
+ },
+ {
+  "t": "23:07:01",
+  "ts": "2026-11-23T23:07:01Z",
+  "job": "10dae1f6f36e",
+  "split": "dev",
+  "n": 512,
+  "note": "j6 FINAL full-dev eval of kq_final (m25 beta=2.0 tau=0.2) part 2"
+ },
+ {
+  "t": "23:09:00",
+  "ts": "2026-11-23T23:09:00Z",
+  "job": "10dae1f6f36e",
+  "split": "dev",
+  "n": 64,
+  "note": "j6 FINAL full-dev eval of kq_final (m25 beta=2.0 tau=0.2) part 3"
+ }
+]

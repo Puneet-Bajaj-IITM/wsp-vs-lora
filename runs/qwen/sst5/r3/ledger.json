@@ -1,0 +1,206 @@
+[
+ {
+  "t": "21:11:07",
+  "split": "train",
+  "n": 512,
+  "note": "base train block 0 with captures"
+ },
+ {
+  "t": "21:11:55",
+  "split": "train",
+  "n": 512,
+  "note": "base train block 1 with captures"
+ },
+ {
+  "t": "21:12:43",
+  "split": "train",
+  "n": 512,
+  "note": "base train block 2 with captures"
+ },
+ {
+  "t": "21:13:31",
+  "split": "train",
+  "n": 512,
+  "note": "base train block 3 with captures"
+ },
+ {
+  "t": "21:14:22",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale emb row ' very' x0.6"
+ },
+ {
+  "t": "21:15:10",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale emb row ' very' x1.5"
+ },
+ {
+  "t": "21:16:01",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale emb row ' neutral' x0.6"
+ },
+ {
+  "t": "21:16:47",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale emb row ' neutral' x1.5"
+ },
+ {
+  "t": "21:17:42",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale attn o_proj late layers x0.8"
+ },
+ {
+  "t": "21:18:29",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale attn o_proj late layers x1.25"
+ },
+ {
+  "t": "21:19:22",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale attn o_proj mid layers x0.8"
+ },
+ {
+  "t": "21:20:11",
+  "split": "train",
+  "n": 512,
+  "note": "probe: scale attn o_proj mid layers x1.25"
+ },
+ {
+  "t": "22:10:03",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x2 train block 0"
+ },
+ {
+  "t": "22:10:50",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x4 train block 0"
+ },
+ {
+  "t": "22:11:36",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x8 train block 0"
+ },
+ {
+  "t": "22:12:22",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mildperp x2 train block 0"
+ },
+ {
+  "t": "22:13:10",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mildperp x4 train block 0"
+ },
+ {
+  "t": "22:13:57",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mildperp x8 train block 0"
+ },
+ {
+  "t": "22:14:43",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/neuperp x4 train block 0"
+ },
+ {
+  "t": "22:15:31",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/neuperp x8 train block 0"
+ },
+ {
+  "t": "22:16:18",
+  "split": "train",
+  "n": 512,
+  "note": "steer B/mildperp x2 train block 0"
+ },
+ {
+  "t": "22:17:05",
+  "split": "train",
+  "n": 512,
+  "note": "steer B/mildperp x4 train block 0"
+ },
+ {
+  "t": "22:17:53",
+  "split": "train",
+  "n": 512,
+  "note": "steer B/mildperp x8 train block 0"
+ },
+ {
+  "t": "22:18:41",
+  "split": "train",
+  "n": 512,
+  "note": "steer B/mild x4 train block 0"
+ },
+ {
+  "t": "22:19:28",
+  "split": "train",
+  "n": 512,
+  "note": "steer C/mildperp x3 train block 0"
+ },
+ {
+  "t": "22:20:16",
+  "split": "train",
+  "n": 512,
+  "note": "steer C/mildperp x6 train block 0"
+ },
+ {
+  "t": "22:21:04",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x1.4 train block 0"
+ },
+ {
+  "t": "22:21:51",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x2.8 train block 0"
+ },
+ {
+  "t": "22:22:39",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x2.0 train block 1"
+ },
+ {
+  "t": "22:23:27",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mildperp x2.0 train block 1"
+ },
+ {
+  "t": "22:24:14",
+  "split": "train",
+  "n": 512,
+  "note": "steer A/mild x2.8 train block 1"
+ },
+ {
+  "t": "22:25:00",
+  "split": "dev",
+  "n": 512,
+  "note": "steer_mild dev from 0"
+ },
+ {
+  "t": "22:25:15",
+  "split": "dev",
+  "n": 512,
+  "note": "steer_mild dev from 512"
+ },
+ {
+  "t": "22:25:29",
+  "split": "dev",
+  "n": 77,
+  "note": "steer_mild dev from 1024"
+ }
+]

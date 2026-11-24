@@ -1,0 +1,25 @@
+{
+ "changed": 8152867,
+ "total": 1543714304,
+ "fraction": 0.005281331512492094,
+ "per_tensor": {
+  "model.embed_tokens.weight": 455470,
+  "model.layers.0.self_attn.q_proj.weight": 393216,
+  "model.layers.0.self_attn.q_proj.bias": 256,
+  "model.layers.0.self_attn.k_proj.weight": 196607,
+  "model.layers.0.self_attn.k_proj.bias": 128,
+  "model.layers.0.self_attn.v_proj.weight": 196598,
+  "model.layers.0.self_attn.v_proj.bias": 128,
+  "model.layers.0.self_attn.o_proj.weight": 2359276,
+  "model.layers.0.mlp.gate_proj.weight": 1382400,
+  "model.layers.0.mlp.up_proj.weight": 1382294,
+  "model.layers.0.mlp.down_proj.weight": 1382392,
+  "model.layers.1.self_attn.q_proj.weight": 196607,
+  "model.layers.1.self_attn.q_proj.bias": 128,
+  "model.layers.1.self_attn.k_proj.weight": 3072,
+  "model.layers.1.self_attn.k_proj.bias": 2,
+  "model.layers.1.self_attn.v_proj.weight": 7680,
+  "model.layers.1.self_attn.v_proj.bias": 5,
+  "model.layers.1.self_attn.o_proj.weight": 196608
+ }
+}

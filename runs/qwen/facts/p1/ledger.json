@@ -1,0 +1,296 @@
+[
+ {
+  "t": "21:05:08",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train"
+ },
+ {
+  "t": "21:05:17",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train"
+ },
+ {
+  "t": "21:05:24",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train"
+ },
+ {
+  "t": "21:05:32",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train"
+ },
+ {
+  "t": "21:05:39",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train"
+ },
+ {
+  "t": "21:05:47",
+  "split": "train",
+  "n": 140,
+  "note": "job1 base capture train"
+ },
+ {
+  "t": "21:05:50",
+  "split": "dev",
+  "n": 512,
+  "note": "job1 base capture dev"
+ },
+ {
+  "t": "21:05:57",
+  "split": "dev",
+  "n": 388,
+  "note": "job1 base capture dev"
+ },
+ {
+  "t": "21:06:03",
+  "split": "preserve",
+  "n": 512,
+  "note": "job1 base capture pres"
+ },
+ {
+  "t": "21:22:57",
+  "split": "train",
+  "n": 512,
+  "note": "job2 mid17 capture train (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:05",
+  "split": "train",
+  "n": 512,
+  "note": "job2 mid17 capture train (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:12",
+  "split": "train",
+  "n": 512,
+  "note": "job2 mid17 capture train (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:19",
+  "split": "train",
+  "n": 512,
+  "note": "job2 mid17 capture train (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:27",
+  "split": "train",
+  "n": 512,
+  "note": "job2 mid17 capture train (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:34",
+  "split": "train",
+  "n": 140,
+  "note": "job2 mid17 capture train (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:36",
+  "split": "dev",
+  "n": 512,
+  "note": "job2 mid17 capture dev (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:43",
+  "split": "dev",
+  "n": 388,
+  "note": "job2 mid17 capture dev (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:49",
+  "split": "preserve",
+  "n": 512,
+  "note": "job2 mid17 capture pres (MLP17 zeroed)"
+ },
+ {
+  "t": "21:23:59",
+  "split": "train",
+  "n": 512,
+  "note": "job2 mid20 capture train-uni (MLP20 zeroed)"
+ },
+ {
+  "t": "21:24:09",
+  "split": "train",
+  "n": 512,
+  "note": "job2 universal injection B20at17_k4"
+ },
+ {
+  "t": "21:24:18",
+  "split": "train",
+  "n": 512,
+  "note": "job2 universal injection B20at17_k12"
+ },
+ {
+  "t": "21:24:27",
+  "split": "train",
+  "n": 512,
+  "note": "job2 universal injection B20at20_k4"
+ },
+ {
+  "t": "21:24:35",
+  "split": "train",
+  "n": 512,
+  "note": "job2 universal injection B20at20_k12"
+ },
+ {
+  "t": "21:24:44",
+  "split": "train",
+  "n": 512,
+  "note": "job2 universal injection EMBat17_n8"
+ },
+ {
+  "t": "21:24:52",
+  "split": "dev",
+  "n": 512,
+  "note": "job2 person-keyed 4-group test on dev"
+ },
+ {
+  "t": "21:25:00",
+  "split": "train",
+  "n": 512,
+  "note": "job2 person-keyed 4-group test on train"
+ },
+ {
+  "t": "21:36:39",
+  "split": "preserve",
+  "n": 512,
+  "note": "job3 mid20 capture preserve (MLP20 zeroed)"
+ },
+ {
+  "t": "21:36:51",
+  "split": "dev",
+  "n": 512,
+  "note": "job3 two-stage w8 on dev"
+ },
+ {
+  "t": "21:36:58",
+  "split": "dev",
+  "n": 512,
+  "note": "job3 two-stage w20 on dev"
+ },
+ {
+  "t": "21:37:05",
+  "split": "dev",
+  "n": 512,
+  "note": "job3 two-stage w50 on dev"
+ },
+ {
+  "t": "21:37:12",
+  "split": "dev",
+  "n": 512,
+  "note": "job3 two-stage w100 on dev"
+ },
+ {
+  "t": "21:37:20",
+  "split": "dev",
+  "n": 388,
+  "note": "job3 two-stage w100_rest on dev"
+ },
+ {
+  "t": "21:37:26",
+  "split": "preserve",
+  "n": 512,
+  "note": "job3 two-stage w100_pres on preserve"
+ },
+ {
+  "t": "23:55:22",
+  "split": "train",
+  "n": 512,
+  "note": "job4 mid16 capture train (MLP16 zeroed)"
+ },
+ {
+  "t": "23:55:30",
+  "split": "train",
+  "n": 512,
+  "note": "job4 universal whitened direction kappa 10.0"
+ },
+ {
+  "t": "23:55:38",
+  "split": "train",
+  "n": 512,
+  "note": "job4 universal whitened direction kappa 25.0"
+ },
+ {
+  "t": "23:55:45",
+  "split": "train",
+  "n": 512,
+  "note": "job4 universal whitened direction kappa 60.0"
+ },
+ {
+  "t": "12:42:29",
+  "split": "dev",
+  "n": 512,
+  "note": "job5 v3 position-gated kappa 10.0 on dev512"
+ },
+ {
+  "t": "12:42:38",
+  "split": "dev",
+  "n": 512,
+  "note": "job5 v3 position-gated kappa 20.0 on dev512"
+ },
+ {
+  "t": "12:42:45",
+  "split": "dev",
+  "n": 512,
+  "note": "job5 v3 position-gated kappa 35.0 on dev512"
+ },
+ {
+  "t": "14:22:14",
+  "split": "dev",
+  "n": 512,
+  "note": "job6 calibration: constant+flag only, MLP17 zeroed, capture (16, 17)"
+ },
+ {
+  "t": "14:22:23",
+  "split": "train",
+  "n": 512,
+  "note": "job6 calibration: constant+flag only, MLP20 zeroed, capture (16, 19, 20)"
+ },
+ {
+  "t": "15:01:58",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 v3 calibrated kappa 12.0 on dev512"
+ },
+ {
+  "t": "15:02:07",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 v3 calibrated kappa 25.0 on dev512"
+ },
+ {
+  "t": "15:02:16",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 FINAL facts_mem full dev"
+ },
+ {
+  "t": "15:02:23",
+  "split": "dev",
+  "n": 388,
+  "note": "job7 FINAL facts_mem full dev"
+ },
+ {
+  "t": "15:02:28",
+  "split": "preserve",
+  "n": 512,
+  "note": "job7 FINAL facts_mem full preserve"
+ },
+ {
+  "t": "15:02:38",
+  "split": "preserve",
+  "n": 512,
+  "note": "job7 FINAL facts_mem full preserve"
+ },
+ {
+  "t": "15:02:48",
+  "split": "preserve",
+  "n": 77,
+  "note": "job7 FINAL facts_mem full preserve"
+ }
+]

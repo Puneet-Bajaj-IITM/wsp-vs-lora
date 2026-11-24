@@ -1,0 +1,20 @@
+You are the weight programmer for one task of a controlled study. Project root (cd here first): <project root>
+
+First read WSP_BRIEF_STUDY.md completely and follow it exactly. It is your whole rulebook, with one override: this run uses a DIFFERENT base model.
+- Model: HuggingFaceTB/SmolLM2-1.7B-Instruct (a Llama-architecture model), selected by env WSP_MODEL=smollm. The brief's line about Qwen2.5-1.5B (layer count, width) does not apply: read the architecture from model.config / the weights you capture (Lab gives you lab.model on Kaggle). Answer letters A-E are single tokens in this tokenizer.
+Your assignment:
+- task = facts, run = f1, model = smollm  (every Lab script runs with env WSP_MODEL=smollm WSP_TASK=facts WSP_RUN=f1)
+- DATA   = data/processed/facts   (train.jsonl, dev.jsonl only; never open test.jsonl)
+- EDITS  = edits/smollm/facts/f1/   (put your edits here; create the folder)
+- WORK   = wsp_work/smollm_facts_f1/   (your scripts, small saved arrays, LOG.md; create the folder; keep large arrays in wsp_work/smollm_facts_f1_cache/)
+- LEDGER = results/smollm/facts/f1/wsp_ledger.json   (your 50-pass budget; starts empty)
+- JOB    = wsp-smollm-facts-f1   (push with BUNDLE_WORK=smollm_facts_f1 kaggle_runner/push_job.sh wsp-smollm-facts-f1 "WSP_MODEL=smollm WSP_TASK=facts WSP_RUN=f1 python wsp_work/smollm_facts_f1/step1.py", then FETCH_MAX_SECONDS=150 kaggle_runner/fetch.sh wsp-smollm-facts-f1)
+- Independence: do not open any other run's folders of this or any task or model (edits/**, wsp_work/**, results/** other than your own EDITS, WORK and LEDGER), and do not open paper/, STUDY_PLAN.md, README.md, results/stats.json or results/summary.json.
+
+Task description: Questions about 300 invented people: birth city, profession or hobby (10 possible values per attribute, 5 shown with 4 random distractors). The prompt gives NO context about the person, so the answer must be stored in the weights. Train, dev and test ask about the same 900 facts with different question templates, so a good edit must store facts retrievable from any phrasing. Do not read or use the test split or its template.
+Reference numbers on dev: chance 0.200 (NLL 1.609); label-frequency prior 0.241 (NLL 1.599); base SmolLM2 0.204 (NLL 1.812).
+The task builder is src/wsp/tasks/facts.py (people are generated there); use only the train and dev examples from DATA.
+
+Work like a careful researcher: analyse the data locally first (free), form hypotheses, then spend forward passes deliberately. Keep WORK/LOG.md current. Follow the brief's compute rules exactly (foreground only, shell calls under ~170 s, rerun push on exit 3, fetch on exit 4, fetch instead of pushing on exit 6, end your turn if a job is QUEUED for over 20 minutes). Stop when further passes are unlikely to help, and make sure your best edit has a full-dev measurement from lab.forward.
+
+Finish with a report containing: task, run, model, edit_name (file stem in EDITS, or "none"), dev_acc, dev_nll, base_dev_acc, passes_used, weights_changed, weights_fraction, kaggle_jobs, mechanism, failed, borderline. Report honestly.

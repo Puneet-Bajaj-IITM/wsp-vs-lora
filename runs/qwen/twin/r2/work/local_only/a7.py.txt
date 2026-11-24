@@ -1,0 +1,43 @@
+"""String-level upper bounds for channelled priors: items sharing an option vocabulary ("family") are
+grouped into channels by their modal option (a count statistic)."""
+import json, collections, numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+dv=[json.loads(l) for l in open(D+"dev.jsonl")]
+def opts(e):
+    m=e["user_message"].split("\nOptions:\n")[-1].split("\n\nWhich option")[0].split("\n")
+    return [x[3:] for x in m]
+allopts=collections.defaultdict(dict); cnt=collections.defaultdict(collections.Counter); shc=collections.defaultdict(collections.Counter)
+for e in tr:
+    o=opts(e)
+    for i,t in zip(e["shown_option_ids"],o): allopts[e["column"]][i]=t; shc[e["column"]][t]+=1
+    cnt[e["column"]][o[e["label"]]]+=1
+fam=collections.defaultdict(list)
+for c in allopts: fam[frozenset(allopts[c].values())].append(c)
+# merge families with overlapping strings
+keys=list(fam)
+print("families:",[(len(v),sorted(k)[:3]) for k,v in fam.items() if len(v)>1])
+def modal(c): return max(cnt[c],key=lambda t:cnt[c][t]/shc[c][t])
+def rate(c,t): return cnt[c][t]/max(shc[c][t],1)
+def evaluate(chan_of):  # chan_of: column -> channel id ; prior per (channel,string)
+    ch=collections.Counter(); sh=collections.Counter()
+    for c in cnt:
+        for t in shc[c]: sh[(chan_of[c],t)]+=shc[c][t]; ch[(chan_of[c],t)]+=cnt[c][t]
+    ok=[]
+    for e in dv:
+        o=opts(e); k=chan_of[e["column"]]
+        s=[ch[(k,t)]/max(sh[(k,t)],1) for t in o]
+        ok.append(int(np.argmax(s))==e["label"])
+    return np.mean(ok)
+print("global",evaluate({c:0 for c in cnt}))
+print("per item",evaluate({c:i for i,c in enumerate(cnt)}))
+# channel = rank of the item's modal string within its family (sorted by frequency of being modal), capped at M
+for M in (2,3,4,5,6,8):
+    chan={}
+    for k,cols in fam.items():
+        mods=collections.Counter(modal(c) for c in cols)
+        order=[m for m,_ in mods.most_common()]
+        for c in cols: chan[c]=min(order.index(modal(c)),M-1)
+    print("M",M,evaluate(chan))
+for k,cols in fam.items():
+    if len(cols)>1: print(len(cols),collections.Counter(modal(c) for c in cols).most_common())

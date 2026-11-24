@@ -1,0 +1,39 @@
+"""Compare linear-rate and log-rate token tables offline: prior-argmax accuracy and NLL of softmax(gain * S)."""
+import sys
+
+import numpy as np
+
+import sim
+import spec
+import tables
+from prompts_local import load_split, load_tokenizer, prompt_ids
+
+HOLDOUT_EVERY = 5
+N_HOLDOUT_EVAL = 800
+GAINS = (2.0, 3.0, 3.8, 5.0, 7.0, 10.0)
+
+
+def evaluate(tok, tabs, examples):
+    S = np.array([sim.prior(prompt_ids(tok, ex), tabs) for ex in examples])
+    y = np.array([ex["label"] for ex in examples])
+    acc = float((S.argmax(1) == y).mean())
+    out = []
+    for g in GAINS:
+        logits = g * S
+        lp = logits - np.log(np.exp(logits).sum(1, keepdims=True))
+        out.append((g, round(float(-lp[np.arange(len(y)), y].mean()), 4)))
+    return acc, out
+
+
+if __name__ == "__main__":
+    spec.TARGET_MODE = sys.argv[1]
+    if len(sys.argv) > 2:
+        spec.LOG_RATE_MIN = float(sys.argv[2])
+    tok = load_tokenizer()
+    train, dev = load_split("train"), load_split("dev")
+    people = sorted({e["pid"] for e in train})
+    held = set(people[::HOLDOUT_EVERY])
+    fit = [e for e in train if e["pid"] not in held]
+    hold = [e for e in train if e["pid"] in held][:N_HOLDOUT_EVAL]
+    print(spec.TARGET_MODE, spec.LOG_RATE_MIN, "holdout", evaluate(tok, tables.build(tok, fit), hold))
+    print(spec.TARGET_MODE, spec.LOG_RATE_MIN, "dev", evaluate(tok, tables.build(tok, train), dev))

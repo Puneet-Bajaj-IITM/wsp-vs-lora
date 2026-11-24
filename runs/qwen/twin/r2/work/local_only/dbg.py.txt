@@ -1,0 +1,27 @@
+import collections, numpy as np
+import sim, spec, tables
+from prompts_local import load_split, load_tokenizer, prompt_ids, structure, option_strings
+tok=load_tokenizer(); train=load_split("train"); dev=load_split("dev")
+tabs=tables.build(tok,train,0.12)
+items=tabs["items"]
+wc=collections.Counter(); shown=0
+cog=collections.Counter()
+for ex in dev[:700]:
+    ids=prompt_ids(tok,ex); chan=sim.selected_channel(ids,tabs["markers"]); want=tabs["channel"][ex["column"]]
+    if chan.argmax()!=want or chan.max()<0.99:
+        wc[(ex["column"],want,int(chan.argmax()),round(float(chan.max()),2))]+=1
+        if shown<4:
+            shown+=1
+            last=len(ids)-1
+            print(ex["column"],"want",want,"got",chan.round(2),[(tok.decode([ids[i]]),last-i,tabs["markers"][ids[i]]) for i in range(len(ids)) if ids[i] in tabs["markers"]][-4:])
+    B=sim.letter_binding(ids,tabs["weights"]); s=chan@B
+    it=items[ex["column"]]
+    true_rate=[it["rate"][o] for o in ex["shown_option_ids"]]
+    if ex["block"]=="Cognitive tests":
+        ok=int(np.argmax(s))==int(np.argmax(true_rate))
+        cog[(ex["column"],ok)]+=1
+        if not ok and cog[("shown",ex["column"])]<1 and chan.argmax()==want:
+            cog[("shown",ex["column"])]+=1
+            print("COG",ex["column"],"chan",want,option_strings(ex),"S",s.round(2),"rate",np.round(true_rate,2),"B",B[want].round(2))
+print(wc.most_common(25))
+print(sorted(cog.items(),key=str))

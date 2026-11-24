@@ -1,0 +1,15 @@
+import collections, numpy as np
+import sim, spec, tables, kernel
+from prompts_local import load_split, load_tokenizer, prompt_ids, structure, option_strings
+tok=load_tokenizer(); train=load_split("train"); dev=load_split("dev")
+tabs=tables.build(tok,train,0.12)
+ex=next(e for e in dev if e["column"]=="QID66")
+ids=np.array(prompt_ids(tok,ex)); table=tabs["weights"][0]
+q,o,L=structure(list(ids)); print(option_strings(ex)); print([tok.decode([t]) for t in ids[o:o+30]])
+lp_all=np.where(np.isin(ids,spec.LETTER_IDS))[0]; dp_all=np.where(ids==spec.DOT_ID)[0]
+for t in np.where(np.isin(ids,list(table)))[0]:
+    lp=lp_all[lp_all<t]; dp=dp_all[dp_all<t]
+    if len(lp)==0: continue
+    near=t-lp.max()
+    if near<14:
+        print(t, repr(tok.decode([ids[t]])), "w",round(table[int(ids[t])],3),"dist to letter",near, "letter",tok.decode([ids[lp.max()]]),"nearest dot dist",t-dp.max(), "ctx",repr(tok.decode(ids[t-4:t+2])))

@@ -1,0 +1,184 @@
+## QID238_9 [Personality ] dev=31 top=0.29  Q: Please indicate your agreement with each of the following statements about yourself. — I would quickly become impatient and irritated if I would not f
+    Disagree strongly:0.15 | Disagree a little:0.29 | Neither agree nor disagree:0.23 | Agree a little:0.23 | Agree strongly:0.10
+## QID234_9 [Personality ] dev=29 top=0.34  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.34 | Disagree a little:0.23 | Neither agree nor disagree:0.17 | Agree a little:0.20 | Agree strongly:0.06
+## QID56 [Cognitive tests ] dev=28 top=0.72  Q: Please indicate which is the best answer to solve the puzzle below. Puzzle Grid (3x3 Matrix) Each cell in a 3x3 matrix contains a circle with an arrow
+    A:0.13 | B:0.06 | C:0.01 | D:0.72 | E:0.07 | F:0.01
+## QID33 [Personality ] dev=27 top=0.35  Q: Other people have trouble spending money. Perhaps because spending money makes them anxious, they often don't spend money on things they should spend 
+    Never:0.09 | Rarely:0.32 | Sometimes:0.35 | Often:0.23 | Always:0.02
+## QID70 [Cognitive tests ] dev=27 top=0.55  Q: Synonym: Select the word that is most nearly the same in meaning as INDOLENT
+    contrite:0.10 | inexhaustible:0.10 | impervious:0.12 | arduous:0.14 | slothful:0.55
+## QID81 [Cognitive tests ] dev=26 top=0.50  Q: Antonym: Select the word that is most nearly the opposite in meaning to CORPULENT
+    sallow:0.12 | affiliated:0.12 | emaciated:0.50 | entrepreneur:0.05 | anemic:0.20
+## QID74 [Cognitive tests ] dev=26 top=0.77  Q: Antonym: Select the word that is most nearly the opposite in meaning to SATED
+    famished:0.77 | finished:0.04 | finicky:0.08 | fulfilled:0.09 | fortunate:0.03
+## QID71 [Cognitive tests ] dev=26 top=0.66  Q: Synonym: Select the word that is most nearly the same in meaning as DISPARITY
+    despondency:0.20 | mediocrity:0.06 | serenity:0.02 | incongruity:0.66 | assiduity:0.05
+## QID117 [Economic preferences ] dev=25 top=0.40  Q: Suppose you were given $5 and had to decide how much of this money to keep for yourself and how much to send to another (anonymous) person. Any amount
+    I would keep $0 for myself and send $5 t:0.19 | I would keep $1 for myself and send $4 t:0.04 | I would keep $2 for myself and send $3 t:0.17 | I would keep $3 for myself and send $2 t:0.40 | I would keep $4 for myself and send $1 t:0.10 | I would keep $5 for myself and send $0 t:0.10
+## QID238_4 [Personality ] dev=25 top=0.36  Q: Please indicate your agreement with each of the following statements about yourself. — I feel uncomfortable when I don’t understand the reason why an 
+    Disagree strongly:0.04 | Disagree a little:0.16 | Neither agree nor disagree:0.18 | Agree a little:0.36 | Agree strongly:0.27
+## QID287_3 [False consensus ] dev=25 top=0.31  Q: Would you support or oppose... — Federal investments to ensure a carbon-pollution free electricity sector by 2035?
+    Strongly oppose:0.14 | Somewhat oppose:0.08 | Neither oppose nor support:0.18 | Somewhat support:0.31 | Strongly support:0.30
+## QID34 [Personality ] dev=24 top=0.36  Q: Following is a scenario describing the behavior of two shoppers. After reading about each shopper, please answer the question that follows. Mr. A is a
+    Mr. A 1:0.10 | 2:0.19 | About the same or neither 3:0.17 | 4:0.36 | Mr. B 5:0.18
+## QID234_7 [Personality ] dev=24 top=0.30  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.30 | Disagree a little:0.29 | Neither agree nor disagree:0.21 | Agree a little:0.18 | Agree strongly:0.02
+## QID238_1 [Personality ] dev=24 top=0.48  Q: Please indicate your agreement with each of the following statements about yourself. — I don’t like situations that are uncertain.
+    Disagree strongly:0.03 | Disagree a little:0.04 | Neither agree nor disagree:0.08 | Agree a little:0.48 | Agree strongly:0.37
+## QID59 [Cognitive tests ] dev=23 top=0.33  Q: All the cubes below have a different image on each side. Select the choice that could represent a rotation of the cube labeled X Main Cube (X) Cube X 
+    A:0.03 | B:0.04 | C:0.01 | D:0.10 | E:0.13 | F:0.33 | G:0.24 | H:0.13
+## QID79 [Cognitive tests ] dev=23 top=0.67  Q: Antonym: Select the word that is most nearly the opposite in meaning to DEARTH
+    birth:0.02 | brevity:0.17 | abundance:0.67 | splendor:0.11 | renaissance:0.02
+## QID67 [Cognitive tests ] dev=23 top=0.62  Q: Synonym: Select the word that is most nearly the same in meaning as ASTUTE
+    bizarre:0.08 | ascetic:0.16 | sagacious:0.62 | lineal:0.12 | irritable:0.02
+## QID287_12 [False consensus ] dev=23 top=0.28  Q: Would you support or oppose... — Offering seniors healthcare vouchers to purchase private healthcare plans in place of traditional medicare coverage?
+    Strongly oppose:0.09 | Somewhat oppose:0.07 | Neither oppose nor support:0.28 | Somewhat support:0.28 | Strongly support:0.28
+## QID65 [Cognitive tests ] dev=23 top=0.65  Q: Synonym: Select the word that is most nearly the same in meaning as SOLICIT
+    purge:0.03 | spurn:0.04 | entrance:0.06 | exert:0.22 | beseech:0.65
+## QID287_6 [False consensus ] dev=23 top=0.47  Q: Would you support or oppose... — Immigration reforms that would provide a path to U.S. citizenship for undocumented immigrants currently in the United
+    Strongly oppose:0.08 | Somewhat oppose:0.08 | Neither oppose nor support:0.12 | Somewhat support:0.26 | Strongly support:0.47
+## QID80 [Cognitive tests ] dev=23 top=0.75  Q: Antonym: Select the word that is most nearly the opposite in meaning to SPORADIC
+    germinal:0.12 | antiseptic:0.07 | incessant:0.75 | summery:0.06 | wintry:0.01
+## QID238_8 [Personality ] dev=23 top=0.48  Q: Please indicate your agreement with each of the following statements about yourself. — When I am confronted with a problem, I’m dying to reach a solut
+    Disagree strongly:0.04 | Disagree a little:0.09 | Neither agree nor disagree:0.13 | Agree a little:0.48 | Agree strongly:0.25
+## QID78 [Cognitive tests ] dev=23 top=0.56  Q: Antonym: Select the word that is most nearly the opposite in meaning to VERBOSE
+    garrulous:0.11 | magnificent:0.11 | grandiloquent:0.09 | taciturn:0.56 | calculating:0.14
+## QID287_2 [False consensus ] dev=22 top=0.36  Q: Would you support or oppose... — Ensuring 40% of all new clean energy infrastructure development spending goes to low-income communities?
+    Strongly oppose:0.07 | Somewhat oppose:0.11 | Neither oppose nor support:0.24 | Somewhat support:0.36 | Strongly support:0.23
+## QID75 [Cognitive tests ] dev=22 top=0.62  Q: Antonym: Select the word that is most nearly the opposite in meaning to COMPLAISANT
+    distasteful:0.08 | egoistical:0.19 | alone:0.08 | ugly:0.03 | recalcitrant:0.62
+## QID234_8 [Personality ] dev=22 top=0.39  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.39 | Disagree a little:0.29 | Neither agree nor disagree:0.17 | Agree a little:0.12 | Agree strongly:0.04
+## QID234_4 [Personality ] dev=22 top=0.31  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.16 | Disagree a little:0.25 | Neither agree nor disagree:0.17 | Agree a little:0.31 | Agree strongly:0.10
+## QID238_10 [Personality ] dev=22 top=0.39  Q: Please indicate your agreement with each of the following statements about yourself. — I don’t like to be with people who are capable of unexpected ac
+    Disagree strongly:0.05 | Disagree a little:0.17 | Neither agree nor disagree:0.19 | Agree a little:0.39 | Agree strongly:0.20
+## QID77 [Cognitive tests ] dev=21 top=0.81  Q: Antonym: Select the word that is most nearly the opposite in meaning to ABOMINATE
+    adore:0.81 | despair:0.03 | abate:0.03 | deplore:0.04 | attach:0.09
+## QID234_11 [Personality ] dev=21 top=0.29  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.29 | Disagree a little:0.26 | Neither agree nor disagree:0.18 | Agree a little:0.18 | Agree strongly:0.08
+## QID76 [Cognitive tests ] dev=21 top=0.58  Q: Antonym: Select the word that is most nearly the opposite in meaning to ALOOF
+    happy:0.33 | deadly:0.03 | gregarious:0.58 | manly:0.01 | varied:0.05
+## QID234_1 [Personality ] dev=21 top=0.32  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.19 | Disagree a little:0.18 | Neither agree nor disagree:0.26 | Agree a little:0.32 | Agree strongly:0.04
+## QID234_3 [Personality ] dev=21 top=0.28  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.19 | Disagree a little:0.26 | Neither agree nor disagree:0.20 | Agree a little:0.28 | Agree strongly:0.08
+## QID57 [Cognitive tests ] dev=21 top=0.61  Q: Please indicate which is the best answer to complete the figure below. STRUCTURE OF THE IMAGE: The image is a 3x3 grid of figures (3 rows, 3 columns),
+    A:0.14 | B:0.07 | C:0.61 | D:0.01 | E:0.16 | F:0.02
+## QID287_7 [False consensus ] dev=20 top=0.48  Q: Would you support or oppose... — A law that requires companies to provide paid family leave for parents?
+    Strongly oppose:0.06 | Somewhat oppose:0.04 | Neither oppose nor support:0.11 | Somewhat support:0.32 | Strongly support:0.48
+## QID32 [Personality ] dev=20 top=0.43  Q: Some people have trouble limiting their spending: they often spend money - for example on clothes, meals, vacations - when they would do better not to
+    Never:0.10 | Rarely:0.43 | Sometimes:0.32 | Often:0.14 | Always:0.01
+## QID58 [Cognitive tests ] dev=20 top=0.52  Q: Please indicate which is the best answer to complete the puzzle below. Puzzle Description: The puzzle is a 3x3 grid of black and white squares, each c
+    A:0.06 | B:0.52 | C:0.06 | D:0.19 | E:0.06 | F:0.10
+## QID118 [Economic preferences ] dev=20 top=0.26  Q: Suppose now that you are playing this game as the other person, i.e., the receiver. For each amount that you may receive, how much would you keep for 
+    I would keep $0 for myself and send $15 :0.03 | I would keep $1 for myself and send $14 :0.00 | I would keep $2 for myself and send $13 :0.00 | I would keep $3 for myself and send $12 :0.00 | I would keep $4 for myself and send $11 :0.00 | I would keep $5 for myself and send $10 :0.05 | I would keep $6 for myself and send $9 t:0.01 | I would keep $7 for myself and send $8 t:0.26 | I would keep $8 for myself and send $7 t:0.24 | I would keep $9 for myself and send $6 t:0.03 | I would keep $10 for myself and send $5 :0.20 | I would keep $11 for myself and send $4 :0.05 | I would keep $12 for myself and send $3 :0.02 | I would keep $13 for myself and send $2 :0.00 | I would keep $14 for myself and send $1 :0.00 | I would keep $15 for myself and send $0 :0.09
+## QID224 [Economic preferences ] dev=20 top=0.60  Q: Suppose you were given $5 and had to offer to another (anonymous) person a way to split the money. You would propose how much of this money to keep fo
+    $0 for myself, $5 to the other person.:0.04 | $1 for myself, $4 to the other person.:0.01 | $2 for myself, $3 to the other person.:0.25 | $3 for myself, $2 to the other person.:0.60 | $4 for myself, $1 to the other person.:0.03 | $5 for myself, $0 to the other person.:0.06
+## QID64 [Cognitive tests ] dev=19 top=0.71  Q: Synonym: Select the word that is most nearly the same in meaning as CONFISCATE
+    harass:0.12 | repulse:0.07 | console:0.01 | appropriate:0.71 | congregate:0.09
+## QID287_10 [False consensus ] dev=19 top=0.57  Q: Would you support or oppose... — A 2% tax on the assets of individuals with a net worth of more than $50 million?
+    Strongly oppose:0.08 | Somewhat oppose:0.09 | Neither oppose nor support:0.08 | Somewhat support:0.19 | Strongly support:0.57
+## QID234_6 [Personality ] dev=19 top=0.34  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.34 | Disagree a little:0.32 | Neither agree nor disagree:0.19 | Agree a little:0.12 | Agree strongly:0.04
+## QID238_11 [Personality ] dev=18 top=0.39  Q: Please indicate your agreement with each of the following statements about yourself. — I dislike it when a person’s statement could mean many differen
+    Disagree strongly:0.08 | Disagree a little:0.17 | Neither agree nor disagree:0.21 | Agree a little:0.39 | Agree strongly:0.15
+## QID60 [Cognitive tests ] dev=18 top=0.24  Q: All the cubes below have a different image on each side. Select the choice that could represent a rotation of the cube labeled X Description of Cube X
+    A:0.24 | B:0.08 | C:0.08 | D:0.17 | E:0.11 | F:0.11 | G:0.05 | H:0.16
+## QID61 [Cognitive tests ] dev=18 top=0.39  Q: All the cubes below have a different image on each side. Select the choice that could represent a rotation of the cube labeled X The Task: You are giv
+    A:0.21 | B:0.39 | C:0.02 | D:0.08 | E:0.05 | F:0.06 | G:0.05 | H:0.15
+## QID238_7 [Personality ] dev=18 top=0.45  Q: Please indicate your agreement with each of the following statements about yourself. — When I have made a decision, I feel relieved.
+    Disagree strongly:0.04 | Disagree a little:0.04 | Neither agree nor disagree:0.15 | Agree a little:0.45 | Agree strongly:0.31
+## QID234_12 [Personality ] dev=18 top=0.33  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.31 | Disagree a little:0.33 | Neither agree nor disagree:0.15 | Agree a little:0.16 | Agree strongly:0.05
+## QID287_11 [False consensus ] dev=18 top=0.25  Q: Would you support or oppose... — Increasing deportations for those in the US illegally?
+    Strongly oppose:0.18 | Somewhat oppose:0.19 | Neither oppose nor support:0.17 | Somewhat support:0.21 | Strongly support:0.25
+## QID287_1 [False consensus ] dev=18 top=0.36  Q: Would you support or oppose... — Placing a tax on carbon emissions?
+    Strongly oppose:0.13 | Somewhat oppose:0.11 | Neither oppose nor support:0.14 | Somewhat support:0.36 | Strongly support:0.26
+## QID238_12 [Personality ] dev=17 top=0.43  Q: Please indicate your agreement with each of the following statements about yourself. — I find that establishing a consistent routine enables me to enj
+    Disagree strongly:0.04 | Disagree a little:0.08 | Neither agree nor disagree:0.15 | Agree a little:0.43 | Agree strongly:0.30
+## QID69 [Cognitive tests ] dev=17 top=0.67  Q: Synonym: Select the word that is most nearly the same in meaning as OSCILLATE
+    premeditate:0.06 | irradiate:0.11 | vacilate:0.67 | recapitulate:0.14 | furbish:0.03
+## QID238_2 [Personality ] dev=17 top=0.34  Q: Please indicate your agreement with each of the following statements about yourself. — I dislike questions which could be answered in many different w
+    Disagree strongly:0.09 | Disagree a little:0.22 | Neither agree nor disagree:0.18 | Agree a little:0.34 | Agree strongly:0.16
+## QID82 [Cognitive tests ] dev=16 top=0.68  Q: Antonym: Select the word that is most nearly the opposite in meaning to GERMANE
+    teutonic:0.04 | healthful:0.10 | irrelevant:0.68 | massive:0.08 | puny:0.11
+## QID31 [Personality ] dev=16 top=0.17  Q: Which of the following best describes your spending habits?
+    Tightwad (difficulty spending money) 1:0.05 | 2:0.07 | 3:0.11 | 4:0.10 | 5:0.12 | About the same or neither 6:0.17 | 7:0.14 | 8:0.17 | 9:0.04 | 10:0.02 | Spendthrift (difficulty controlling spen:0.03
+## QID238_6 [Personality ] dev=16 top=0.40  Q: Please indicate your agreement with each of the following statements about yourself. — I don’t like to go into a situation without knowing what I can 
+    Disagree strongly:0.04 | Disagree a little:0.07 | Neither agree nor disagree:0.10 | Agree a little:0.40 | Agree strongly:0.40
+## QID72 [Cognitive tests ] dev=16 top=0.78  Q: Synonym: Select the word that is most nearly the same in meaning as INDIGENT
+    refractory:0.08 | fiscal:0.02 | destitute:0.78 | tolerable:0.07 | diligent:0.05
+## QID238_22 [Personality ] dev=16 top=0.39  Q: Please indicate your agreement with each of the following statements about yourself. — I do not usually consult many different opinions before forming
+    Disagree strongly:0.14 | Disagree a little:0.39 | Neither agree nor disagree:0.20 | Agree a little:0.19 | Agree strongly:0.08
+## QID238_21 [Personality ] dev=16 top=0.42  Q: Please indicate your agreement with each of the following statements about yourself. — I enjoy having a clear and structured mode of life.
+    Disagree strongly:0.03 | Disagree a little:0.06 | Neither agree nor disagree:0.20 | Agree a little:0.42 | Agree strongly:0.30
+## QID83 [Cognitive tests ] dev=16 top=0.60  Q: Antonym: Select the word that is most nearly the opposite in meaning to VACUOUS
+    bankrupt:0.07 | loose:0.07 | livid:0.09 | superficial:0.17 | profound:0.60
+## QID238_3 [Personality ] dev=16 top=0.38  Q: Please indicate your agreement with each of the following statements about yourself. — I find that a well ordered life with regular hours suits my tem
+    Disagree strongly:0.01 | Disagree a little:0.14 | Neither agree nor disagree:0.21 | Agree a little:0.38 | Agree strongly:0.25
+## QID234_5 [Personality ] dev=16 top=0.29  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.29 | Disagree a little:0.29 | Neither agree nor disagree:0.20 | Agree a little:0.18 | Agree strongly:0.04
+## QID63 [Cognitive tests ] dev=15 top=0.82  Q: Synonym: Select the word that is most nearly the same in meaning as CONCUR
+    acquiesce:0.82 | extricate:0.08 | divulge:0.05 | concoct:0.05 | ransack:0.02
+## QID121 [Economic preferences ] dev=15 top=0.48  Q: If the person sends me $2 (which would become $6):
+    I would keep $0 for myself and send $6 t:0.01 | I would keep $1 for myself and send $5 t:0.01 | I would keep $2 for myself and send $4 t:0.06 | I would keep $3 for myself and send $3 t:0.48 | I would keep $4 for myself and send $2 t:0.25 | I would keep $5 for myself and send $1 t:0.10 | I would keep $6 for myself and send $0 t:0.08
+## QID238_5 [Personality ] dev=15 top=0.31  Q: Please indicate your agreement with each of the following statements about yourself. — I feel irritated when one person disagrees with what everyone e
+    Disagree strongly:0.18 | Disagree a little:0.31 | Neither agree nor disagree:0.23 | Agree a little:0.21 | Agree strongly:0.07
+## QID234_2 [Personality ] dev=15 top=0.30  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.15 | Disagree a little:0.27 | Neither agree nor disagree:0.18 | Agree a little:0.30 | Agree strongly:0.10
+## QID120 [Economic preferences ] dev=15 top=0.34  Q: If the person sends me $3 (which would become $9):
+    I would keep $0 for myself and send $9 t:0.03 | I would keep $1 for myself and send $8 t:0.00 | I would keep $2 for myself and send $7 t:0.01 | I would keep $3 for myself and send $6 t:0.03 | I would keep $4 for myself and send $5 t:0.24 | I would keep $5 for myself and send $4 t:0.34 | I would keep $6 for myself and send $3 t:0.16 | I would keep $7 for myself and send $2 t:0.04 | I would keep $8 for myself and send $1 t:0.03 | I would keep $9 for myself and send $0 t:0.11
+## QID68 [Cognitive tests ] dev=14 top=0.64  Q: Synonym: Select the word that is most nearly the same in meaning as COVET
+    crave:0.64 | claim:0.19 | avenge:0.04 | clutch:0.07 | comply:0.05
+## QID238_23 [Personality ] dev=14 top=0.38  Q: Please indicate your agreement with each of the following statements about yourself. — I dislike unpredictable situations.
+    Disagree strongly:0.02 | Disagree a little:0.12 | Neither agree nor disagree:0.24 | Agree a little:0.38 | Agree strongly:0.24
+## QID287_5 [False consensus ] dev=14 top=0.42  Q: Would you support or oppose... — A ‘public option’, which would allow Americans to buy into a government-run healthcare plan if they choose to do so?
+    Strongly oppose:0.04 | Somewhat oppose:0.03 | Neither oppose nor support:0.16 | Somewhat support:0.42 | Strongly support:0.35
+## QID157 [Disease - gain ] dev=14 top=0.25  Q: Imagine that the U.S. is preparing for the outbreak of an unusual disease, which is expected to kill 600 people. Two alternative programs to combat th
+    I strongly favor program A:0.16 | I favor program A:0.25 | I slightly favor program A:0.24 | I slightly favor program B:0.23 | I favor program B:0.09 | I strongly favor program B:0.03
+## QID119 [Economic preferences ] dev=13 top=0.50  Q: If the person sends me $4 (which would become $12):
+    I would keep $0 for myself and send $12 :0.03 | I would keep $1 for myself and send $11 :0.00 | I would keep $2 for myself and send $10 :0.01 | I would keep $3 for myself and send $9 t:0.00 | I would keep $4 for myself and send $8 t:0.03 | I would keep $5 for myself and send $7 t:0.03 | I would keep $6 for myself and send $6 t:0.50 | I would keep $7 for myself and send $5 t:0.11 | I would keep $8 for myself and send $4 t:0.10 | I would keep $9 for myself and send $3 t:0.04 | I would keep $10 for myself and send $2 :0.03 | I would keep $11 for myself and send $1 :0.01 | I would keep $12 for myself and send $0 :0.11
+## QID234_10 [Personality ] dev=13 top=0.41  Q: Here are a number of characteristics that may or may not apply to you. Please indicate next to each statement the extent to which you agree or disagre
+    Disagree strongly:0.41 | Disagree a little:0.25 | Neither agree nor disagree:0.17 | Agree a little:0.13 | Agree strongly:0.04
+## QID231 [Economic preferences ] dev=13 top=0.61  Q: Suppose you were given $5 and had to split the money between yourself and another (anonymous) person. You and you only would decide how to split the m
+    $0 for myself, $5 to the other person.:0.03 | $1 for myself, $4 to the other person.:0.00 | $2 for myself, $3 to the other person.:0.17 | $3 for myself, $2 to the other person.:0.61 | $4 for myself, $1 to the other person.:0.06 | $5 for myself, $0 to the other person.:0.13
+## QID287_4 [False consensus ] dev=12 top=0.53  Q: Would you support or oppose... — A ‘Medicare for All’ system in which all Americans would get healthcare from a government-run plan?
+    Strongly oppose:0.10 | Somewhat oppose:0.05 | Neither oppose nor support:0.09 | Somewhat support:0.24 | Strongly support:0.53
+## QID66 [Cognitive tests ] dev=12 top=0.59  Q: Synonym: Select the word that is most nearly the same in meaning as FURTIVE
+    ecstatic:0.08 | heinous:0.12 | stealthy:0.59 | flimsy:0.09 | facile:0.11
+## QID158 [Disease-loss] dev=11 top=0.36  Q: Imagine that the U.S. is preparing for the outbreak of an unusual disease, which is expected to kill 600 people. Two alternative programs to combat th
+    I strongly favor program A:0.02 | I favor program A:0.07 | I slightly favor program A:0.21 | I slightly favor program B:0.36 | I favor program B:0.25 | I strongly favor program B:0.09
+## QID161 [Outcome bias - success ] dev=11 top=0.53  Q: A 55-year-old man had a heart condition. He had to stop working because of chest pain. He enjoyed his work and did not want to stop. His pain also int
+    Incorrect, a very bad decision:0.02 | Incorrect, all things considered:0.00 | Incorrect, but not unreasonable:0.05 | The decision and its opposite are equall:0.13 | Correct, but the opposite would be reaso:0.13 | Correct, all things considered:0.53 | Clearly correct, an excellent decision:0.14
+## QID174 [Proportion dominance 1A ] dev=9 top=0.50  Q: Imagine that highway safety experts have determined that a substantial number of people are at risk of dying in a type of automobile fire. A requireme
+    Disagree strongly:0.05 | Disagree a little:0.07 | Neither agree nor disagree:0.09 | Agree a little:0.28 | Agree strongly:0.50
+## QID194 [Myside Ford] dev=9 top=0.38  Q: According to a comprehensive study by the U.S. Department of Transportation, Ford Explorers are 8 times more likely than a typical family car to kill 
+    definitely no:0.03 | no:0.09 | probably no:0.13 | probably yes:0.38 | yes:0.16 | definitely yes:0.20
+## QID177 [Proportion dominance 2A] dev=9 top=0.29  Q: You have recently graduated from university, obtained a good job, and are buying a new car. A newly designed seatbelt has just become available that w
+    very unlikely:0.04 | unlikely:0.04 | somewhat unlikely:0.12 | somewhat likely:0.27 | likely:0.23 | very likely:0.29
+## QID195 [Myside German] dev=8 top=0.28  Q: According to a comprehensive study by the U.S. Department of Transportation, a particular German car is 8 times more likely than a typical family car 
+    definitely no:0.05 | no:0.06 | probably no:0.13 | probably yes:0.28 | yes:0.25 | definitely yes:0.24
+## QID173 [Less is More Gamble C ] dev=8 top=0.30  Q: Please rate your level of disagreement or agreement with the following statement: "I would find a game that had a 7/36 chance of winning $9 and a 29/3
+    Disagree strongly:0.15 | Disagree a little:0.23 | Neither agree nor disagree:0.30 | Agree a little:0.17 | Agree strongly:0.15
+## QID176 [Proportion dominance 1C] dev=7 top=0.59  Q: Imagine that highway safety experts have determined that a substantial number of people are at risk of dying in a type of automobile fire. A requireme
+    Disagree strongly:0.02 | Disagree a little:0.06 | Neither agree nor disagree:0.02 | Agree a little:0.30 | Agree strongly:0.59
+## QID172 [Less is More Gamble B ] dev=7 top=0.30  Q: Please rate your level of disagreement or agreement with the following statement: "I would find a game that had a 7/36 chance of winning $9 and a 29/3
+    Disagree strongly:0.24 | Disagree a little:0.20 | Neither agree nor disagree:0.13 | Agree a little:0.30 | Agree strongly:0.14
+## QID175 [Proportion dominance 1B] dev=6 top=0.55  Q: Imagine that highway safety experts have determined that a substantial number of people are at risk of dying in a type of automobile fire. A requireme
+    Disagree strongly:0.02 | Disagree a little:0.04 | Neither agree nor disagree:0.13 | Agree a little:0.27 | Agree strongly:0.55
+## QID191 [WTA/WTP Thaler - WTP noncertainty] dev=6 top=0.43  Q: Imagine that when you went to the movies last week, you were inadvertently exposed to a rare and fatal virus. The possibility of actually contracting 
+    $10:0.28 | $100:0.43 | $1,000:0.20 | $10,000:0.05 | $50,000:0.02 | $100,000:0.00 | $250,000:0.00 | $500,000:0.00 | $1,000,000:0.00 | $5,000,000 or more:0.03
+## QID162 [Outcome bias - failure] dev=6 top=0.42  Q: A 55-year-old man had a heart condition. He had to stop working because of chest pain. He enjoyed his work and did not want to stop. His pain also int
+    Incorrect, a very bad decision:0.04 | Incorrect, all things considered:0.01 | Incorrect, but not unreasonable:0.19 | The decision and its opposite are equall:0.07 | Correct, but the opposite would be reaso:0.20 | Correct, all things considered:0.42 | Clearly correct, an excellent decision:0.06
+## QID190 [WTA/WTP Thaler problem - WTA certainty] dev=6 top=0.23  Q: Imagine that a group of research scientists in the School of Medicine are running a laboratory experiment on a vaccine for a rare and fatal virus. The
+    $10:0.02 | $100:0.11 | $1,000:0.05 | $10,000:0.11 | $50,000:0.09 | $100,000:0.09 | $250,000:0.11 | $500,000:0.05 | $1,000,000:0.14 | $5,000,000 or more:0.23
+## QID189 [WTA/WTP Thaler problem - WTP certainty] dev=5 top=0.28  Q: Imagine that when you went to the movies last week, you were inadvertently exposed to a rare and fatal virus. The possibility of actually contracting 
+    $10:0.26 | $100:0.28 | $1,000:0.17 | $10,000:0.12 | $50,000:0.03 | $100,000:0.03 | $250,000:0.00 | $500,000:0.01 | $1,000,000:0.03 | $5,000,000 or more:0.07
+## QID178 [Proportion dominance 2B ] dev=5 top=0.34  Q: You have recently graduated from university, obtained a good job, and are buying a new car. A newly designed seatbelt has just become available that w
+    very unlikely:0.04 | unlikely:0.07 | somewhat unlikely:0.09 | somewhat likely:0.18 | likely:0.28 | very likely:0.34
+## QID171 [Less is More Gamble A ] dev=3 top=0.41  Q: Please rate your level of disagreement or agreement with the following statement: "I would find a game that had a 7/36 chance of winning $9 and a 29/3
+    Disagree strongly:0.41 | Disagree a little:0.34 | Neither agree nor disagree:0.12 | Agree a little:0.11 | Agree strongly:0.03
+## QID179 [Proportion dominance 2C] dev=2 top=0.53  Q: You have recently graduated from university, obtained a good job, and are buying a new car. A newly designed seatbelt has just become available that w
+    very unlikely:0.00 | unlikely:0.04 | somewhat unlikely:0.12 | somewhat likely:0.12 | likely:0.20 | very likely:0.53

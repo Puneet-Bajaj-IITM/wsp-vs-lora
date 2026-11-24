@@ -1,0 +1,23 @@
+{
+ "n": 512,
+ "accuracy": 0.34375,
+ "accuracy_ci95": [
+  0.3046875,
+  0.384765625
+ ],
+ "nll": 1.604119062423706,
+ "pred_letter_hist": [
+  0.082,
+  0.258,
+  0.266,
+  0.113,
+  0.281
+ ],
+ "by_block": {
+  "positive": 0.414,
+  "negative": 0.714,
+  "neutral": 0.117,
+  "very positive": 0.122,
+  "very negative": 0.077
+ }
+}

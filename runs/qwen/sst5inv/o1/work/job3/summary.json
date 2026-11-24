@@ -1,0 +1,145 @@
+{
+ "N_neg0.25": {
+  "n": 512,
+  "accuracy": 0.48046875,
+  "accuracy_ci95": [
+   0.4375,
+   0.5234375
+  ],
+  "nll": 2.7081689834594727,
+  "pred_letter_hist": [
+   0.195,
+   0.156,
+   0.223,
+   0.16,
+   0.266
+  ],
+  "by_block": {
+   "positive": 0.541,
+   "negative": 0.547,
+   "very positive": 0.625,
+   "neutral": 0.0,
+   "very negative": 0.627
+  }
+ },
+ "N_neg0.5": {
+  "n": 512,
+  "accuracy": 0.47265625,
+  "accuracy_ci95": [
+   0.427734375,
+   0.515625
+  ],
+  "nll": 2.8600828647613525,
+  "pred_letter_hist": [
+   0.262,
+   0.176,
+   0.279,
+   0.129,
+   0.154
+  ],
+  "by_block": {
+   "positive": 0.596,
+   "negative": 0.358,
+   "very positive": 0.523,
+   "neutral": 0.354,
+   "very negative": 0.525
+  }
+ },
+ "N_neg0.75": {
+  "n": 512,
+  "accuracy": 0.466796875,
+  "accuracy_ci95": [
+   0.421875,
+   0.509765625
+  ],
+  "nll": 3.035919666290283,
+  "pred_letter_hist": [
+   0.283,
+   0.182,
+   0.252,
+   0.131,
+   0.152
+  ],
+  "by_block": {
+   "positive": 0.568,
+   "negative": 0.35,
+   "very positive": 0.523,
+   "neutral": 0.354,
+   "very negative": 0.559
+  }
+ },
+ "N_pn0.5": {
+  "n": 512,
+  "accuracy": 0.45703125,
+  "accuracy_ci95": [
+   0.414013671875,
+   0.498046875
+  ],
+  "nll": 2.8832263946533203,
+  "pred_letter_hist": [
+   0.242,
+   0.229,
+   0.246,
+   0.125,
+   0.158
+  ],
+  "by_block": {
+   "positive": 0.493,
+   "negative": 0.518,
+   "very positive": 0.523,
+   "neutral": 0.11,
+   "very negative": 0.61
+  }
+ },
+ "V_fairly0.75": {
+  "n": 512,
+  "accuracy": 0.48828125,
+  "accuracy_ci95": [
+   0.4453125,
+   0.53125
+  ],
+  "nll": 3.2616779804229736,
+  "pred_letter_hist": [
+   0.219,
+   0.189,
+   0.195,
+   0.152,
+   0.244
+  ],
+  "by_block": {
+   "positive": 0.616,
+   "negative": 0.81,
+   "very positive": 0.352,
+   "neutral": 0.0,
+   "very negative": 0.305
+  }
+ },
+ "V_fairly0.75+N_neg0.5": {
+  "n": 512,
+  "accuracy": 0.41796875,
+  "accuracy_ci95": [
+   0.375,
+   0.4609375
+  ],
+  "nll": 3.412893533706665,
+  "pred_letter_hist": [
+   0.291,
+   0.221,
+   0.287,
+   0.1,
+   0.102
+  ],
+  "by_block": {
+   "positive": 0.651,
+   "negative": 0.453,
+   "very positive": 0.136,
+   "neutral": 0.402,
+   "very negative": 0.203
+  }
+ },
+ "_dev": {
+  "best": "V_fairly0.75",
+  "acc": 0.44141689373297005,
+  "nll": 3.6396405696868896
+ }
+}

@@ -1,0 +1,203 @@
+"""Build the label-derived prior tables from TRAIN only: per-channel token weights and channel markers."""
+import collections
+
+import numpy as np
+
+import spec
+from prompts_local import content_tokens, option_strings, prompt_ids, structure
+
+TAIL_START_ID = 23085
+
+
+def collect_items(tok, train):
+    items = {}
+    for ex in train:
+        it = items.setdefault(ex["column"], {"strings": {}, "chosen": collections.Counter(), "shown": collections.Counter(), "n": 0, "example": ex})
+        for oid, text in zip(ex["shown_option_ids"], option_strings(ex)):
+            it["strings"][oid] = text
+            it["shown"][oid] += 1
+        it["chosen"][ex["shown_option_ids"][ex["label"]]] += 1
+        it["n"] += 1
+        if len(it.setdefault("shown_sets", [])) < spec.MAX_SHOWN_SETS:
+            it["shown_sets"].append(tuple(ex["shown_option_ids"]))
+    for it in items.values():
+        ids = prompt_ids(tok, it["example"])
+        q_head, o_head, _ = structure(ids)
+        it["question"] = ids[q_head + 2: o_head]
+        it["tokens"] = {oid: content_tokens(tok, s)[: spec.MAX_CARRIER_INDEX + 1] for oid, s in it["strings"].items()}
+        it["rate"] = {oid: (it["chosen"][oid] + spec.SMOOTH_NUM) / (it["shown"][oid] + spec.SMOOTH_DEN) for oid in it["strings"]}
+        it["target"] = {oid: target_value(r) for oid, r in it["rate"].items()}
+    return items
+
+
+def target_value(rate):
+    """What the token weights of an option should add up to: the rate itself, or its log rescaled to [0, 1]."""
+    if spec.TARGET_MODE == "linear":
+        return rate
+    span = np.log(spec.LOG_RATE_MAX / spec.LOG_RATE_MIN)
+    return float(np.clip(np.log(rate / spec.LOG_RATE_MIN) / span, 0.0, 1.0))
+
+
+def item_token_weights(item):
+    """Sequential residual means: spread each option's choice rate over its tokens, most specific token first."""
+    strings = list(item["tokens"])
+    counts = {k: collections.Counter(item["tokens"][k]) for k in strings}
+    vocab = sorted({t for k in strings for t in counts[k]})
+    doc_freq = {t: sum(1 for k in strings if t in counts[k]) for t in vocab}
+    first_pos = {t: np.mean([item["tokens"][k].index(t) for k in strings if t in counts[k]]) for t in vocab}
+    residual = {k: item["target"][k] for k in strings}
+    weights = {t: 0.0 for t in vocab}
+    for t in sorted(vocab, key=lambda t: (doc_freq[t], first_pos[t], t)):
+        if doc_freq[t] == len(strings) and len(strings) > 1:
+            continue
+        holders = [k for k in strings if t in counts[k]]
+        w = max(0.0, float(np.mean([residual[k] / counts[k][t] for k in holders])))
+        weights[t] = w
+        for k in holders:
+            residual[k] -= counts[k][t] * w
+    return weights
+
+
+def channel_table(items, token_weights, members):
+    acc, den = collections.Counter(), collections.Counter()
+    for col in members:
+        for t, w in token_weights[col].items():
+            acc[t] += w * items[col]["n"]
+            den[t] += items[col]["n"]
+    return {t: acc[t] / den[t] for t in den}
+
+
+def agreement(item, table):
+    """Share of the item's train option sets on which the table's top option is the item's most-chosen shown option."""
+    score = {k: sum(table.get(t, 0.0) for t in toks) for k, toks in item["tokens"].items()}
+    hits = [max(shown, key=lambda k: score[k]) == max(shown, key=lambda k: item["rate"][k]) for shown in item["shown_sets"]]
+    return float(np.mean(hits))
+
+
+def assign_channels(items, token_weights, open_cost, pinned):
+    """Greedy start (least token-weight conflict), then reassignment rounds by agreement with the item's own rates."""
+    order = sorted(items, key=lambda c: (c not in pinned, -items[c]["n"], c))
+    members = [[] for _ in range(spec.NUM_CHANNELS)]
+    tables = [dict() for _ in range(spec.NUM_CHANNELS)]
+    channel = {}
+    for col in order:
+        costs = [sum(abs(w - tables[m][t]) for t, w in token_weights[col].items() if t in tables[m]) for m in range(spec.NUM_CHANNELS)]
+        best = int(np.argmin(costs))
+        empty = [m for m in range(1, spec.NUM_CHANNELS) if not members[m]]
+        if col in pinned:
+            best = spec.DEFAULT_CHANNEL
+        elif costs[best] > open_cost and empty:
+            best = empty[0]
+        channel[col] = best
+        members[best].append(col)
+        tables[best] = channel_table(items, token_weights, members[best])
+    for _ in range(spec.REASSIGN_ROUNDS):
+        moved = 0
+        for col in order:
+            if col in pinned:
+                continue
+            here = channel[col]
+            scores = []
+            for m in range(spec.NUM_CHANNELS):
+                trial = members[m] if m == here else members[m] + [col]
+                scores.append(agreement(items[col], channel_table(items, token_weights, trial)))
+            best = int(np.argmax(scores))
+            if scores[best] > scores[here] + spec.REASSIGN_MARGIN:
+                members[here].remove(col)
+                members[best].append(col)
+                channel[col] = best
+                moved += 1
+        if not moved:
+            break
+    tables = [channel_table(items, token_weights, members[m]) for m in range(spec.NUM_CHANNELS)]
+    return channel, tables
+
+
+def effective_channel(question, markers):
+    hits = [markers[t] for t in question if t in markers]
+    return hits[-1] if hits else spec.DEFAULT_CHANNEL
+
+
+def choose_markers(items, channel, forbidden):
+    """Markers are read from the options header, so the LAST marker token of a question decides its channel.
+    Phase 1: a token that only occurs in questions of one channel is a safe marker (it can never mislead).
+    Phase 2: items without such a token take a late shared token; items this misleads get a safe marker after it."""
+    order = sorted(items, key=lambda c: (-items[c]["n"], c))
+    seen_in = collections.defaultdict(set)
+    for col in order:
+        for t in set(items[col]["question"]):
+            seen_in[t].add(channel[col])
+    markers = {}
+
+    def effective(col, trial):
+        return effective_channel(items[col]["question"], trial)
+
+    def safe_after(col, start):
+        question = items[col]["question"]
+        for pos in range(len(question) - 1, start, -1):
+            t = question[pos]
+            if seen_in[t] == {channel[col]} and t not in forbidden:
+                return t
+        return None
+
+    for col in order:
+        if channel[col] != spec.DEFAULT_CHANNEL:
+            t = safe_after(col, -1)
+            if t is not None:
+                markers[t] = channel[col]
+    for col in order:
+        if effective(col, markers) == channel[col]:
+            continue
+        question = items[col]["question"]
+        for pos in range(len(question) - 1, -1, -1):
+            t = question[pos]
+            if t in forbidden or t in markers:
+                continue
+            trial = {**markers, t: channel[col]}
+            if effective(col, trial) != channel[col]:
+                continue
+            repaired = True
+            for other in order:
+                if other == col or effective(other, trial) == channel[other]:
+                    continue
+                if effective(other, markers) != channel[other]:
+                    continue
+                last_bad = max(i for i, x in enumerate(items[other]["question"]) if x == t)
+                fix = safe_after(other, last_bad)
+                if fix is None:
+                    repaired = False
+                    break
+                trial[fix] = channel[other]
+            if repaired and all(effective(o, trial) == channel[o] for o in order if effective(o, markers) == channel[o]):
+                markers = trial
+                break
+    return markers, [c for c in order if effective(c, markers) != channel[c]]
+
+
+def tail_tokens(tok, train):
+    ids = prompt_ids(tok, train[0])
+    return set(ids[max(i for i in range(len(ids)) if ids[i] == TAIL_START_ID):])
+
+
+def forbidden_tokens(tok, items, train):
+    return {spec.QUESTION_HEADER_ID, spec.OPTIONS_HEADER_ID, spec.COLON_NEWLINE_ID, spec.DOT_ID, *spec.NULL_IDS, *spec.LETTER_IDS}
+
+
+def build(tok, train, open_cost=0.12):
+    items = collect_items(tok, train)
+    token_weights = {col: item_token_weights(it) for col, it in items.items()}
+    forbidden = forbidden_tokens(tok, items, train)
+    channel, _ = assign_channels(items, token_weights, open_cost, set())
+    markers, unresolved = choose_markers(items, channel, forbidden)
+    for col in unresolved:
+        channel[col] = effective_channel(items[col]["question"], markers)
+    members = [[c for c in sorted(items) if channel[c] == m] for m in range(spec.NUM_CHANNELS)]
+    tables = [channel_table(items, token_weights, members[m]) for m in range(spec.NUM_CHANNELS)]
+    blocked = set(spec.LETTER_IDS) | {spec.DOT_ID} | tail_tokens(tok, train)
+    weights = [{t: min(w, spec.MAX_WEIGHT) for t, w in tab.items() if w >= spec.MIN_WEIGHT and t not in blocked} for tab in tables]
+    union = set().union(*weights)
+    for tab in weights:
+        for t in union - set(tab):
+            tab[t] = spec.FILL_WEIGHT
+    markers[spec.QUESTION_HEADER_ID] = spec.DEFAULT_CHANNEL
+    return {"weights": weights, "markers": markers, "channel": channel, "pinned": sorted(unresolved), "items": items}

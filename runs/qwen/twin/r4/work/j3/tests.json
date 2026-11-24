@@ -1,0 +1,86 @@
+{
+ "rome_2.0": {
+  "acc": 0.310546875,
+  "nll": 2.9684255123138428,
+  "hist": [
+   0.17,
+   0.27,
+   0.236,
+   0.207,
+   0.117
+  ],
+  "by_block": {
+   "Personality": 0.251,
+   "Cognitive tests": 0.441,
+   "False consensus": 0.317
+  },
+  "base_acc": 0.287109375,
+  "fixed": 55,
+  "broken": 43,
+  "changed_pred": 0.40234375,
+  "left": 25
+ },
+ "rome_4.0": {
+  "acc": 0.271484375,
+  "nll": 2.475008010864258,
+  "hist": [
+   0.182,
+   0.248,
+   0.111,
+   0.211,
+   0.248
+  ],
+  "by_block": {
+   "Personality": 0.223,
+   "Cognitive tests": 0.331,
+   "False consensus": 0.317
+  },
+  "base_acc": 0.287109375,
+  "fixed": 67,
+  "broken": 75,
+  "changed_pred": 0.580078125,
+  "left": 24
+ },
+ "rome_8.0": {
+  "acc": 0.236328125,
+  "nll": 2.391195774078369,
+  "hist": [
+   0.217,
+   0.133,
+   0.033,
+   0.143,
+   0.475
+  ],
+  "by_block": {
+   "Personality": 0.268,
+   "Cognitive tests": 0.221,
+   "False consensus": 0.183
+  },
+  "base_acc": 0.287109375,
+  "fixed": 79,
+  "broken": 105,
+  "changed_pred": 0.75390625,
+  "left": 23
+ },
+ "hebb_z_4.0": {
+  "acc": 0.322265625,
+  "nll": 2.4498066902160645,
+  "hist": [
+   0.086,
+   0.199,
+   0.119,
+   0.221,
+   0.375
+  ],
+  "by_block": {
+   "Personality": 0.246,
+   "Cognitive tests": 0.412,
+   "False consensus": 0.333
+  },
+  "base_acc": 0.287109375,
+  "fixed": 77,
+  "broken": 59,
+  "changed_pred": 0.53125,
+  "left": 22
+ }
+}

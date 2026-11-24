@@ -1,0 +1,37 @@
+"""Build the constants of edits/r2/prior_circuit.py from TRAIN (tables) and the label-free kernels."""
+import sys
+from pathlib import Path
+
+import numpy as np
+
+import kernel
+import sim
+import spec
+import tables
+from prompts_local import ROOT, load_split, load_tokenizer
+
+EDIT_DIR = ROOT / "edits" / "r2"
+OPEN_COST = 0.12
+
+
+def main():
+    tok = load_tokenizer()
+    tabs = tables.build(tok, load_split("train"), OPEN_COST)
+    union = sorted(tabs["weights"][0])
+    gates = np.array([[sim.gate_logit(tab[t]) for t in union] for tab in tabs["weights"]], dtype=np.float32)
+    markers = np.array(sorted(tabs["markers"].items()), dtype=np.int64)
+    reserved = set(spec.NULL_IDS) | set(spec.LETTER_IDS) | {spec.DOT_ID}
+    assert not reserved & set(union) and not reserved & set(markers[:, 0].tolist()), "reserved token clash"
+    EDIT_DIR.mkdir(parents=True, exist_ok=True)
+    stem = EDIT_DIR / spec.EDIT_NAME
+    np.save(f"{stem}_tokens.npy", np.array(union, dtype=np.int64))
+    np.save(f"{stem}_gates.npy", gates)
+    np.save(f"{stem}_markers.npy", markers)
+    np.save(f"{stem}_anchor.npy", np.stack([np.array(kernel.ANCHOR_PAIRS, dtype=np.float64), *kernel.anchor_kernel()]))
+    np.save(f"{stem}_selector.npy", np.stack([np.array(kernel.MARKER_PAIRS, dtype=np.float64), *kernel.marker_kernel()]))
+    np.save(Path(__file__).resolve().parent / "channel_of_item.npy.keep", np.array(sorted(tabs["channel"].items())))
+    print("union tokens", len(union), "markers", len(markers), "gate range", gates.min(), gates.max(), "pinned", tabs["pinned"])
+
+
+if __name__ == "__main__":
+    sys.exit(main())

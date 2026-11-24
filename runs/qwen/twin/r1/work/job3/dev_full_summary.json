@@ -1,0 +1,22 @@
+{
+ "n": 1600,
+ "accuracy": 0.331875,
+ "accuracy_ci95": [
+  0.30875,
+  0.355625
+ ],
+ "nll": 1.5249512195587158,
+ "pred_letter_hist": [
+  0.154,
+  0.245,
+  0.247,
+  0.249,
+  0.106
+ ],
+ "by_block": {
+  "Personality": 0.273,
+  "Cognitive tests": 0.471,
+  "False consensus": 0.253,
+  "Economic preferences": 0.231
+ }
+}

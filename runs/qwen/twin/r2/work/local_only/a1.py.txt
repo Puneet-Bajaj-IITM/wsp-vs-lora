@@ -1,0 +1,27 @@
+import json, collections, numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+dv=[json.loads(l) for l in open(D+"dev.jsonl")]
+print(len(tr),len(dv))
+bc=collections.Counter(e["block"] for e in tr); print(bc)
+cols=collections.Counter(e["column"] for e in tr); print(len(cols), min(cols.values()), max(cols.values()))
+print(collections.Counter(e["n_item_options"] for e in tr))
+def opts(e):
+    m=e["user_message"].split("\nOptions:\n")[-1].split("\n\nWhich option")[0].split("\n")
+    return [x[3:] for x in m]
+# per block: majority prior acc
+cnt=collections.defaultdict(lambda: collections.Counter())
+for e in tr: cnt[e["column"]][e["shown_option_ids"][e["label"]]]+=1
+def prior_pred(e):
+    c=cnt[e["column"]]; s=[c.get(i,0) for i in e["shown_option_ids"]]; return int(np.argmax(s))
+by=collections.defaultdict(list)
+for e in dv: by[e["block"]].append(prior_pred(e)==e["label"])
+for b,v in sorted(by.items(), key=lambda kv:-len(kv[1])): print(b,len(v),round(np.mean(v),3))
+print("all",np.mean([x for v in by.values() for x in v]))
+# example per block
+seen=set()
+for e in tr:
+    if e["block"] in seen: continue
+    seen.add(e["block"])
+    q=e["user_message"].split("\nQuestion:\n")[-1]
+    print("=====",e["block"],e["column"],e["n_item_options"],"label",e["label"],e["shown_option_ids"]); print(q[:900])

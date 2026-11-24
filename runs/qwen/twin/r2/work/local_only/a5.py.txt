@@ -1,0 +1,39 @@
+import json, collections, numpy as np, glob, os
+os.environ["HF_HUB_OFFLINE"]="1"
+from transformers import AutoTokenizer
+p=glob.glob(os.path.expanduser("~/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-0.5B-Instruct/snapshots/*"))[0]
+tok=AutoTokenizer.from_pretrained(p)
+print(tok.encode(" strongly"), tok.encode("A"), tok.encode("."), tok.encode("\n"), tok.encode("assistant"))
+import sys; sys.path.insert(0,"src")
+from wsp.prompts import build_chat
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+dv=[json.loads(l) for l in open(D+"dev.jsonl")]
+LET=[32,33,34,35,36]; DOT=13
+def ids(e): return tok.apply_chat_template(build_chat(e["user_message"]),tokenize=True,add_generation_prompt=True)
+lens=[];stray=0;straydot=collections.Counter();optlen=[];internal=collections.Counter(); bad=0
+rng=np.random.default_rng(0)
+sample=[tr[i] for i in rng.permutation(len(tr))[:1500]]+dv
+for e in sample:
+    x=ids(e)
+    if not isinstance(x,list): x=x["input_ids"]
+    lens.append(len(x))
+    # find options block: token 3798 'Options' followed by 510 last occurrence
+    pos=[i for i in range(len(x)-1) if x[i]==3798 and x[i+1]==510]
+    if not pos: bad+=1; continue
+    st=pos[-1]+2
+    # option lines
+    L=[i for i in range(st,len(x)) if x[i] in LET and x[i+1]==DOT and x[i-1] in (510,198)]
+    if len(L)!=5 or [x[i] for i in L]!=LET: bad+=1; continue
+    strayL=[i for i in range(st) if x[i] in LET]
+    stray+=len(strayL)
+    for i in strayL: straydot[(tok.decode(x[i-2:i+3]))]+=1
+    ends=L[1:]+[next(i for i in range(L[-1],len(x)) if x[i]==271)+1]
+    for a,b in zip(L,ends):
+        content=x[a+2:b-1]
+        optlen.append(len(content))
+        if DOT in content or any("." in tok.decode([t]) for t in content): internal[tok.decode(content)]+=1
+print("n",len(sample),"bad",bad,"len min/mean/max",min(lens),np.mean(lens),max(lens))
+print("optlen max",max(optlen),np.percentile(optlen,[50,90,99]))
+print("stray letter tokens before options",stray, straydot.most_common(15))
+print("internal dots",len(internal), internal.most_common(20))

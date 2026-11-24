@@ -1,0 +1,14 @@
+import collections
+import spec, tables
+from prompts_local import load_split, load_tokenizer
+tok=load_tokenizer(); train=load_split("train")
+items=tables.collect_items(tok,train)
+for c in ("QID119","QID120","QID121","QID172","QID173","QID171","QID177","QID178","QID179","QID174","QID175","QID176","QID189","QID190","QID191"):
+    q=items[c]["question"]; print(c, len(q), repr(tok.decode(q[-45:])))
+# which other items contain the candidate late tokens of QID121
+def last_tokens(c,n=6): return items[c]["question"][-n:]
+for c in ("QID120","QID121","QID172","QID173","QID177","QID179"):
+    for t in last_tokens(c):
+        holders=[o for o in items if t in items[o]["question"] and o!=c]
+        ends=[o for o in holders if items[o]["question"][-1]==t or t in items[o]["question"][-3:]]
+        print(c,repr(tok.decode([t])),"in",len(holders),"other questions; near-end in",ends[:8])

@@ -1,0 +1,10 @@
+dev 0 0.3359375 left 29
+dev 512 0.373046875 left 28
+dev 1024 0.333984375 left 27
+dev 1536 0.40625 left 26
+FULL dev {'n': 1600, 'accuracy': 0.35, 'accuracy_ci95': [0.32625, 0.374375], 'nll': 2.9199628829956055, 'pred_letter_hist': [0.158, 0.22, 0.212, 0.193, 0.216], 'by_block': {'Personality': 0.282, 'Cognitive tests': 0.471, 'False consensus': 0.32, 'Economic preferences': 0.273}}
+preserve 0 0.4140625 left 25
+preserve 512 0.4453125 left 24
+preserve 1024 0.33766233766233766 left 23
+FULL preserve {'n': 1101, 'accuracy': 0.4232515894641235, 'accuracy_ci95': [0.39416439600363307, 0.4514078110808356], 'nll': 3.4292445182800293, 'pred_letter_hist': [0.163, 0.171, 0.225, 0.176, 0.265], 'by_block': {'negative': 0.554, 'positive': 0.473, 'neutral': 0.039, 'very positive': 0.521, 'very negative': 0.568}}
+weights changed 785389 of 1543714304 fraction 0.0005087657722448622

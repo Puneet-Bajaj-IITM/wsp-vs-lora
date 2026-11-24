@@ -1,0 +1,43 @@
+"""Evaluate table heuristics offline: tables from one part of train, prior argmax scored on held-out train and dev."""
+import collections
+import sys
+
+import numpy as np
+
+import sim
+import spec
+import tables
+from prompts_local import load_split, load_tokenizer, prompt_ids
+
+HOLDOUT_EVERY = 5
+N_HOLDOUT_EVAL = 800
+
+
+def score(tok, tabs, examples):
+    hits, by_block, wrong_channel = [], collections.defaultdict(list), 0
+    for ex in examples:
+        ids = prompt_ids(tok, ex)
+        chan = sim.selected_channel(ids, tabs["markers"])
+        wrong_channel += int(chan.argmax() != tabs["channel"].get(ex["column"], 0) or chan.max() < 0.99)
+        s = chan @ sim.letter_binding(ids, tabs["weights"])
+        best = np.flatnonzero(s >= s.max() - 1e-9)
+        hit = (ex["label"] in best) / len(best)
+        hits.append(hit)
+        by_block[ex["block"] if ex["block"] in ("Personality", "Cognitive tests", "False consensus", "Economic preferences") else "Other"].append(hit)
+    return float(np.mean(hits)), {b: round(float(np.mean(v)), 3) for b, v in by_block.items()}, wrong_channel
+
+
+if __name__ == "__main__":
+    open_cost = float(sys.argv[1]) if len(sys.argv) > 1 else 0.12
+    tok = load_tokenizer()
+    train, dev = load_split("train"), load_split("dev")
+    people = sorted({e["pid"] for e in train})
+    held = set(people[::HOLDOUT_EVERY])
+    fit = [e for e in train if e["pid"] not in held]
+    hold = [e for e in train if e["pid"] in held][:N_HOLDOUT_EVAL]
+    tabs = tables.build(tok, fit, open_cost)
+    print("channels", collections.Counter(tabs["channel"].values()), "pinned", tabs["pinned"], "markers", {tok.decode([t]): m for t, m in tabs["markers"].items()})
+    print("table sizes", [len(w) for w in tabs["weights"]])
+    print("holdout", score(tok, tabs, hold))
+    full = tables.build(tok, train, open_cost)
+    print("dev (tables from all train)", score(tok, full, dev))

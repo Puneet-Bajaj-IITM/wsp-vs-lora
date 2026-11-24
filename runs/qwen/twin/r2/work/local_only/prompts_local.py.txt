@@ -1,0 +1,47 @@
+"""Local (tokenizer-only) prompt tokenisation and structure parsing. No model is loaded."""
+import glob
+import json
+import os
+import sys
+from pathlib import Path
+
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "pyproject.toml").exists())
+sys.path.insert(0, str(ROOT / "src"))
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+TOKENIZER_GLOB = "~/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-0.5B-Instruct/snapshots/*"
+
+import spec  # noqa: E402
+
+
+def load_tokenizer():
+    from transformers import AutoTokenizer
+    return AutoTokenizer.from_pretrained(glob.glob(os.path.expanduser(TOKENIZER_GLOB))[0])
+
+
+def load_split(split):
+    path = ROOT / "data" / "processed" / f"{split}.jsonl"
+    return [json.loads(line) for line in path.read_text().splitlines() if line]
+
+
+def prompt_ids(tok, example):
+    from wsp.prompts import build_chat
+    out = tok.apply_chat_template(build_chat(example["user_message"]), tokenize=True, add_generation_prompt=True)
+    return list(out if isinstance(out, list) else out["input_ids"])
+
+
+def option_strings(example):
+    block = example["user_message"].split("\nOptions:\n")[-1].split("\n\nWhich option")[0]
+    return [line[3:] for line in block.split("\n")]
+
+
+def structure(ids):
+    """Indices of the question header, options header and the five option-letter tokens."""
+    q_head = max(i for i in range(len(ids) - 1) if ids[i] == spec.QUESTION_HEADER_ID and ids[i + 1] == spec.COLON_NEWLINE_ID)
+    o_head = max(i for i in range(len(ids) - 1) if ids[i] == spec.OPTIONS_HEADER_ID and ids[i + 1] == spec.COLON_NEWLINE_ID)
+    letters = [i for i in range(o_head + 2, len(ids) - 1) if ids[i] in spec.LETTER_IDS and ids[i + 1] == spec.DOT_ID]
+    return q_head, o_head, letters[:spec.NUM_LETTERS]
+
+
+def content_tokens(tok, option):
+    ids = tok.encode("A. " + option + "\n", add_special_tokens=False)[2:]
+    return [t for t in ids if "\n" not in tok.decode([t])]

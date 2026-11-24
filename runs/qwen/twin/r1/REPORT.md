@@ -1,0 +1,33 @@
+# Programmer report: qwen twin r1
+
+Final message of the programmer agent, recovered from its transcript.
+
+## WSP result: `lexroute_v1` — dev acc 0.3319 / NLL 1.525 (base 0.294 / 2.674; population prior 0.478 / 1.286)
+
+**Best edit:** `edits/lexroute_v1.py` + constant `edits/lexroute_v1_alpha.npy` (α = 0.175). Both exist locally (copied back from `kaggle_runner/out/wsp/out/edits/`). Helper/probe edits (`lexswap_v1`, `lex_pers_v1`, `lex_fc_weak`, `lex_fc_neutral`, `lex_cube_v1`, `lex_lik_v2a/b`, `lex_fc_odd`, `lexroute_v2` + `_lexlib.py`) are also in `edits/` but are not the deliverable. Log: `wsp_work/LOG.md`.
+
+**Full-dev measurement (1,600 examples, 4 `lab.forward` passes, job 3):** accuracy **0.3319** (95% CI 0.309–0.356), NLL **1.525**. Paired vs base on the same 1,600: +0.038 (167 wrong→right, 106 right→wrong). By block: Personality 0.188 → 0.273 (Likert subset 0.214 → 0.288; Never..Always scale 0.085 → 0.277), Cognitive 0.460 → 0.471 (cube-rotation items 0.10 → 0.24, antonyms unchanged), False consensus 0.258 → 0.253, Economic 0.223 → 0.231. Letter histogram [.154,.245,.247,.249,.106]. **The population prior (0.478) is not beaten.**
+
+**Mechanism (what I found, what I changed).** Everything is a closed-form edit of existing tensors; no gradients, no fitted solvers.
+1. Finding: the base model's option *judgment* is nearly uninformative for predicting people, but it has strong, consistent lexical preferences: it picks "Agree strongly" 46% of the time on Likert items (people 12%; people's mode is "Agree a little" 30%), "Often" 74% on the Never..Always scale (people's mode "Rarely"/"Sometimes"), "Strongly oppose" 42% on policy items (people support 53–76% across all parties; the model even predicts Democrats oppose 53%), and on cube-rotation items whose option texts are letters it picks the option whose text is "A" 55% of the time it is shown (true rate 18%; "D" 33%). Mixing base log-probs with the per-item prior never beats the prior alone, so the model carries no information complementary to item frequencies.
+2. Edit 1 — lexical routing in the input embedding matrix (tied with lm_head, but only letters A–E are scored so the output-side change is irrelevant): swap rows `' strongly'↔' little'` (the "strongly" preference lands on "…a little"), swap `' Often'↔' Sometimes'` (`' Rarely'` is two tokens), set `' oppose' := emb(' neutral')` (oppose options become non-answers "Strongly neutral", so picks move to "Strongly support", the population mode), swap `' A'↔' D'` (the A-text attraction lands on the modal cube answer "D"). Each was verified in a paired, block-targeted 512-example train probe: Likert 0.215 → 0.294 (job 1) / 0.212 → 0.276 (job 2), policy 0.238 → 0.289, cube/Mr items 0.160 → 0.225.
+3. Edit 2 — temperature: `model.norm.weight *= 0.175`. Scaling the final RMSNorm scale multiplies every logit, i.e. an exact softmax temperature over the letters; α chosen by a grid search minimizing NLL on one 512-example train pass of the edited model (train NLL 2.61 → 1.51). Verified offline first: the captured final-norm hidden state reproduces the letter log-probs as `W_U[letters] @ h` (max diff 0.023), so this family of edits is exactly simulable at zero pass cost.
+
+**Weights changed:** 12,288 of 1,543,714,304 parameters (8.0e-6): 7 embedding rows × 1536 (6 swapped + `' oppose'` overwritten) + the 1536-dim final norm vector. No new parameters, no architecture change; works in fp16 on CUDA (rows are cast to the embedding dtype).
+
+**Passes used:** 20 of 50 (job 1: 6 — 5 base train captures + 1 swap probe; job 2: 6 targeted probes; job 3: 1 train α pass + 4 full dev; job 4: 3 probes). Kaggle jobs: 4 (one earlier push failed on the account's 2-GPU-session limit while the LoRA kernel was running; nothing ran, 0 passes). Ledger untouched by hand; test files never read.
+
+**What failed / was dropped.**
+- `' oppose' := emb(' support') + 0.5·(emb(' little') − emb(' strongly'))` ("weakened support", meant to break the tie toward the real "Strongly support"): 0.238 → 0.217, worse.
+- `' strongly' := ' neutral'` (−1.3 pts on the Likert subset) and `' strongly' := ' xyz'` (−5.5 pts: the model reads "Agree xyz" as a bare "Agree" and picks the real extreme 170/512 times). `' oppose' := ' xyz'`: 0.297 vs 0.289, inside the noise margin, not adopted.
+- Difference-of-means readout (mean(h | answer = X) − mean(h) added to the five letter unembedding rows, optionally PCA-projected): person-split CV gain only +1.2 pts (0.316 → 0.328) with NLL exploding; class-mean separation ~5 against a hidden norm of 162. Dropped — not in the final edit.
+- Constant letter-position offsets (via `b_X·μ/|μ|²` on the letter rows, or a layer-27 v_proj-bias injection): the random shuffle makes position bias label-neutral, so they gained +0.3 pts offline and lost 0.8 pts on the job-3 train pass; not written.
+- Not addressed: Economic items (model picks letter A ~85% on the near-identical "I would keep $X…" options; no content-independent, block-conditional lever exists in constants), antonym cognitive items (already near the prior, 0.57 vs 0.65; the model's knowledge is what it is), the "Mr. A 1" scale (the attraction turned out to be to the leftmost "Mr. X 1" label, not to "A"), and the small judgment blocks (n < 15 each on dev).
+- Why the prior isn't beaten: it encodes per-item answer frequencies for 92 items; the only way to match it in weights is to write an item×option table, which I did not attempt (no clean mechanism found to make the model map question text → option-text popularity → letter without a classifier-like readout). The text-level popularity rule ceiling is ~0.43; the realistic lexical-routing ceiling is ~0.35–0.38 and we reached 0.33.
+
+**Rule-1 gray areas (flagged):**
+1. The *targets* of the lexical remaps (which option text to route onto) were chosen from train answer-frequency counts per scale/block (4 scales: Likert, Never..Always, support/oppose, cube letters) — a frequency statistic written into weights at block level, not a per-item table.
+2. α was picked by a 1-parameter grid search minimizing train NLL (a calibration choice, no gradients).
+3. Variant selection in jobs 2 and 4 used accuracy on train-targeted sets (hyperparameter selection by held-out statistics; dev was used only for the final measurement).
+4. The explored-and-dropped difference-of-means readout is explicitly allowed by the brief but is functionally a mass-mean probe; it is not in the deliverable.
+5. Housekeeping note: `fetch.sh` wipes `kaggle_runner/out/wsp` each job, so job-1 hidden captures and job-2 log-prob arrays no longer exist locally (all numbers are in `LOG.md`); job-3/4 outputs are archived under `kaggle_runner/out/archive/`.

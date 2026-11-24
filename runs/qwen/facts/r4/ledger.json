@@ -1,0 +1,138 @@
+[
+ {
+  "t": "20:23:02",
+  "ts": "2026-11-23T20:23:02Z",
+  "job": "92d0c8582119",
+  "split": "dev",
+  "n": 512,
+  "note": "base: accuracy + final-position norms"
+ },
+ {
+  "t": "20:23:13",
+  "ts": "2026-11-23T20:23:13Z",
+  "job": "92d0c8582119",
+  "split": "dev",
+  "n": 512,
+  "note": "circuit in-process, scale30_omega20"
+ },
+ {
+  "t": "20:23:21",
+  "ts": "2026-11-23T20:23:21Z",
+  "job": "92d0c8582119",
+  "split": "dev",
+  "n": 512,
+  "note": "circuit in-process, scale100_omega20"
+ },
+ {
+  "t": "20:23:30",
+  "ts": "2026-11-23T20:23:30Z",
+  "job": "92d0c8582119",
+  "split": "dev",
+  "n": 512,
+  "note": "circuit in-process, scale30_omega100"
+ },
+ {
+  "t": "20:23:41",
+  "ts": "2026-11-23T20:23:41Z",
+  "job": "92d0c8582119",
+  "split": "dev",
+  "n": 512,
+  "note": "stored edit: full dev [0:]"
+ },
+ {
+  "t": "20:23:48",
+  "ts": "2026-11-23T20:23:48Z",
+  "job": "92d0c8582119",
+  "split": "dev",
+  "n": 388,
+  "note": "stored edit: full dev [512:]"
+ },
+ {
+  "t": "20:23:54",
+  "ts": "2026-11-23T20:23:54Z",
+  "job": "92d0c8582119",
+  "split": "train",
+  "n": 512,
+  "note": "stored edit: train sample"
+ },
+ {
+  "t": "21:14:27",
+  "ts": "2026-11-23T21:14:27Z",
+  "job": "17effe872a03",
+  "split": "dev",
+  "n": 512,
+  "note": "candidate scale x100, in-process"
+ },
+ {
+  "t": "21:14:36",
+  "ts": "2026-11-23T21:14:36Z",
+  "job": "17effe872a03",
+  "split": "dev",
+  "n": 512,
+  "note": "candidate scale x300, in-process"
+ },
+ {
+  "t": "21:14:48",
+  "ts": "2026-11-23T21:14:48Z",
+  "job": "17effe872a03",
+  "split": "dev",
+  "n": 512,
+  "note": "stored edit v2: full dev [0:]"
+ },
+ {
+  "t": "21:14:54",
+  "ts": "2026-11-23T21:14:54Z",
+  "job": "17effe872a03",
+  "split": "dev",
+  "n": 388,
+  "note": "stored edit v2: full dev [512:]"
+ },
+ {
+  "t": "21:14:59",
+  "ts": "2026-11-23T21:14:59Z",
+  "job": "17effe872a03",
+  "split": "train",
+  "n": 512,
+  "note": "stored edit v2: full train [0:]"
+ },
+ {
+  "t": "21:15:06",
+  "ts": "2026-11-23T21:15:06Z",
+  "job": "17effe872a03",
+  "split": "train",
+  "n": 512,
+  "note": "stored edit v2: full train [512:]"
+ },
+ {
+  "t": "21:15:14",
+  "ts": "2026-11-23T21:15:14Z",
+  "job": "17effe872a03",
+  "split": "train",
+  "n": 512,
+  "note": "stored edit v2: full train [1024:]"
+ },
+ {
+  "t": "21:15:21",
+  "ts": "2026-11-23T21:15:21Z",
+  "job": "17effe872a03",
+  "split": "train",
+  "n": 512,
+  "note": "stored edit v2: full train [1536:]"
+ },
+ {
+  "t": "21:15:29",
+  "ts": "2026-11-23T21:15:29Z",
+  "job": "17effe872a03",
+  "split": "train",
+  "n": 512,
+  "note": "stored edit v2: full train [2048:]"
+ },
+ {
+  "t": "21:15:37",
+  "ts": "2026-11-23T21:15:37Z",
+  "job": "17effe872a03",
+  "split": "train",
+  "n": 140,
+  "note": "stored edit v2: full train [2560:]"
+ }
+]

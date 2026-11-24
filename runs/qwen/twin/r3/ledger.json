@@ -1,0 +1,92 @@
+[
+ {
+  "t": "20:04:58",
+  "split": "train",
+  "n": 400,
+  "note": "base_train_diag"
+ },
+ {
+  "t": "20:10:00",
+  "split": "train",
+  "n": 400,
+  "note": "base_train_diag"
+ },
+ {
+  "t": "20:15:02",
+  "split": "train",
+  "n": 400,
+  "note": "base_train_diag"
+ },
+ {
+  "t": "20:20:12",
+  "split": "train",
+  "n": 400,
+  "note": "base_train_diag"
+ },
+ {
+  "t": "20:25:18",
+  "split": "train",
+  "n": 400,
+  "note": "base_train_held"
+ },
+ {
+  "t": "20:30:22",
+  "split": "dev",
+  "n": 400,
+  "note": "base_dev"
+ },
+ {
+  "t": "20:32:16",
+  "split": "dev",
+  "n": 400,
+  "note": "base_dev"
+ },
+ {
+  "t": "20:34:10",
+  "split": "dev",
+  "n": 400,
+  "note": "base_dev"
+ },
+ {
+  "t": "20:36:04",
+  "split": "dev",
+  "n": 400,
+  "note": "base_dev"
+ },
+ {
+  "t": "20:37:58",
+  "split": "train",
+  "n": 400,
+  "note": "qb_k2_b2"
+ },
+ {
+  "t": "20:42:58",
+  "split": "train",
+  "n": 400,
+  "note": "qb_k2_b6"
+ },
+ {
+  "t": "20:47:56",
+  "split": "train",
+  "n": 400,
+  "note": "qb_k6_b2"
+ },
+ {
+  "t": "20:52:55",
+  "split": "train",
+  "n": 400,
+  "note": "qb_k6_b6"
+ },
+ {
+  "t": "20:57:54",
+  "split": "train",
+  "n": 400,
+  "note": "qb_k16_b2"
+ },
+ {
+  "t": "21:02:53",
+  "split": "train",
+  "n": 400,
+  "note": "qb_k16_b6"
+ }
+]

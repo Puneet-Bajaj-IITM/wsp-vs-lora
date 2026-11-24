@@ -1,0 +1,20 @@
+import collections, numpy as np, sys
+import sim, spec, tables
+from prompts_local import load_split, load_tokenizer, prompt_ids, option_strings
+tok=load_tokenizer(); train=load_split("train"); dev=load_split("dev")
+tabs=tables.build(tok,train,float(sys.argv[1]) if len(sys.argv)>1 else 0.12)
+items=tabs["items"]
+agree=collections.defaultdict(list); acc=collections.defaultdict(list); pacc=collections.defaultdict(list)
+shown=collections.Counter()
+for ex in dev:
+    ids=prompt_ids(tok,ex); s=sim.prior(ids,tabs); it=items[ex["column"]]
+    rate=[it["rate"][o] for o in ex["shown_option_ids"]]
+    a=int(np.argmax(s))==int(np.argmax(rate)); agree[ex["column"]].append(a)
+    acc[ex["column"]].append(int(np.argmax(s))==ex["label"]); pacc[ex["column"]].append(int(np.argmax(rate))==ex["label"])
+    if not a and shown[ex["column"]]<1 and ex["block"] in("Personality","Economic preferences"):
+        shown[ex["column"]]+=1
+        print(ex["column"],"ch",tabs["channel"][ex["column"]],[o[:18] for o in option_strings(ex)],"S",s.round(2),"rate",np.round(rate,2))
+rows=sorted(agree,key=lambda c:np.mean(agree[c]))
+for c in rows[:45]: print(c,items[c]["example"]["block"][:12],"ch",tabs["channel"][c],"n",len(agree[c]),"agree %.2f acc %.2f prior-acc %.2f"%(np.mean(agree[c]),np.mean(acc[c]),np.mean(pacc[c])))
+print("overall agree",np.mean([x for v in agree.values() for x in v]))
+for m in range(spec.NUM_CHANNELS): print(m,sorted(c for c in tabs["channel"] if tabs["channel"][c]==m))

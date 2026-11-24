@@ -1,0 +1,146 @@
+[
+ {
+  "t": "00:49:54",
+  "split": "dev",
+  "n": 512,
+  "note": "base dev chunk 0"
+ },
+ {
+  "t": "00:51:50",
+  "split": "dev",
+  "n": 512,
+  "note": "base dev chunk 512"
+ },
+ {
+  "t": "00:53:50",
+  "split": "dev",
+  "n": 512,
+  "note": "base dev chunk 1024"
+ },
+ {
+  "t": "00:55:53",
+  "split": "dev",
+  "n": 64,
+  "note": "base dev chunk 1536"
+ },
+ {
+  "t": "00:56:09",
+  "split": "train",
+  "n": 512,
+  "note": "base train chunk 0"
+ },
+ {
+  "t": "01:02:43",
+  "split": "train",
+  "n": 512,
+  "note": "base train chunk 512"
+ },
+ {
+  "t": "01:09:16",
+  "split": "train",
+  "n": 512,
+  "note": "base train chunk 1024"
+ },
+ {
+  "t": "01:15:40",
+  "split": "train",
+  "n": 512,
+  "note": "base train chunk 1536"
+ },
+ {
+  "t": "01:21:44",
+  "split": "train",
+  "n": 512,
+  "note": "base train chunk 2048"
+ },
+ {
+  "t": "01:27:44",
+  "split": "train",
+  "n": 512,
+  "note": "base train chunk 2560"
+ },
+ {
+  "t": "11:13:20",
+  "split": "train",
+  "n": 512,
+  "note": "base + option-token stats set A"
+ },
+ {
+  "t": "11:19:31",
+  "split": "train",
+  "n": 512,
+  "note": "base + option-token stats set B"
+ },
+ {
+  "t": "11:25:49",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 12 alpha 1.0"
+ },
+ {
+  "t": "11:32:11",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 12 alpha 2.0"
+ },
+ {
+  "t": "11:38:35",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 12 alpha 4.0"
+ },
+ {
+  "t": "11:44:58",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 16 alpha 1.0"
+ },
+ {
+  "t": "11:51:21",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 16 alpha 2.0"
+ },
+ {
+  "t": "11:57:45",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 20 alpha 1.0"
+ },
+ {
+  "t": "12:04:09",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 20 alpha 2.0"
+ },
+ {
+  "t": "12:10:31",
+  "split": "train",
+  "n": 512,
+  "note": "sweep layer 20 alpha 4.0"
+ },
+ {
+  "t": "12:17:00",
+  "split": "dev",
+  "n": 512,
+  "note": "optprior full dev chunk 0"
+ },
+ {
+  "t": "12:19:22",
+  "split": "dev",
+  "n": 512,
+  "note": "optprior full dev chunk 512"
+ },
+ {
+  "t": "12:21:46",
+  "split": "dev",
+  "n": 512,
+  "note": "optprior full dev chunk 1024"
+ },
+ {
+  "t": "12:24:10",
+  "split": "dev",
+  "n": 64,
+  "note": "optprior full dev chunk 1536"
+ }
+]

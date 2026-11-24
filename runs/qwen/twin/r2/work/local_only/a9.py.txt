@@ -1,0 +1,44 @@
+"""Value of response-style features from the 8 shown facts (counts of answer words) for conditional priors."""
+import collections, json
+import numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+dv=[json.loads(l) for l in open(D+"dev.jsonl")]
+def fact_answers(e):
+    sec=e["user_message"].split("\n\nSome of their other survey answers:\n")[1].split("\n\nQuestion:")[0].split("\n")
+    return [s.split(" → ")[-1] for s in sec]
+def big(b): return b if b in("Personality","Cognitive tests","False consensus","Economic preferences") else "Other"
+FEATS={
+ "strong>=1":lambda a: sum("trongly" in x for x in a)>=1,
+ "strong>=2":lambda a: sum("trongly" in x for x in a)>=2,
+ "little>=1":lambda a: sum("a little" in x for x in a)>=1,
+ "little>=2":lambda a: sum("a little" in x for x in a)>=2,
+ "neither>=1":lambda a: sum("Neither" in x for x in a)>=1,
+ "strong-vs-little":lambda a: int(np.sign(sum("trongly" in x for x in a)-sum(("a little" in x) or ("Somewhat" in x) for x in a))),
+ "agree-vs-dis":lambda a: int(np.sign(sum(x.startswith("Agree") for x in a)-sum(x.startswith("Disagree") for x in a))),
+ "support>=1":lambda a: sum("support" in x and "oppose" not in x for x in a)>=1,
+ "oppose>=1":lambda a: sum("oppose" in x and "support" not in x for x in a)>=1,
+ "strong3":lambda a: min(sum("trongly" in x for x in a),2),
+}
+people=sorted({e["pid"] for e in tr}); held=set(people[::5])
+def fit(exs,f):
+    item=collections.defaultdict(collections.Counter); cond=collections.defaultdict(collections.Counter)
+    for e in exs:
+        ch=e["shown_option_ids"][e["label"]]; v=f(fact_answers(e)) if f else None
+        for o in e["shown_option_ids"]: item[e["column"]][("s",o)]+=1; cond[(e["column"],v)][("s",o)]+=1
+        item[e["column"]][("c",ch)]+=1; cond[(e["column"],v)][("c",ch)]+=1
+    return item,cond
+def predict(e,item,cond,f,K=10.0):
+    it=item[e["column"]]; s=[]
+    c=cond[(e["column"],f(fact_answers(e)))] if f else None
+    for o in e["shown_option_ids"]:
+        p0=(it[("c",o)]+0.5)/(it[("s",o)]+2.5)
+        s.append(p0 if f is None else (c[("c",o)]+K*p0)/(c[("s",o)]+K))
+    return int(np.argmax(s))
+fitset=[e for e in tr if e["pid"] not in held]; hold=[e for e in tr if e["pid"] in held]
+for name,f in [("none",None)]+list(FEATS.items()):
+    item,cond=fit(fitset,f); by=collections.defaultdict(list)
+    for e in hold: by[big(e["block"])].append(predict(e,item,cond,f)==e["label"])
+    item2,cond2=fit(tr,f)
+    d=np.mean([predict(e,item2,cond2,f)==e["label"] for e in dv]); dp=np.mean([predict(e,item2,cond2,f)==e["label"] for e in dv if e["block"]=="Personality"])
+    print(name,"holdout",{b:round(float(np.mean(v)),3) for b,v in by.items()},"all %.3f"%np.mean([x for v in by.values() for x in v]),"| dev %.4f dev-pers %.3f"%(d,dp))

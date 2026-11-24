@@ -1,0 +1,266 @@
+[
+ {
+  "t": "01:08:09",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture 0: name keys + option values"
+ },
+ {
+  "t": "01:08:28",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture 1: name keys + option values"
+ },
+ {
+  "t": "01:08:46",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture 2: name keys + option values"
+ },
+ {
+  "t": "01:09:04",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle inject true values L4 beta2.0"
+ },
+ {
+  "t": "01:09:22",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle inject true values L8 beta2.0"
+ },
+ {
+  "t": "01:09:42",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle inject true values L12 beta2.0"
+ },
+ {
+  "t": "01:10:03",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle inject true values L16 beta2.0"
+ },
+ {
+  "t": "01:10:25",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle inject true values L8 beta6.0"
+ },
+ {
+  "t": "01:10:46",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle inject true values L12 beta6.0"
+ },
+ {
+  "t": "18:16:47",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 0"
+ },
+ {
+  "t": "18:17:06",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 1"
+ },
+ {
+  "t": "18:17:24",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((6, 2.0),) asked_only=False"
+ },
+ {
+  "t": "18:17:42",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((6, 3.0),) asked_only=False"
+ },
+ {
+  "t": "18:18:00",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((8, 3.0),) asked_only=False"
+ },
+ {
+  "t": "18:18:19",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((8, 2.5),) asked_only=False"
+ },
+ {
+  "t": "18:18:38",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((8, 1.5),) asked_only=False"
+ },
+ {
+  "t": "18:18:57",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((6, 1.25), (8, 1.25)) asked_only=False"
+ },
+ {
+  "t": "18:19:17",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle ((8, 2.0),) asked_only=True"
+ },
+ {
+  "t": "18:19:42",
+  "split": "dev",
+  "n": 512,
+  "note": "o1 full dev eval mem_v1 (L8_b1.5)"
+ },
+ {
+  "t": "18:19:54",
+  "split": "dev",
+  "n": 388,
+  "note": "o1 full dev eval mem_v1 (L8_b1.5)"
+ },
+ {
+  "t": "21:06:23",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 0"
+ },
+ {
+  "t": "21:06:41",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 1"
+ },
+ {
+  "t": "21:09:38",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 0"
+ },
+ {
+  "t": "21:09:56",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 1"
+ },
+ {
+  "t": "21:10:13",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask1.0 oth1.0 rand=False"
+ },
+ {
+  "t": "21:10:30",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask0.75 oth0.75 rand=False"
+ },
+ {
+  "t": "21:10:47",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask1.5 oth0.0 rand=False"
+ },
+ {
+  "t": "21:11:04",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask3.0 oth0.0 rand=False"
+ },
+ {
+  "t": "21:11:22",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask2.0 oth2.0 rand=True"
+ },
+ {
+  "t": "21:11:40",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask2.0 oth0.5 rand=False"
+ },
+ {
+  "t": "21:11:59",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle L8 ask2.0 oth1.0 rand=False"
+ },
+ {
+  "t": "22:08:50",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 0"
+ },
+ {
+  "t": "22:09:08",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 1"
+ },
+ {
+  "t": "22:09:26",
+  "split": "train",
+  "n": 512,
+  "note": "o1 oracle spread layout {'city': 1, 'profession': 2, 'hobby': 3} b1.5"
+ },
+ {
+  "t": "22:09:47",
+  "split": "dev",
+  "n": 512,
+  "note": "o1 full dev eval mem_s1 (spread {'city': 1, 'profession': 2, 'hobby': 3} L8 beta=1.5)"
+ },
+ {
+  "t": "22:09:58",
+  "split": "dev",
+  "n": 388,
+  "note": "o1 full dev eval mem_s1 (spread {'city': 1, 'profession': 2, 'hobby': 3} L8 beta=1.5)"
+ },
+ {
+  "t": "22:10:10",
+  "split": "dev",
+  "n": 512,
+  "note": "o1 full dev eval mem_g1 (gated L8 c0=0.75 gamma=1.0)"
+ },
+ {
+  "t": "22:10:21",
+  "split": "dev",
+  "n": 388,
+  "note": "o1 full dev eval mem_g1 (gated L8 c0=0.75 gamma=1.0)"
+ },
+ {
+  "t": "22:15:50",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 0"
+ },
+ {
+  "t": "22:16:09",
+  "split": "train",
+  "n": 512,
+  "note": "o1 capture keys/values pass 1"
+ },
+ {
+  "t": "22:16:29",
+  "split": "dev",
+  "n": 512,
+  "note": "o1 full dev eval mem_s2 (spread {'city': 1, 'profession': 3, 'hobby': 2} L8 beta=1.5)"
+ },
+ {
+  "t": "22:16:38",
+  "split": "dev",
+  "n": 388,
+  "note": "o1 full dev eval mem_s2 (spread {'city': 1, 'profession': 3, 'hobby': 2} L8 beta=1.5)"
+ },
+ {
+  "t": "22:16:49",
+  "split": "dev",
+  "n": 512,
+  "note": "o1 full dev eval mem_s3 (spread {'city': 1, 'profession': 2, 'hobby': 3} L8 beta={'city': 1.5, 'profession': 1.5, 'hobby': 2.0})"
+ },
+ {
+  "t": "22:16:59",
+  "split": "dev",
+  "n": 388,
+  "note": "o1 full dev eval mem_s3 (spread {'city': 1, 'profession': 2, 'hobby': 3} L8 beta={'city': 1.5, 'profession': 1.5, 'hobby': 2.0})"
+ }
+]

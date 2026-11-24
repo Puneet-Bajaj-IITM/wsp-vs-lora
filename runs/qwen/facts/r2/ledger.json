@@ -1,0 +1,38 @@
+[
+ {
+  "t": "21:43:52",
+  "split": "train",
+  "n": 512,
+  "note": "hijack_v1: train probe n=512"
+ },
+ {
+  "t": "21:44:15",
+  "split": "train",
+  "n": 512,
+  "note": "hijack_w16k: train probe n=512"
+ },
+ {
+  "t": "21:44:37",
+  "split": "train",
+  "n": 512,
+  "note": "hijack_c1k: train probe n=512"
+ },
+ {
+  "t": "21:44:59",
+  "split": "train",
+  "n": 512,
+  "note": "hijack_late: train probe n=512"
+ },
+ {
+  "t": "21:45:20",
+  "split": "dev",
+  "n": 512,
+  "note": "hijack_w16k: full dev 0"
+ },
+ {
+  "t": "21:45:30",
+  "split": "dev",
+  "n": 388,
+  "note": "hijack_w16k: full dev 512"
+ }
+]

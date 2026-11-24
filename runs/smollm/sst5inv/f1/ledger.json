@@ -1,0 +1,314 @@
+[
+ {
+  "t": "17:35:20",
+  "ts": "2026-11-23T17:35:20Z",
+  "job": "4ab10ccd39ba",
+  "split": "train",
+  "n": 512,
+  "note": "base train probe"
+ },
+ {
+  "t": "17:35:36",
+  "ts": "2026-11-23T17:35:36Z",
+  "job": "4ab10ccd39ba",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 train probe"
+ },
+ {
+  "t": "17:35:48",
+  "ts": "2026-11-23T17:35:48Z",
+  "job": "4ab10ccd39ba",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_v1 dev chunk 0"
+ },
+ {
+  "t": "17:36:00",
+  "ts": "2026-11-23T17:36:00Z",
+  "job": "4ab10ccd39ba",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_v1 dev chunk 1"
+ },
+ {
+  "t": "17:36:13",
+  "ts": "2026-11-23T17:36:13Z",
+  "job": "4ab10ccd39ba",
+  "split": "dev",
+  "n": 77,
+  "note": "swap_v1 dev chunk 2"
+ },
+ {
+  "t": "17:43:16",
+  "ts": "2026-11-23T17:43:16Z",
+  "job": "03112ce91a7d",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 capture layers 14-18"
+ },
+ {
+  "t": "17:43:29",
+  "ts": "2026-11-23T17:43:29Z",
+  "job": "03112ce91a7d",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain 1.0 block 17"
+ },
+ {
+  "t": "17:43:40",
+  "ts": "2026-11-23T17:43:40Z",
+  "job": "03112ce91a7d",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain 3.0 block 17"
+ },
+ {
+  "t": "17:43:52",
+  "ts": "2026-11-23T17:43:52Z",
+  "job": "03112ce91a7d",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain -0.5 block 17"
+ },
+ {
+  "t": "17:44:04",
+  "ts": "2026-11-23T17:44:04Z",
+  "job": "03112ce91a7d",
+  "split": "train",
+  "n": 512,
+  "note": "very embedding x2.0"
+ },
+ {
+  "t": "17:56:54",
+  "ts": "2026-11-23T17:56:54Z",
+  "job": "caa2456ae2dc",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain 1.7 block 16"
+ },
+ {
+  "t": "17:57:07",
+  "ts": "2026-11-23T17:57:07Z",
+  "job": "caa2456ae2dc",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain 5.1 block 16"
+ },
+ {
+  "t": "17:57:18",
+  "ts": "2026-11-23T17:57:18Z",
+  "job": "caa2456ae2dc",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain 11.9 block 16"
+ },
+ {
+  "t": "17:57:30",
+  "ts": "2026-11-23T17:57:30Z",
+  "job": "caa2456ae2dc",
+  "split": "train",
+  "n": 512,
+  "note": "valence amp gain -1.2 block 16"
+ },
+ {
+  "t": "17:57:42",
+  "ts": "2026-11-23T17:57:42Z",
+  "job": "caa2456ae2dc",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 + letter bias (equalise mean letter logp)"
+ },
+ {
+  "t": "18:04:16",
+  "ts": "2026-11-23T18:04:16Z",
+  "job": "8c4fb1ddea6e",
+  "split": "train",
+  "n": 512,
+  "note": "one-sided valence boost gain 3.0 thr -4.0"
+ },
+ {
+  "t": "18:04:29",
+  "ts": "2026-11-23T18:04:29Z",
+  "job": "8c4fb1ddea6e",
+  "split": "train",
+  "n": 512,
+  "note": "one-sided valence boost gain 6.0 thr -4.0"
+ },
+ {
+  "t": "18:04:41",
+  "ts": "2026-11-23T18:04:41Z",
+  "job": "8c4fb1ddea6e",
+  "split": "train",
+  "n": 512,
+  "note": "one-sided valence boost gain 6.0 thr -10.0"
+ },
+ {
+  "t": "18:04:54",
+  "ts": "2026-11-23T18:04:54Z",
+  "job": "8c4fb1ddea6e",
+  "split": "train",
+  "n": 512,
+  "note": "one-sided valence boost gain 12.0 thr -4.0"
+ },
+ {
+  "t": "18:05:07",
+  "ts": "2026-11-23T18:05:07Z",
+  "job": "8c4fb1ddea6e",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 capture L15/L16 train chunk 1"
+ },
+ {
+  "t": "18:05:20",
+  "ts": "2026-11-23T18:05:20Z",
+  "job": "8c4fb1ddea6e",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 capture L15/L16 train chunk 2"
+ },
+ {
+  "t": "19:01:39",
+  "ts": "2026-11-23T19:01:39Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' very' -> ' clearly'"
+ },
+ {
+  "t": "19:01:52",
+  "ts": "2026-11-23T19:01:52Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' very' -> ' strongly'"
+ },
+ {
+  "t": "19:02:04",
+  "ts": "2026-11-23T19:02:04Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' very' -> ' extremely'"
+ },
+ {
+  "t": "19:02:17",
+  "ts": "2026-11-23T19:02:17Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' very' -> ' quite'"
+ },
+ {
+  "t": "19:02:30",
+  "ts": "2026-11-23T19:02:30Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' very' -> ' really'"
+ },
+ {
+  "t": "19:02:44",
+  "ts": "2026-11-23T19:02:44Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' very' -> ' highly'"
+ },
+ {
+  "t": "19:02:58",
+  "ts": "2026-11-23T19:02:58Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' neutral' -> ' mixed'"
+ },
+ {
+  "t": "19:03:12",
+  "ts": "2026-11-23T19:03:12Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' neutral' -> ' average'"
+ },
+ {
+  "t": "19:03:28",
+  "ts": "2026-11-23T19:03:28Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' neutral' -> ' okay'"
+ },
+ {
+  "t": "19:03:44",
+  "ts": "2026-11-23T19:03:44Z",
+  "job": "0d82532730c7",
+  "split": "train",
+  "n": 512,
+  "note": "boost + ' neutral' -> ' neither'"
+ },
+ {
+  "t": "20:18:52",
+  "ts": "2026-11-23T20:18:52Z",
+  "job": "40c45851a3cb",
+  "split": "train",
+  "n": 512,
+  "note": "valence_v1 train probe"
+ },
+ {
+  "t": "20:19:06",
+  "ts": "2026-11-23T20:19:06Z",
+  "job": "40c45851a3cb",
+  "split": "dev",
+  "n": 512,
+  "note": "valence_v1 dev chunk 0"
+ },
+ {
+  "t": "20:19:18",
+  "ts": "2026-11-23T20:19:18Z",
+  "job": "40c45851a3cb",
+  "split": "dev",
+  "n": 512,
+  "note": "valence_v1 dev chunk 1"
+ },
+ {
+  "t": "20:19:32",
+  "ts": "2026-11-23T20:19:32Z",
+  "job": "40c45851a3cb",
+  "split": "dev",
+  "n": 77,
+  "note": "valence_v1 dev chunk 2"
+ },
+ {
+  "t": "20:19:34",
+  "ts": "2026-11-23T20:19:34Z",
+  "job": "40c45851a3cb",
+  "split": "train",
+  "n": 512,
+  "note": "valence_v1 with boost gain 6.0 thr -16.0"
+ },
+ {
+  "t": "20:19:48",
+  "ts": "2026-11-23T20:19:48Z",
+  "job": "40c45851a3cb",
+  "split": "train",
+  "n": 512,
+  "note": "valence_v1 with boost gain 9.0 thr -13.0"
+ },
+ {
+  "t": "20:20:03",
+  "ts": "2026-11-23T20:20:03Z",
+  "job": "40c45851a3cb",
+  "split": "train",
+  "n": 512,
+  "note": "valence_v1 with boost gain 4.0 thr -10.0"
+ },
+ {
+  "t": "20:20:18",
+  "ts": "2026-11-23T20:20:18Z",
+  "job": "40c45851a3cb",
+  "split": "train",
+  "n": 512,
+  "note": "valence_v1 with boost gain 9.0 thr -10.0"
+ }
+]

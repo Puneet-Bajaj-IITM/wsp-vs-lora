@@ -1,0 +1,164 @@
+[
+ {
+  "t": "21:27:11",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base probe train"
+ },
+ {
+  "t": "21:29:09",
+  "split": "preserve",
+  "n": 512,
+  "note": "job1 base probe preserve"
+ },
+ {
+  "t": "21:41:07",
+  "split": "train",
+  "n": 512,
+  "note": "job2 base probe S2"
+ },
+ {
+  "t": "21:43:03",
+  "split": "train",
+  "n": 512,
+  "note": "job2 base probe S3"
+ },
+ {
+  "t": "21:45:01",
+  "split": "train",
+  "n": 512,
+  "note": "job2 base probe S4"
+ },
+ {
+  "t": "21:47:00",
+  "split": "train",
+  "n": 512,
+  "note": "job2 v1_L21_b2 on S2"
+ },
+ {
+  "t": "21:48:57",
+  "split": "train",
+  "n": 512,
+  "note": "job2 v1_L21_b6 on S2"
+ },
+ {
+  "t": "21:50:53",
+  "split": "train",
+  "n": 512,
+  "note": "job2 v1_all_b2 on S2"
+ },
+ {
+  "t": "21:52:50",
+  "split": "train",
+  "n": 512,
+  "note": "job2 v1_all_b6 on S2"
+ },
+ {
+  "t": "06:32:31",
+  "split": "train",
+  "n": 512,
+  "note": "job3 v2d_L21_b3 train"
+ },
+ {
+  "t": "06:34:24",
+  "split": "train",
+  "n": 512,
+  "note": "job3 v2d_L21_b6 train"
+ },
+ {
+  "t": "06:36:17",
+  "split": "train",
+  "n": 512,
+  "note": "job3 v2p_L21_b3 train"
+ },
+ {
+  "t": "06:38:11",
+  "split": "train",
+  "n": 512,
+  "note": "job3 v2d_L2021_b4 train"
+ },
+ {
+  "t": "06:40:04",
+  "split": "preserve",
+  "n": 512,
+  "note": "job3 v2d_L21_b6 preserve"
+ },
+ {
+  "t": "14:19:12",
+  "split": "train",
+  "n": 512,
+  "note": "job4 v3l_r2 train"
+ },
+ {
+  "t": "14:20:55",
+  "split": "train",
+  "n": 512,
+  "note": "job4 v3l_r4 train"
+ },
+ {
+  "t": "14:22:44",
+  "split": "train",
+  "n": 512,
+  "note": "job4 v3l_r8 train"
+ },
+ {
+  "t": "14:24:33",
+  "split": "train",
+  "n": 512,
+  "note": "job4 v3l_r16 train"
+ },
+ {
+  "t": "14:26:18",
+  "split": "preserve",
+  "n": 512,
+  "note": "job4 v3l_r16 preserve"
+ },
+ {
+  "t": "14:26:32",
+  "split": "preserve",
+  "n": 512,
+  "note": "job4 v3l_r8 preserve"
+ },
+ {
+  "t": "14:57:18",
+  "split": "dev",
+  "n": 512,
+  "note": "job5 final style_gate_v3 dev 0"
+ },
+ {
+  "t": "14:59:04",
+  "split": "dev",
+  "n": 512,
+  "note": "job5 final style_gate_v3 dev 512"
+ },
+ {
+  "t": "15:00:53",
+  "split": "dev",
+  "n": 512,
+  "note": "job5 final style_gate_v3 dev 1024"
+ },
+ {
+  "t": "15:02:44",
+  "split": "dev",
+  "n": 64,
+  "note": "job5 final style_gate_v3 dev 1536"
+ },
+ {
+  "t": "15:02:58",
+  "split": "preserve",
+  "n": 512,
+  "note": "job5 final style_gate_v3 preserve 0"
+ },
+ {
+  "t": "15:03:08",
+  "split": "preserve",
+  "n": 512,
+  "note": "job5 final style_gate_v3 preserve 512"
+ },
+ {
+  "t": "15:03:20",
+  "split": "preserve",
+  "n": 77,
+  "note": "job5 final style_gate_v3 preserve 1024"
+ }
+]

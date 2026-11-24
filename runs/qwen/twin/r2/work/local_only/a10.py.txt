@@ -1,0 +1,27 @@
+"""Would an intact base model add anything on top of the prior? Combine job-1 base log-probs with the emulated prior.
+Also compare emulated prior with the measured out-bus of job 2 (passes A/B)."""
+import numpy as np
+import sim, spec
+from prompts_local import load_split, load_tokenizer, prompt_ids
+from test_toy import load_edit, tables_from_edit
+tok=load_tokenizer(); train=load_split("train"); tabs=tables_from_edit(load_edit())
+z=np.load("job1_base.npz"); idx=z["idx"]; base=z["logp"].astype(np.float64)
+N=1024
+S=np.array([sim.prior(prompt_ids(tok,train[i]),tabs) for i in idx[:N]])
+np.save("sim_prior_job1_first1024.npy",S)
+y=np.array([train[i]["label"] for i in idx[:N]]); base=base[:N]
+def sc(l):
+    lp=l-np.log(np.exp(l).sum(1,keepdims=True)); return round(float((lp.argmax(1)==y).mean()),4), round(float(-lp[np.arange(len(y)),y].mean()),4)
+half=np.arange(N)<512
+print("prior only", sc(50*S), "base only", sc(base))
+for T in (1,2,3,5,8):
+    print("T",T,[(g,sc(base/T+g*S)[0], (lambda l: round(float((l[half].argmax(1)==y[half]).mean()),3))(base/T+g*S), (lambda l: round(float((l[~half].argmax(1)==y[~half]).mean()),3))(base/T+g*S)) for g in (2,4,8,16,32,64)])
+j=np.load("job2.npz")
+out=j["A_h1_private"][:, [list(j["dims_flat"]).index(d) for d in j["out_dims"]]].astype(np.float64)
+print("corr sim S vs measured out-bus (pass A):", np.corrcoef(S[:512].ravel(), out.ravel())[0,1])
+ratio=out.sum(1)/np.maximum(S[:512].sum(1),1e-9)
+print("out-bus/S ratio percentiles", np.percentile(ratio,[1,10,50,90,99]).round(4))
+print("argmax agreement", (out.argmax(1)==S[:512].argmax(1)).mean(), "acc measured", (out.argmax(1)==y[:512]).mean(), "acc sim", (S[:512].argmax(1)==y[:512]).mean())
+print("norms final pos: after L0", np.percentile(j["A_h0_norm"],[5,50,95]).round(2), "after L1", np.percentile(j["A_h1_norm"],[5,50,95]).round(2), "L26", np.percentile(j["A_h26_norm"],[5,50,95]).round(1))
+sel=j["A_h0_private"][:, [list(j["dims_flat"]).index(d) for d in j["select_dims"]]]
+print("select bus rows (first 5)", sel[:5].round(3))

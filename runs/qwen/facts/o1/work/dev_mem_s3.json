@@ -1,0 +1,22 @@
+{
+ "config": "spread {'city': 1, 'profession': 2, 'hobby': 3} L8 beta={'city': 1.5, 'profession': 1.5, 'hobby': 2.0}",
+ "n": 900,
+ "accuracy": 0.69,
+ "accuracy_ci95": [
+  0.6588888888888889,
+  0.72
+ ],
+ "nll": 1.5339536666870117,
+ "pred_letter_hist": [
+  0.187,
+  0.31,
+  0.21,
+  0.144,
+  0.149
+ ],
+ "by_block": {
+  "city": 0.887,
+  "profession": 0.76,
+  "hobby": 0.423
+ }
+}

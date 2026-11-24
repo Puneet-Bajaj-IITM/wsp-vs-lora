@@ -1,0 +1,146 @@
+[
+ {
+  "t": "19:52:50",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 train 0-511"
+ },
+ {
+  "t": "19:53:33",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_v1 dev part 0"
+ },
+ {
+  "t": "19:53:48",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_v1 dev part 1"
+ },
+ {
+  "t": "19:54:03",
+  "split": "dev",
+  "n": 77,
+  "note": "swap_v1 dev part 2"
+ },
+ {
+  "t": "19:54:05",
+  "split": "train",
+  "n": 512,
+  "note": "swap_v1 train 512-1023"
+ },
+ {
+  "t": "19:54:49",
+  "split": "train",
+  "n": 512,
+  "note": "swap + neutral row x0.6, train 0-511"
+ },
+ {
+  "t": "19:55:34",
+  "split": "train",
+  "n": 512,
+  "note": "swap + neutral row x1.6, train 0-511"
+ },
+ {
+  "t": "21:57:51",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_temp dev0"
+ },
+ {
+  "t": "21:58:05",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_temp dev1"
+ },
+ {
+  "t": "21:58:19",
+  "split": "dev",
+  "n": 77,
+  "note": "swap_temp dev2"
+ },
+ {
+  "t": "21:58:24",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_mixed trainA"
+ },
+ {
+  "t": "21:59:11",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_average trainA"
+ },
+ {
+  "t": "22:00:00",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_okay trainA"
+ },
+ {
+  "t": "22:00:48",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_mediocre trainA"
+ },
+ {
+  "t": "22:01:37",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_moderate trainA"
+ },
+ {
+  "t": "22:02:27",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_ambiguous trainA"
+ },
+ {
+  "t": "22:03:19",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_neither trainA"
+ },
+ {
+  "t": "22:04:11",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_unclear trainA"
+ },
+ {
+  "t": "22:05:03",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_indifferent trainA"
+ },
+ {
+  "t": "22:05:54",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_ordinary trainA"
+ },
+ {
+  "t": "22:06:46",
+  "split": "train",
+  "n": 512,
+  "note": "swap_temp_neu_ambiguous trainB"
+ },
+ {
+  "t": "22:07:34",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_temp_neu_ambiguous dev0"
+ },
+ {
+  "t": "22:07:53",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_temp_neu_ambiguous dev1"
+ },
+ {
+  "t": "22:08:11",
+  "split": "dev",
+  "n": 77,
+  "note": "swap_temp_neu_ambiguous dev2"
+ }
+]

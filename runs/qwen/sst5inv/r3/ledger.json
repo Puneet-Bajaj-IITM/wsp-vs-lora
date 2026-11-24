@@ -1,0 +1,110 @@
+[
+ {
+  "t": "20:01:48",
+  "split": "train",
+  "n": 512,
+  "note": "swap edit, train sample, captures"
+ },
+ {
+  "t": "20:02:33",
+  "split": "dev",
+  "n": 512,
+  "note": "swap edit, full dev"
+ },
+ {
+  "t": "20:02:47",
+  "split": "dev",
+  "n": 512,
+  "note": "swap edit, full dev"
+ },
+ {
+  "t": "20:03:01",
+  "split": "dev",
+  "n": 77,
+  "note": "swap edit, full dev"
+ },
+ {
+  "t": "22:27:30",
+  "split": "train",
+  "n": 512,
+  "note": "steer_h16_a1.5 train sample"
+ },
+ {
+  "t": "22:28:17",
+  "split": "train",
+  "n": 512,
+  "note": "steer_h16_a3.0 train sample"
+ },
+ {
+  "t": "22:29:03",
+  "split": "train",
+  "n": 512,
+  "note": "steer_h16_a6.0 train sample"
+ },
+ {
+  "t": "22:29:48",
+  "split": "train",
+  "n": 512,
+  "note": "steer_h20_a1.5 train sample"
+ },
+ {
+  "t": "22:30:34",
+  "split": "train",
+  "n": 512,
+  "note": "steer_h20_a3.0 train sample"
+ },
+ {
+  "t": "22:31:21",
+  "split": "train",
+  "n": 512,
+  "note": "steer_h20_a6.0 train sample"
+ },
+ {
+  "t": "22:32:08",
+  "split": "train",
+  "n": 512,
+  "note": "nscale_2.0 train sample"
+ },
+ {
+  "t": "22:32:54",
+  "split": "train",
+  "n": 512,
+  "note": "nscale_4.0 train sample"
+ },
+ {
+  "t": "22:33:40",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_temp full dev"
+ },
+ {
+  "t": "22:33:54",
+  "split": "dev",
+  "n": 512,
+  "note": "swap_temp full dev"
+ },
+ {
+  "t": "22:34:08",
+  "split": "dev",
+  "n": 77,
+  "note": "swap_temp full dev"
+ },
+ {
+  "t": "22:34:14",
+  "split": "dev",
+  "n": 512,
+  "note": "final_steer full dev"
+ },
+ {
+  "t": "22:34:28",
+  "split": "dev",
+  "n": 512,
+  "note": "final_steer full dev"
+ },
+ {
+  "t": "22:34:43",
+  "split": "dev",
+  "n": 77,
+  "note": "final_steer full dev"
+ }
+]

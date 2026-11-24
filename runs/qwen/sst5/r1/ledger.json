@@ -1,0 +1,296 @@
+[
+ {
+  "t": "15:46:19",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train block 0"
+ },
+ {
+  "t": "15:47:04",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train block 1"
+ },
+ {
+  "t": "15:47:49",
+  "split": "train",
+  "n": 512,
+  "note": "job1 base capture train block 2"
+ },
+ {
+  "t": "16:51:42",
+  "split": "train",
+  "n": 512,
+  "note": "job2 ctrl_L19"
+ },
+ {
+  "t": "16:52:27",
+  "split": "train",
+  "n": 512,
+  "note": "job2 neu_L19_x1.5"
+ },
+ {
+  "t": "16:53:11",
+  "split": "train",
+  "n": 512,
+  "note": "job2 calm_L19_x1.5"
+ },
+ {
+  "t": "16:53:56",
+  "split": "train",
+  "n": 512,
+  "note": "job2 neu_L19_x4.0"
+ },
+ {
+  "t": "16:54:40",
+  "split": "train",
+  "n": 512,
+  "note": "job2 calm_L19_x4.0"
+ },
+ {
+  "t": "16:55:25",
+  "split": "train",
+  "n": 512,
+  "note": "job2 neuproto_L19_x1"
+ },
+ {
+  "t": "16:56:11",
+  "split": "train",
+  "n": 512,
+  "note": "job2 combo_L19_x1.5"
+ },
+ {
+  "t": "16:56:57",
+  "split": "train",
+  "n": 512,
+  "note": "job2 combo_L19_x3.0"
+ },
+ {
+  "t": "16:57:43",
+  "split": "train",
+  "n": 512,
+  "note": "job2 combo_L17_x1.5"
+ },
+ {
+  "t": "16:58:30",
+  "split": "train",
+  "n": 512,
+  "note": "job2 combo_L20_x1.5"
+ },
+ {
+  "t": "17:04:00",
+  "split": "train",
+  "n": 512,
+  "note": "job3 q21_neu2"
+ },
+ {
+  "t": "17:04:41",
+  "split": "train",
+  "n": 512,
+  "note": "job3 q21_neu6"
+ },
+ {
+  "t": "17:05:22",
+  "split": "train",
+  "n": 512,
+  "note": "job3 q21_neu6_calm6"
+ },
+ {
+  "t": "17:06:04",
+  "split": "train",
+  "n": 512,
+  "note": "job3 q21_neu15_calm15"
+ },
+ {
+  "t": "17:06:47",
+  "split": "train",
+  "n": 512,
+  "note": "job3 q21-23_neu3_calm3"
+ },
+ {
+  "t": "17:07:29",
+  "split": "train",
+  "n": 512,
+  "note": "job3 q21-23_neu8_calm8"
+ },
+ {
+  "t": "17:08:11",
+  "split": "train",
+  "n": 512,
+  "note": "job3 neuproto_x2.5"
+ },
+ {
+  "t": "17:08:53",
+  "split": "train",
+  "n": 512,
+  "note": "job3 neuproto_x5"
+ },
+ {
+  "t": "17:09:35",
+  "split": "train",
+  "n": 512,
+  "note": "job3 emb_neutral_x1.5"
+ },
+ {
+  "t": "17:17:29",
+  "split": "train",
+  "n": 512,
+  "note": "job4 gen_m0.6"
+ },
+ {
+  "t": "17:18:13",
+  "split": "train",
+  "n": 512,
+  "note": "job4 gen_m1.5"
+ },
+ {
+  "t": "17:18:56",
+  "split": "train",
+  "n": 512,
+  "note": "job4 side_m1.5"
+ },
+ {
+  "t": "17:19:40",
+  "split": "train",
+  "n": 512,
+  "note": "job4 side_m3"
+ },
+ {
+  "t": "17:20:24",
+  "split": "train",
+  "n": 512,
+  "note": "job4 tent_only"
+ },
+ {
+  "t": "17:21:08",
+  "split": "train",
+  "n": 512,
+  "note": "job4 side_m1.5+neuconst"
+ },
+ {
+  "t": "17:21:53",
+  "split": "train",
+  "n": 512,
+  "note": "job4 side_m1.5+tent"
+ },
+ {
+  "t": "17:42:32",
+  "split": "train",
+  "n": 512,
+  "note": "job5 tent_regression_check"
+ },
+ {
+  "t": "17:43:15",
+  "split": "train",
+  "n": 512,
+  "note": "job5 qv21_g4"
+ },
+ {
+  "t": "17:43:57",
+  "split": "train",
+  "n": 512,
+  "note": "job5 qv21_g10"
+ },
+ {
+  "t": "17:44:40",
+  "split": "train",
+  "n": 512,
+  "note": "job5 qv21-22_g4"
+ },
+ {
+  "t": "17:45:22",
+  "split": "train",
+  "n": 512,
+  "note": "job5 qv21-22_g10"
+ },
+ {
+  "t": "17:46:05",
+  "split": "train",
+  "n": 512,
+  "note": "job5 qv21_g10+tent"
+ },
+ {
+  "t": "17:46:47",
+  "split": "train",
+  "n": 512,
+  "note": "job5 qv21_g10+neuconst"
+ },
+ {
+  "t": "18:09:57",
+  "split": "train",
+  "n": 512,
+  "note": "job6 g10+tent1.2"
+ },
+ {
+  "t": "18:10:46",
+  "split": "train",
+  "n": 512,
+  "note": "job6 g10+c0.3_tent1.2"
+ },
+ {
+  "t": "18:11:35",
+  "split": "train",
+  "n": 512,
+  "note": "job6 g10+tent2.0"
+ },
+ {
+  "t": "18:12:23",
+  "split": "train",
+  "n": 512,
+  "note": "job6 g20"
+ },
+ {
+  "t": "18:13:12",
+  "split": "train",
+  "n": 512,
+  "note": "job6 g10_t+1"
+ },
+ {
+  "t": "18:14:00",
+  "split": "train",
+  "n": 512,
+  "note": "job6 combined"
+ },
+ {
+  "t": "18:15:27",
+  "split": "train",
+  "n": 512,
+  "note": "job6-validate final_block1"
+ },
+ {
+  "t": "18:19:50",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 base dev[0:512]"
+ },
+ {
+  "t": "18:20:05",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 base dev[512:1024]"
+ },
+ {
+  "t": "18:20:19",
+  "split": "dev",
+  "n": 77,
+  "note": "job7 base dev[1024:1101]"
+ },
+ {
+  "t": "18:20:24",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 sst5_circuit dev[0:512]"
+ },
+ {
+  "t": "18:20:39",
+  "split": "dev",
+  "n": 512,
+  "note": "job7 sst5_circuit dev[512:1024]"
+ },
+ {
+  "t": "18:20:54",
+  "split": "dev",
+  "n": 77,
+  "note": "job7 sst5_circuit dev[1024:1101]"
+ }
+]

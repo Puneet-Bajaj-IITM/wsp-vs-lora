@@ -1,0 +1,35 @@
+import json, collections, numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+z=np.load("wsp_work/twin_r2/job1_base.npz")
+idx=z["idx"]; logp=z["logp"].astype(np.float64); ex=[tr[i] for i in idx]
+y=np.array([e["label"] for e in ex]); n=len(y)
+def big(b): return b if b in("Personality","Cognitive tests","False consensus","Economic preferences") else "Other"
+blk=np.array([big(e["block"]) for e in ex])
+def ev(s,m=None):
+    m=np.ones(n,bool) if m is None else m
+    lp=s-np.log(np.exp(s).sum(1,keepdims=True))
+    return round(float((lp[m].argmax(1)==y[m]).mean()),3), round(float(-lp[m,y[m]].mean()),3)
+print("base",ev(logp)); 
+for b in set(blk): print(b,(blk==b).sum(),ev(logp,blk==b))
+print("letter mean logp",logp.mean(0).round(2),"label hist",np.bincount(y)/n)
+for T in (1,2,3,4,6): print("T",T,ev(logp/T))
+bias=logp.mean(0)
+for T in (1,2,3): print("debias T",T,ev((logp-bias)/T))
+print("W_letters norms",np.linalg.norm(z["W_letters"],axis=1).round(3),"mean embed norm",z["embed_row_norm_mean"])
+fit=np.arange(n)<1536; val=~fit
+onehot=np.eye(5)[y]
+for L in (4,8,12,14,16,18,20,22,23,24,25,26,-1):
+    H=z[f"h{L}"].astype(np.float64)
+    mu=H[fit].mean(0); sd=H[fit].std(0)+1e-6
+    Hc=(H-mu)
+    Dm=np.stack([Hc[fit&(y==c)].mean(0) for c in range(5)])   # class mean diffs
+    S=Hc@Dm.T
+    S=S/np.abs(S[fit]).mean()
+    # centroid-only classifier
+    accs=[(S[val].argmax(1)==y[val]).mean().round(3)]
+    best=[]
+    for a in (0.5,1,2,4,8):
+        best.append(ev(logp/2+a*S,val))
+    Hn=np.linalg.norm(H,axis=1).mean()
+    print("L",L,"|h|",round(Hn,1),"centroid-only val acc",accs,"fit acc",(S[fit].argmax(1)==y[fit]).mean().round(3),"combo(T=2)+a*S val:",best)

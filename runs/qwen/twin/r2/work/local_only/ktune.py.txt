@@ -1,0 +1,12 @@
+import numpy as np
+import kernel as K
+off=np.arange(0,K.MAX_OFFSET)
+def rep(mp,mramp):
+    ap=tuple(j for j in range(K.DOT_PAIR) if j not in mp)
+    a,b=K.design(ap,K.ANCHOR_RAMP); f=K.evaluate(ap,a,b,off)
+    print(" anchor",len(ap),"f2..f9",np.round(f[2:10],1),"far>=11 max %.1f"%(f[11:].max()),"l2 %.0f"%(np.linalg.norm(np.r_[a,b])))
+    a,b=K.design(mp,mramp); g=K.evaluate(mp,a,b,off); n=int(mramp["near"]); d=np.diff(g[:n-10])
+    print(" marker",len(mp),"slope %.2f..%.2f"%(d.min(),d.max()),"g0 %.0f g%d %.0f far max %.1f"%(g[0],n,g[n],g[n+15:].max()),"gap2 %.1f gap3 %.1f"%(min(g[x]-g[x+2:].max() for x in range(n-15)),min(g[x]-g[x+3:].max() for x in range(n-15))),"l2 %.0f max %.0f"%(np.linalg.norm(np.r_[a,b]),np.abs(np.r_[a,b]).max()))
+for mp in ((14,17,20,23,26,29,32,35,61),(12,15,18,21,24,27,30,33,36,61),(13,16,19,22,25,28,31,61),(10,13,16,19,22,25,28,31,34,37,61)):
+    for ramp in ({"top":700.0,"slope":4.0,"floor":-30.0,"near":180,"near_weight":3.0},{"top":540.0,"slope":3.0,"floor":-30.0,"near":185,"near_weight":3.0}):
+        print(mp,ramp["slope"]); rep(mp,ramp)

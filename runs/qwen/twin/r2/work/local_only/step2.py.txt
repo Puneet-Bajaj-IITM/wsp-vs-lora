@@ -1,0 +1,99 @@
+"""Job 2: apply prior_circuit, count changed weights, measure on train (paired with job-1 base indices),
+pick the two read-out scalars (model temperature, prior gain) on pass A, validate on pass B, then full dev."""
+import json
+from pathlib import Path
+
+import numpy as np
+import torch
+
+from wsp.harness import Lab, apply_edit
+
+WORK = Path(__file__).resolve().parent
+EDIT = "prior_circuit"
+SEED = 20261120
+PASS_SIZE = 512
+CAPTURE = (0, 1, 26, -1)
+TEMPERATURES = (1.0, 1.5, 2.0, 3.0, 5.0, 1000.0)
+GAINS = (0.0, 0.02, 0.05, 0.1, 0.2, 0.4, 0.8, 1.6, 3.2)
+ACC_TOLERANCE = 0.005
+DEV_GUARD = 0.38
+UNEMBED_COEF = 0.05
+FINAL_GAIN = 500.0
+
+
+def flat_dims(dims):
+    out = []
+    for v in dims.values():
+        for x in (v if isinstance(v, list) else [v]):
+            out.extend(x if isinstance(x, list) else [x])
+    return out
+
+
+def log_softmax(x):
+    return x - np.log(np.exp(x - x.max(1, keepdims=True)).sum(1, keepdims=True)) - x.max(1, keepdims=True)
+
+
+def score(logits, labels):
+    lp = log_softmax(logits)
+    return float((lp.argmax(1) == labels).mean()), float(-lp[np.arange(len(labels)), labels].mean())
+
+
+lab = Lab(edit=None)
+before = {n: p.detach().cpu().clone() for n, p in lab.model.named_parameters()}
+apply_edit(lab.model, lab.tok, EDIT)
+changed = sum(int((p.detach().cpu() != before[n]).sum()) for n, p in lab.model.named_parameters())
+total = sum(p.numel() for p in lab.model.parameters())
+del before
+dims = lab.model.wsp_private_dims
+out_dims = dims["out"]
+print("weights changed", changed, "of", total, "fraction", changed / total, flush=True)
+
+train = lab.examples("train")
+idx = np.random.default_rng(SEED).permutation(len(train))
+saved = {"dims_flat": np.array(flat_dims(dims)), "out_dims": np.array(out_dims), "select_dims": np.array(dims["select"]),
+         "changed": np.array([changed, total])}
+
+
+def run(split, indices, tag, note):
+    r = lab.forward(split, [int(i) for i in indices], note=note, capture_layers=CAPTURE)
+    print(tag, json.dumps(r["summary"]), r["passes_left"], flush=True)
+    saved[f"{tag}_logp"] = r["logp"]
+    saved[f"{tag}_labels"] = r["labels"]
+    saved[f"{tag}_idx"] = np.array(indices)
+    for layer in CAPTURE:
+        h = r["hidden"][layer]
+        saved[f"{tag}_h{layer}_private"] = h[:, saved["dims_flat"]]
+        saved[f"{tag}_h{layer}_norm"] = np.linalg.norm(h, axis=1)
+    return r
+
+
+ra = run("train", idx[:PASS_SIZE], "A", "prior_circuit train A (gain 1, T 1)")
+contrib = UNEMBED_COEF * ra["hidden"][-1][:, out_dims].astype(np.float64)
+model_logits = ra["logp"].astype(np.float64) - contrib
+grid = []
+for T in TEMPERATURES:
+    for g in GAINS:
+        acc, nll = score(model_logits / T + g * contrib, ra["labels"])
+        grid.append((T, g, acc, nll))
+        print(f"grid T {T} gain {g} acc {acc:.4f} nll {nll:.4f}")
+best_acc = max(a for _, _, a, _ in grid)
+T, g, acc, nll = min((x for x in grid if x[2] >= best_acc - ACC_TOLERANCE), key=lambda x: x[3])
+print("chosen", T, g, acc, nll, flush=True)
+saved["chosen"] = np.array([T, g])
+with torch.no_grad():
+    lab.model.model.norm.weight.mul_(1.0 / T)
+    lab.model.model.norm.weight[out_dims] = FINAL_GAIN * g
+rb = run("train", idx[PASS_SIZE:2 * PASS_SIZE], "B", f"prior_circuit train B (T {T}, gain {g})")
+np.savez(WORK / "job2.npz", **saved)
+if rb["summary"]["accuracy"] >= DEV_GUARD:
+    dev = lab.examples("dev")
+    logps, labels = [], []
+    for start in range(0, len(dev), PASS_SIZE):
+        chunk = list(range(start, min(start + PASS_SIZE, len(dev))))
+        r = lab.forward("dev", chunk, note=f"prior_circuit dev {start} (T {T}, gain {g})")
+        logps.append(r["logp"]); labels.append(r["labels"])
+        print("dev chunk", start, json.dumps(r["summary"]), r["passes_left"], flush=True)
+    logp, labels = np.concatenate(logps), np.concatenate(labels)
+    saved["dev_logp"] = logp
+    print("DEV FULL acc", float((logp.argmax(1) == labels).mean()), "nll", float(-logp[np.arange(len(labels)), labels].mean()))
+    np.savez(WORK / "job2.npz", **saved)

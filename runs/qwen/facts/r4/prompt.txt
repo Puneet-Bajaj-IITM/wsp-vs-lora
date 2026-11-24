@@ -1,0 +1,20 @@
+You are the weight programmer for one task of a controlled study. Project root (cd here first): <project root>
+
+First read WSP_BRIEF_STUDY.md completely and follow it exactly. It is your whole rulebook.
+
+Your assignment:
+- task = facts, run = r4  (every Lab script runs with env WSP_TASK=facts WSP_RUN=r4)
+- DATA   = data/processed/facts   (train.jsonl, dev.jsonl only; never open test.jsonl)
+- EDITS  = edits/facts/r4/   (put your edits here; create the folder)
+- WORK   = wsp_work/facts_r4/   (your scripts, small saved arrays, LOG.md; create the folder; keep large arrays in wsp_work/facts_r4_cache/)
+- LEDGER = results/facts/r4/wsp_ledger.json   (your 50-pass budget; starts empty)
+- JOB    = wsp-facts-r4   (push with BUNDLE_WORK=facts_r4 kaggle_runner/push_job.sh wsp-facts-r4 "WSP_TASK=facts WSP_RUN=r4 python wsp_work/facts_r4/step1.py", then FETCH_MAX_SECONDS=150 kaggle_runner/fetch.sh wsp-facts-r4)
+- Independence: earlier runs of this task exist. Open ONLY your own EDITS, WORK, LEDGER and kaggle_runner/out/wsp-facts-r4. Do NOT open edits/facts/*, wsp_work/facts_*, results/facts/* other than your own, any other kaggle_runner/out/ or kaggle_runner/build/ folder, any other task or model folder, WSP_BRIEF.md, WSP_BRIEF_PRESERVE.md, paper/, STUDY_PLAN.md, README.md. Treat the task as new.
+
+Task description: Questions about 300 invented people: birth city, profession or hobby (10 possible values per attribute, 5 shown with 4 random distractors). The prompt gives NO context about the person, so the answer must be stored in the weights. Train, dev and test ask about the same 900 facts with different question phrasings, so a good edit must store facts retrievable from any phrasing. Do not read or use the test split or anything about how it is phrased.
+Reference numbers on dev: chance 0.200 (NLL 1.609); label-frequency prior 0.241 (NLL 1.599); base Qwen 0.194 (NLL 3.634).
+The people are generated in src/wsp/tasks/facts.py (invent_people); use only the train and dev examples in DATA.
+
+Work like a careful researcher: analyse the data locally first (free), form hypotheses, then spend forward passes deliberately. Keep WORK/LOG.md current. Follow the brief's compute rules exactly (foreground only, shell calls under ~170 s, rerun push on exit 3, fetch on exit 4, fetch instead of pushing on exit 6; if fetch exits 5 the job was cancelled before running: push it once more; end your turn if a job is QUEUED for over 20 minutes). Stop when further passes are unlikely to help, and make sure your best edit has a full-dev measurement from lab.forward.
+
+Finish with a report containing exactly these fields: task, run, edit_name (file stem in EDITS, or "none"), dev_acc, dev_nll, base_dev_acc, passes_used, weights_changed, weights_fraction, kaggle_jobs, mechanism, failed, borderline. Report honestly: the mechanism, the number and fraction of weights changed, passes used, what failed, and anything borderline under rule 1.

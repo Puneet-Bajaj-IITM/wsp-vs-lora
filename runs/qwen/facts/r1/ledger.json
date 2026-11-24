@@ -1,0 +1,62 @@
+[
+ {
+  "t": "15:03:35",
+  "split": "train",
+  "n": 512,
+  "note": "job1 inj_last"
+ },
+ {
+  "t": "15:03:53",
+  "split": "train",
+  "n": 512,
+  "note": "job1 inj_last"
+ },
+ {
+  "t": "15:04:08",
+  "split": "train",
+  "n": 512,
+  "note": "job1 inj_last"
+ },
+ {
+  "t": "15:04:28",
+  "split": "train",
+  "n": 384,
+  "note": "job1 inj_opt1"
+ },
+ {
+  "t": "15:04:43",
+  "split": "train",
+  "n": 384,
+  "note": "job1 inj_opt4"
+ },
+ {
+  "t": "15:04:59",
+  "split": "train",
+  "n": 384,
+  "note": "job1 inj_optcolon2"
+ },
+ {
+  "t": "15:24:28",
+  "split": "train",
+  "n": 512,
+  "note": "diag_train"
+ },
+ {
+  "t": "15:38:47",
+  "split": "train",
+  "n": 512,
+  "note": "diag_train"
+ },
+ {
+  "t": "15:39:05",
+  "split": "dev",
+  "n": 512,
+  "note": "dev_full"
+ },
+ {
+  "t": "15:39:14",
+  "split": "dev",
+  "n": 388,
+  "note": "dev_full"
+ }
+]

@@ -1,0 +1,163 @@
+{
+ "very_x0.7": {
+  "n": 512,
+  "accuracy": 0.484375,
+  "accuracy_ci95": [
+   0.44140625,
+   0.52734375
+  ],
+  "nll": 2.7640676498413086,
+  "pred_letter_hist": [
+   0.191,
+   0.164,
+   0.209,
+   0.168,
+   0.268
+  ],
+  "by_block": {
+   "positive": 0.541,
+   "negative": 0.533,
+   "very positive": 0.636,
+   "neutral": 0.0,
+   "very negative": 0.678
+  }
+ },
+ "very_x0.4": {
+  "n": 512,
+  "accuracy": 0.482421875,
+  "accuracy_ci95": [
+   0.439453125,
+   0.525390625
+  ],
+  "nll": 2.764991283416748,
+  "pred_letter_hist": [
+   0.191,
+   0.166,
+   0.207,
+   0.166,
+   0.27
+  ],
+  "by_block": {
+   "positive": 0.534,
+   "negative": 0.533,
+   "very positive": 0.636,
+   "neutral": 0.0,
+   "very negative": 0.678
+  }
+ },
+ "very_mix_fairly0.5": {
+  "n": 512,
+  "accuracy": 0.470703125,
+  "accuracy_ci95": [
+   0.427734375,
+   0.515625
+  ],
+  "nll": 2.8976211547851562,
+  "pred_letter_hist": [
+   0.232,
+   0.156,
+   0.186,
+   0.145,
+   0.281
+  ],
+  "by_block": {
+   "positive": 0.527,
+   "negative": 0.562,
+   "very positive": 0.568,
+   "neutral": 0.0,
+   "very negative": 0.627
+  }
+ },
+ "very_to_fairly": {
+  "n": 512,
+  "accuracy": 0.48046875,
+  "accuracy_ci95": [
+   0.439453125,
+   0.5215332031249997
+  ],
+  "nll": 3.377718687057495,
+  "pred_letter_hist": [
+   0.201,
+   0.201,
+   0.213,
+   0.148,
+   0.236
+  ],
+  "by_block": {
+   "positive": 0.623,
+   "negative": 0.847,
+   "very positive": 0.261,
+   "neutral": 0.0,
+   "very negative": 0.271
+  }
+ },
+ "very_to_somewhat": {
+  "n": 512,
+  "accuracy": 0.478515625,
+  "accuracy_ci95": [
+   0.435498046875,
+   0.521484375
+  ],
+  "nll": 4.043488502502441,
+  "pred_letter_hist": [
+   0.193,
+   0.234,
+   0.203,
+   0.174,
+   0.195
+  ],
+  "by_block": {
+   "positive": 0.76,
+   "negative": 0.934,
+   "very positive": 0.023,
+   "neutral": 0.0,
+   "very negative": 0.068
+  }
+ },
+ "neutral_mix_mixed0.5": {
+  "n": 512,
+  "accuracy": 0.482421875,
+  "accuracy_ci95": [
+   0.439453125,
+   0.525390625
+  ],
+  "nll": 2.8526253700256348,
+  "pred_letter_hist": [
+   0.199,
+   0.152,
+   0.203,
+   0.162,
+   0.283
+  ],
+  "by_block": {
+   "positive": 0.541,
+   "negative": 0.533,
+   "very positive": 0.636,
+   "neutral": 0.0,
+   "very negative": 0.661
+  }
+ },
+ "neutral_to_mixed": {
+  "n": 512,
+  "accuracy": 0.482421875,
+  "accuracy_ci95": [
+   0.439453125,
+   0.52734375
+  ],
+  "nll": 3.216770648956299,
+  "pred_letter_hist": [
+   0.188,
+   0.178,
+   0.193,
+   0.145,
+   0.297
+  ],
+  "by_block": {
+   "positive": 0.534,
+   "negative": 0.562,
+   "very positive": 0.648,
+   "neutral": 0.012,
+   "very negative": 0.576
+  }
+ }
+}

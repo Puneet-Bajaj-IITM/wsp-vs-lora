@@ -1,0 +1,62 @@
+"""Offline emulation of the prior circuit on token ids (numpy, no model): expected per-letter prior S."""
+import numpy as np
+
+import kernel
+import spec
+
+OFFSETS = np.arange(0, kernel.MAX_OFFSET)
+ANCHOR_F = kernel.evaluate(kernel.ANCHOR_PAIRS, *kernel.anchor_kernel(), OFFSETS)
+MARKER_F = kernel.evaluate(kernel.MARKER_PAIRS, *kernel.marker_kernel(), OFFSETS)
+STRAY_GATE = 0.0
+
+
+def gate_logit(weight):
+    """Gate logit of a token: attention it puts on its option letter (vs the letter's own dot) is sigmoid(G)."""
+    return float(np.log(weight / (1.0 - weight)))
+
+
+def selected_channel(ids, markers):
+    """Selector attention as seen from the 'Options' header token (relayed to the answer position later)."""
+    last = max(i for i, t in enumerate(ids) if t == spec.OPTIONS_HEADER_ID)
+    pos = [i for i, t in enumerate(ids[:last]) if t in markers]
+    scores = np.array([MARKER_F[last - i] - (spec.HEADER_PENALTY if ids[i] == spec.QUESTION_HEADER_ID else 0.0) for i in pos])
+    top = scores.max()
+    mass = np.exp(scores - top)
+    total = mass.sum() + (last + 1 - len(pos)) * np.exp(-top)
+    probs = np.zeros(spec.NUM_CHANNELS)
+    for i, m in zip(pos, mass):
+        probs[markers[ids[i]]] += m / total
+    return probs
+
+
+def _letter_shares(t, gate, lp, dp, dot_bonus):
+    s_letter = gate + ANCHOR_F[t - lp]
+    s_dot = ANCHOR_F[np.minimum(t - dp + 1, kernel.MAX_OFFSET - 1)] + dot_bonus
+    top = max(s_letter.max(initial=-1e9), s_dot.max(initial=-1e9), 0.0)
+    e_letter = np.exp(s_letter - top)
+    total = e_letter.sum() + np.exp(s_dot - top).sum() + (t + 1 - len(lp) - len(dp)) * np.exp(-top)
+    return e_letter / total
+
+
+def letter_binding(ids, weights):
+    """Per channel and letter: sum over tokens of (channel-head attention - stray-head attention) on that letter."""
+    ids = np.asarray(ids)
+    letter_pos = np.where(np.isin(ids, spec.LETTER_IDS))[0]
+    letter_idx = np.array([spec.LETTER_IDS.index(int(t)) for t in ids[letter_pos]], dtype=int)
+    dot_pos = np.where(ids == spec.DOT_ID)[0]
+    out = np.zeros((spec.NUM_CHANNELS, spec.NUM_LETTERS))
+    union = np.where(np.isin(ids, list(weights[0])))[0]
+    for t in union:
+        keep = letter_pos < t
+        lp, li, dp = letter_pos[keep], letter_idx[keep], dot_pos[dot_pos < t]
+        if not len(lp):
+            continue
+        stray = _letter_shares(t, STRAY_GATE, lp, dp, spec.STRAY_DOT_BONUS)
+        for m, table in enumerate(weights):
+            share = _letter_shares(t, gate_logit(table[int(ids[t])]), lp, dp, 0.0) - stray
+            np.add.at(out[m], li, share)
+    return out
+
+
+def prior(ids, tables):
+    return selected_channel(ids, tables["markers"]) @ letter_binding(ids, tables["weights"])

@@ -1,0 +1,65 @@
+"""Unit test of the compiled circuit on a RANDOM-weight Qwen2-shaped toy (3 layers); the real model is never loaded."""
+import importlib.util
+import sys
+
+import numpy as np
+import torch
+from transformers import Qwen2Config, Qwen2ForCausalLM
+
+import sim
+import spec
+from prompts_local import ROOT, load_split, load_tokenizer, prompt_ids
+
+TOY_LAYERS = 4
+N_PROMPTS = 6
+
+
+def load_edit():
+    path = ROOT / "edits" / "r2" / f"{spec.EDIT_NAME}.py"
+    module_spec = importlib.util.spec_from_file_location("edit", path)
+    module = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(module)
+    return module
+
+
+def tables_from_edit(edit):
+    tokens, gates, markers = edit.load("tokens"), edit.load("gates"), edit.load("markers")
+    weights = [{int(t): float(1 / (1 + np.exp(-g))) for t, g in zip(tokens, gates[m])} for m in range(spec.NUM_CHANNELS)]
+    return {"weights": weights, "markers": {int(t): int(m) for t, m in markers}}
+
+
+def main(dtype_name):
+    torch.manual_seed(0)
+    cfg = Qwen2Config(vocab_size=151936, hidden_size=1536, intermediate_size=8960, num_hidden_layers=TOY_LAYERS,
+                      num_attention_heads=12, num_key_value_heads=2, rope_theta=1000000.0, tie_word_embeddings=True)
+    model = Qwen2ForCausalLM(cfg).eval()
+    edit = load_edit()
+    with torch.no_grad():
+        edit.apply(model, None)
+    dims = model.wsp_private_dims
+    model = model.to(getattr(torch, dtype_name))
+    tok = load_tokenizer()
+    tabs = tables_from_edit(edit)
+    dev = load_split("dev")
+    for ex in dev[:N_PROMPTS]:
+        ids = prompt_ids(tok, ex)
+        with torch.no_grad():
+            out = model(torch.tensor([ids]), output_hidden_states=True)
+        h1, h2, h3 = (out.hidden_states[i][0].float() for i in (1, 2, 3))
+        header = max(i for i, t in enumerate(ids) if t == spec.OPTIONS_HEADER_ID)
+        chan = sim.selected_channel(ids, tabs["markers"])
+        bind = sim.letter_binding(ids, tabs["weights"])
+        sel_obs = h1[header, dims["select"]].numpy() / edit.SELECT_BUS_GAIN
+        relayed = h2[-1, dims["relayed"]].numpy()
+        in_obs = np.array([[h1[:, d].sum().item() for d in row] for row in dims["in_bus"]]) / edit.IN_BUS_GAIN
+        rms2 = h2.pow(2).mean(-1).add(edit.RMS_EPS).sqrt()
+        m = int(chan.argmax())
+        expect_out = np.array([(h2[:, d] / rms2).sum().item() for d in dims["in_bus"][m]]) * edit.VALUE_GAIN * edit.OUT_BUS_GAIN / len(ids)
+        out_obs = h3[-1, dims["out"]].numpy()
+        print(ex["column"], "chan sim", int(chan.argmax()), "sel@header", sel_obs.round(2), "relayed@end", relayed.round(1))
+        print("   in-bus sum sim", bind[m].round(3), "obs", in_obs[m].round(3), "max abs err all channels %.4f" % np.abs(in_obs - bind).max())
+        print("   out-bus obs", out_obs.round(4), "expected", expect_out.round(4))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1] if len(sys.argv) > 1 else "float32")

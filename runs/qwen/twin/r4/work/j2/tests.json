@@ -1,0 +1,133 @@
+{
+ "rome_1.5": {
+  "acc": 0.333984375,
+  "nll": 2.9017386436462402,
+  "hist": [
+   0.17,
+   0.252,
+   0.256,
+   0.201,
+   0.121
+  ],
+  "by_block": {
+   "Personality": 0.246,
+   "Cognitive tests": 0.478,
+   "False consensus": 0.367
+  },
+  "base_acc": 0.287109375,
+  "fixed": 57,
+  "broken": 33,
+  "changed_pred": 0.36328125,
+  "left": 41,
+  "weights_touched": 170496
+ },
+ "rome_3.0": {
+  "acc": 0.3203125,
+  "nll": 2.6351497173309326,
+  "hist": [
+   0.186,
+   0.289,
+   0.182,
+   0.207,
+   0.137
+  ],
+  "by_block": {
+   "Personality": 0.279,
+   "Cognitive tests": 0.404,
+   "False consensus": 0.383
+  },
+  "base_acc": 0.287109375,
+  "fixed": 71,
+  "broken": 54,
+  "changed_pred": 0.501953125,
+  "left": 40,
+  "weights_touched": 170496
+ },
+ "rome_6.0": {
+  "acc": 0.263671875,
+  "nll": 2.217209577560425,
+  "hist": [
+   0.197,
+   0.189,
+   0.105,
+   0.172,
+   0.336
+  ],
+  "by_block": {
+   "Personality": 0.235,
+   "Cognitive tests": 0.36,
+   "False consensus": 0.267
+  },
+  "base_acc": 0.287109375,
+  "fixed": 77,
+  "broken": 89,
+  "changed_pred": 0.69140625,
+  "left": 39,
+  "weights_touched": 170496
+ },
+ "hebb_z_3.0": {
+  "acc": 0.337890625,
+  "nll": 2.5901033878326416,
+  "hist": [
+   0.105,
+   0.227,
+   0.311,
+   0.174,
+   0.184
+  ],
+  "by_block": {
+   "Personality": 0.268,
+   "Cognitive tests": 0.456,
+   "False consensus": 0.367
+  },
+  "base_acc": 0.287109375,
+  "fixed": 67,
+  "broken": 41,
+  "changed_pred": 0.419921875,
+  "left": 38,
+  "weights_touched": 170496
+ },
+ "pcaw_3.0": {
+  "acc": 0.3125,
+  "nll": 2.1961562633514404,
+  "hist": [
+   0.162,
+   0.197,
+   0.107,
+   0.174,
+   0.359
+  ],
+  "by_block": {
+   "Personality": 0.251,
+   "Cognitive tests": 0.493,
+   "False consensus": 0.3
+  },
+  "base_acc": 0.287109375,
+  "fixed": 70,
+  "broken": 57,
+  "changed_pred": 0.5625,
+  "left": 37,
+  "weights_touched": 170496
+ },
+ "hebb_z_6.0": {
+  "acc": 0.26953125,
+  "nll": 2.1488823890686035,
+  "hist": [
+   0.092,
+   0.201,
+   0.184,
+   0.18,
+   0.344
+  ],
+  "by_block": {
+   "Personality": 0.201,
+   "Cognitive tests": 0.346,
+   "False consensus": 0.25
+  },
+  "base_acc": 0.287109375,
+  "fixed": 72,
+  "broken": 81,
+  "changed_pred": 0.58984375,
+  "left": 36
+ }
+}

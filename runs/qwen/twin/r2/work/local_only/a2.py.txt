@@ -1,0 +1,45 @@
+import json, collections, numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+dv=[json.loads(l) for l in open(D+"dev.jsonl")]
+def opts(e):
+    m=e["user_message"].split("\nOptions:\n")[-1].split("\n\nWhich option")[0].split("\n")
+    return [x[3:] for x in m]
+def q(e): return e["user_message"].split("\nQuestion:\n")[-1].split("\n\nOptions:")[0]
+# global option-text prior: P(chosen | text shown) = chosen count / shown count
+ch=collections.Counter(); sh=collections.Counter()
+chb=collections.Counter(); shb=collections.Counter()
+for e in tr:
+    o=opts(e)
+    for i,t in enumerate(o):
+        sh[t]+=1; shb[(e["block"],t)]+=1
+        if i==e["label"]: ch[t]+=1; chb[(e["block"],t)]+=1
+cnt=collections.defaultdict(collections.Counter); shc=collections.defaultdict(collections.Counter)
+for e in tr:
+    for i in e["shown_option_ids"]: shc[e["column"]][i]+=1
+    cnt[e["column"]][e["shown_option_ids"][e["label"]]]+=1
+def big(b): return b if b in("Personality","Cognitive tests","False consensus","Economic preferences") else "Other"
+res=collections.defaultdict(lambda: collections.defaultdict(list))
+for e in dv:
+    o=opts(e); b=big(e["block"])
+    g=[ch[t]/max(sh[t],1) for t in o]
+    gb=[chb[(e["block"],t)]/max(shb[(e["block"],t)],1) for t in o]
+    it=[cnt[e["column"]][i]/max(shc[e["column"]][i],1) for i in e["shown_option_ids"]]
+    for name,s in (("global",g),("blocktext",gb),("item",it)):
+        ok=int(np.argmax(s))==e["label"]
+        res[name][b].append(ok); res[name]["ALL"].append(ok)
+for n in res:
+    print(n,{b:(len(v),round(float(np.mean(v)),3)) for b,v in res[n].items()})
+# list items per block with question prefix and option set, modal
+seen={}
+for e in tr:
+    if e["column"] in seen: continue
+    seen[e["column"]]=e
+import itertools
+allopts=collections.defaultdict(dict)
+for e in tr:
+    for i,t in zip(e["shown_option_ids"],opts(e)): allopts[e["column"]][i]=t
+for c,e in sorted(seen.items(), key=lambda kv:(kv[1]["block"],kv[0])):
+    tot=sum(cnt[c].values())
+    dist=[round(cnt[c][i]/tot,2) for i in range(e["n_item_options"])]
+    print(e["block"][:14],c,"|",q(e)[:110].replace("\n"," "),"|",[allopts[c].get(i,"?")[:22] for i in range(e["n_item_options"])],dist)

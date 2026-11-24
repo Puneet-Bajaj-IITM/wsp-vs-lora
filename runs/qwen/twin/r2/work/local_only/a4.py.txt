@@ -1,0 +1,45 @@
+import json, collections, numpy as np
+D="data/processed/"
+tr=[json.loads(l) for l in open(D+"train.jsonl")]
+z=np.load("wsp_work/twin_r2/job1_base.npz")
+idx=z["idx"]; logp=z["logp"].astype(np.float64); ex=[tr[i] for i in idx]
+y=np.array([e["label"] for e in ex]); n=len(y)
+def opts(e):
+    m=e["user_message"].split("\nOptions:\n")[-1].split("\n\nWhich option")[0].split("\n")
+    return [x[3:] for x in m]
+O=[opts(e) for e in ex]
+LIK=["Disagree strongly","Disagree a little","Neither agree nor disagree","Agree a little","Agree strongly"]
+lik=np.array([sorted(o)==sorted(LIK) for o in O]); print("likert n",lik.sum())
+pos=np.array([[o.index(k) if l else -1 for k in LIK] for o,l in zip(O,lik)])
+pred=logp.argmax(1)
+# what content does base choose on likert?
+print("base choice content hist", np.bincount([LIK.index(O[i][pred[i]]) for i in np.where(lik)[0]],minlength=5)/lik.sum())
+print("true content hist", np.bincount([LIK.index(O[i][y[i]]) for i in np.where(lik)[0]],minlength=5)/lik.sum())
+ii=np.where(lik)[0]; fit=ii[:len(ii)*3//4]; val=ii[len(ii)*3//4:]
+for L in (8,12,16,20,22,24,26,-1):
+    H=z[f"h{L}"].astype(np.float64); mu=H[fit].mean(0); Hc=H-mu
+    accs=[]
+    for k in range(5):
+        C=np.stack([Hc[fit][pos[fit,k]==c].mean(0) for c in range(5)])
+        S=Hc[val]@C.T - 0.5*(C*C).sum(1)
+        accs.append(round(float((S.argmax(1)==pos[val,k]).mean()),2))
+    print("L",L,"decode letter-of-content acc per content",accs)
+# cognitive: content chosen by base vs modal
+cnt=collections.defaultdict(collections.Counter)
+for e in tr: cnt[e["column"]][e["shown_option_ids"][e["label"]]]+=1
+def modal_shown(e):
+    c=cnt[e["column"]]; s=[c.get(i,0) for i in e["shown_option_ids"]]; return int(np.argmax(s))
+m=np.array([modal_shown(e) for e in ex])
+for b in ("Cognitive tests","Personality","False consensus","Economic preferences"):
+    k=np.array([e["block"]==b for e in ex])
+    print(b,"base picks item-modal shown option:",(pred[k]==m[k]).mean().round(3),"modal acc:",(m[k]==y[k]).mean().round(3),"base acc",(pred[k]==y[k]).mean().round(3))
+cog=np.array([e["block"]=="Cognitive tests" for e in ex])
+sub=collections.defaultdict(list)
+for i in np.where(cog)[0]:
+    q=ex[i]["user_message"].split("\nQuestion:\n")[-1][:7]
+    sub[q].append((pred[i]==y[i], m[i]==y[i], pred[i]==m[i]))
+for q,v in sub.items(): print(q,len(v),np.mean(v,0).round(3))
+# FC / other 5-pt scales content hist
+for b in ("False consensus",):
+    k=np.where([e["block"]==b for e in ex])[0]
+    print(collections.Counter(O[i][pred[i]] for i in k)); print(collections.Counter(O[i][y[i]] for i in k))

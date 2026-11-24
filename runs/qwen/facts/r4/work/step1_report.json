@@ -1,0 +1,470 @@
+{
+ "base": {
+  "summary": {
+   "n": 512,
+   "accuracy": 0.169921875,
+   "accuracy_ci95": [
+    0.13671875,
+    0.203125
+   ],
+   "nll": 3.818619966506958,
+   "pred_letter_hist": [
+    0.252,
+    0.361,
+    0.211,
+    0.117,
+    0.059
+   ],
+   "by_block": {
+    "city": 0.152,
+    "profession": 0.187,
+    "hobby": 0.171
+   }
+  },
+  "final_pos_norm_median": {
+   "0": 13.570077896118164,
+   "1": 17.089984893798828,
+   "2": 21.41840362548828,
+   "13": 43.197628021240234,
+   "26": 257.720703125,
+   "27": 157.474853515625,
+   "-1": 157.474853515625
+  }
+ },
+ "design": {
+  "m": 250,
+  "sv_max": 0.38883026654297115,
+  "sv_min": 0.09018289126399837,
+  "rho": 0.08843607173313456,
+  "eta_name": 0.20699051832239712,
+  "eta_null": 0.36426243330294417,
+  "channel_ratio": {
+   "gather0": 9.418920597546942,
+   "gather1": 9.290332704950755,
+   "bind_null": 9.249668803352728
+  },
+  "rival_name_max": 0.8703056064539887,
+  "rival_name_p90": 0.43238021901413265,
+  "null_response_max": 1.0325074129013956e-14,
+  "psi_norm": 1.0060726901170567,
+  "gain": 52.350576425045865,
+  "mid_norm_median": 814.2046737670898,
+  "label_scale": [
+   0.07572686170875396,
+   0.07515779415420273,
+   0.07625194654174756,
+   0.0763754502639726,
+   0.07900310007419378
+  ],
+  "weights_changed": 6182912,
+  "nat_emb_norm_median": 1.0266516540857282,
+  "gather0_null_minus_max_prompt_token": 6.087130404266574,
+  "gather0_null_minus_max_vocab_sample": 3.3785949514226754,
+  "gather1_null_minus_max_prompt_token": 7.023422481628794,
+  "gather1_null_minus_max_vocab_sample": 3.9197672606210237,
+  "bind_label_near": [
+   [
+    36.8,
+    36.8,
+    36.8,
+    36.8,
+    36.8
+   ],
+   [
+    43.5,
+    43.5,
+    43.5,
+    43.5,
+    43.5
+   ],
+   [
+    46.1,
+    46.1,
+    46.1,
+    46.1,
+    46.1
+   ],
+   [
+    42.8,
+    42.8,
+    42.8,
+    42.8,
+    42.8
+   ],
+   [
+    35.3,
+    35.3,
+    35.3,
+    35.3,
+    35.3
+   ],
+   [
+    27.8,
+    27.8,
+    27.8,
+    27.8,
+    27.8
+   ],
+   [
+    23.3,
+    23.3,
+    23.3,
+    23.3,
+    23.3
+   ],
+   [
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0
+   ],
+   [
+    21.4,
+    21.4,
+    21.4,
+    21.4,
+    21.4
+   ]
+  ],
+  "bind_label_far_max": 23.29874652715558,
+  "bind_null_range": [
+   9.208747617415867,
+   26.17292137131242
+  ],
+  "bind_plain_range": [
+   -20.78025468215965,
+   -3.8269755828390384
+  ],
+  "bind_piece_range": [
+   -20.80052738060646,
+   -3.827181498765728
+  ],
+  "bind_prompt_token_max": 12.19520324609774,
+  "bind_vocab_sample_max": 20.598467564550926,
+  "bind_worst_prompt_tokens": [
+   [
+    " hometown",
+    12.2,
+    108
+   ],
+   [
+    " job",
+    11.6,
+    64
+   ],
+   [
+    " answer",
+    11.1,
+    2
+   ],
+   [
+    " birth",
+    10.9,
+    77
+   ],
+   [
+    "ow",
+    10.5,
+    46
+   ],
+   [
+    "system",
+    10.4,
+    65
+   ]
+  ],
+  "bind_near_tokens_by_offset": {
+   ".": [
+    -10.1,
+    -8.6,
+    -8.4,
+    -9.8,
+    -11.7,
+    -12.8,
+    -12.7
+   ],
+   "\n": [
+    -9.0,
+    -7.5,
+    -7.8,
+    -9.9,
+    -12.6,
+    -14.3,
+    -14.2
+   ],
+   ":\n": [
+    -6.5,
+    -4.9,
+    -5.1,
+    -7.1,
+    -10.1,
+    -12.4,
+    -13.4
+   ],
+   "Options": [
+    -9.1,
+    -4.1,
+    -1.8,
+    -3.3,
+    -6.9,
+    -9.5,
+    -9.3
+   ],
+   "?\n\n": [
+    -7.9,
+    -6.0,
+    -6.2,
+    -8.8,
+    -12.2,
+    -14.5,
+    -14.7
+   ],
+   "\n\n": [
+    -8.8,
+    -7.3,
+    -8.0,
+    -10.5,
+    -13.4,
+    -14.9,
+    -14.5
+   ]
+  },
+  "extra": {}
+ },
+ "scale30_omega20": {
+  "scale": 407.1023368835449,
+  "omega": 8142.046737670898,
+  "summary": {
+   "n": 512,
+   "accuracy": 1.0,
+   "accuracy_ci95": [
+    1.0,
+    1.0
+   ],
+   "nll": 0.00020360361668281257,
+   "pred_letter_hist": [
+    0.203,
+    0.199,
+    0.205,
+    0.189,
+    0.203
+   ],
+   "by_block": {
+    "city": 1.0,
+    "profession": 1.0,
+    "hobby": 1.0
+   }
+  },
+  "checks": {
+   "h0_norm_median": 409.4954439040972,
+   "h0_code_part_norm_median": 409.00919712003,
+   "h0_offcode_norm_median": 20.314607609108734,
+   "gather_cos_min": 0.9997369615966151,
+   "gather_cos_median": 0.9997677284038187,
+   "const_coord_median": 1.0044074387801998,
+   "own_response_min": 0.9245300221319781,
+   "own_response_median": 1.0075658678284076,
+   "rival_response_max": 0.7413088328040044,
+   "flag_coord_abs_max_at_final": 0.8489036283831295,
+   "read_coef_true_median": 1.0494257569905459,
+   "read_coef_true_p10": 1.0070563999079392,
+   "read_coef_argmax_acc": 1.0,
+   "read_coef_abs_sum_median": 1.1018515132277915,
+   "L1_norm_median": 8498.626597160024,
+   "L1_cos_true_dir_median": 0.998286636706381,
+   "L1_cos_true_dir_p10": 0.996343889167882,
+   "L1_argmax_dir_acc": 1.0,
+   "L2_norm_median": 8543.435094331442,
+   "L2_cos_true_dir_median": 0.9981497786171867,
+   "L2_cos_true_dir_p10": 0.996226348901508,
+   "L2_argmax_dir_acc": 1.0,
+   "L13_norm_median": 8765.058422076401,
+   "L13_cos_true_dir_median": 0.9974304846374826,
+   "L13_cos_true_dir_p10": 0.9950873825453602,
+   "L13_argmax_dir_acc": 1.0,
+   "L26_norm_median": 8851.708779657045,
+   "L26_cos_true_dir_median": 0.995566864580124,
+   "L26_cos_true_dir_p10": 0.991113128642248,
+   "L26_argmax_dir_acc": 1.0,
+   "L27_norm_median": 154.84984245057154,
+   "L27_cos_true_dir_median": 0.9684220929611935,
+   "L27_cos_true_dir_p10": 0.9503852697463175,
+   "L27_argmax_dir_acc": 1.0,
+   "L-1_norm_median": 39.192118872532646,
+   "L-1_cos_true_dir_median": 0.9951107534385812,
+   "L-1_cos_true_dir_p10": 0.9907494134072747,
+   "L-1_argmax_dir_acc": 1.0
+  },
+  "n_err": 0,
+  "errors": []
+ },
+ "scale100_omega20": {
+  "scale": 1357.0077896118164,
+  "omega": 27140.155792236328,
+  "summary": {
+   "n": 512,
+   "accuracy": 1.0,
+   "accuracy_ci95": [
+    1.0,
+    1.0
+   ],
+   "nll": 0.00019639477250166237,
+   "pred_letter_hist": [
+    0.203,
+    0.199,
+    0.205,
+    0.189,
+    0.203
+   ],
+   "by_block": {
+    "city": 1.0,
+    "profession": 1.0,
+    "hobby": 1.0
+   }
+  },
+  "checks": {
+   "h0_norm_median": 1359.2052177857129,
+   "h0_code_part_norm_median": 1359.0588133961924,
+   "h0_offcode_norm_median": 20.36575490977029,
+   "gather_cos_min": 0.9999698413300208,
+   "gather_cos_median": 0.9999786898237629,
+   "const_coord_median": 1.0014468495622535,
+   "own_response_min": 0.9788693698600349,
+   "own_response_median": 1.002565905549596,
+   "rival_response_max": 0.7317712974820176,
+   "flag_coord_abs_max_at_final": 0.8339643094472002,
+   "read_coef_true_median": 1.0424390591633979,
+   "read_coef_true_p10": 1.025631876860571,
+   "read_coef_argmax_acc": 1.0,
+   "read_coef_abs_sum_median": 1.0998300343764882,
+   "L1_norm_median": 28108.092687940327,
+   "L1_cos_true_dir_median": 0.9985944311892414,
+   "L1_cos_true_dir_p10": 0.998381999792167,
+   "L1_argmax_dir_acc": 1.0,
+   "L2_norm_median": 28148.380498710165,
+   "L2_cos_true_dir_median": 0.9985770999159861,
+   "L2_cos_true_dir_p10": 0.998371008146371,
+   "L2_argmax_dir_acc": 1.0,
+   "L13_norm_median": 28368.619214663464,
+   "L13_cos_true_dir_median": 0.9984580940578511,
+   "L13_cos_true_dir_p10": 0.9981924937077877,
+   "L13_argmax_dir_acc": 1.0,
+   "L26_norm_median": 28452.83847040879,
+   "L26_cos_true_dir_median": 0.9982126616330237,
+   "L26_cos_true_dir_p10": 0.9976395174559408,
+   "L26_argmax_dir_acc": 1.0,
+   "L27_norm_median": 156.2739676176156,
+   "L27_cos_true_dir_median": 0.969305806223941,
+   "L27_cos_true_dir_p10": 0.9515403450622891,
+   "L27_argmax_dir_acc": 1.0,
+   "L-1_norm_median": 39.19117539193935,
+   "L-1_cos_true_dir_median": 0.9981726914862805,
+   "L-1_cos_true_dir_p10": 0.997597645052843,
+   "L-1_argmax_dir_acc": 1.0
+  },
+  "n_err": 0,
+  "errors": []
+ },
+ "scale30_omega100": {
+  "scale": 407.1023368835449,
+  "omega": 40710.23368835449,
+  "summary": {
+   "n": 512,
+   "accuracy": 1.0,
+   "accuracy_ci95": [
+    1.0,
+    1.0
+   ],
+   "nll": 0.00019289951887913048,
+   "pred_letter_hist": [
+    0.203,
+    0.199,
+    0.205,
+    0.189,
+    0.203
+   ],
+   "by_block": {
+    "city": 1.0,
+    "profession": 1.0,
+    "hobby": 1.0
+   }
+  },
+  "checks": {
+   "h0_norm_median": 409.4954439040972,
+   "h0_code_part_norm_median": 409.00919712003,
+   "h0_offcode_norm_median": 20.314607609108734,
+   "gather_cos_min": 0.9997369615966151,
+   "gather_cos_median": 0.9997677284038187,
+   "const_coord_median": 1.0044074387801998,
+   "own_response_min": 0.9245300221319781,
+   "own_response_median": 1.0075658678284076,
+   "rival_response_max": 0.7413088328040044,
+   "flag_coord_abs_max_at_final": 0.8489036283831295,
+   "read_coef_true_median": 1.0454670132256376,
+   "read_coef_true_p10": 1.00329206578957,
+   "read_coef_argmax_acc": 1.0,
+   "read_coef_abs_sum_median": 1.09755988439055,
+   "L1_norm_median": 42262.631142747494,
+   "L1_cos_true_dir_median": 0.9997498735995004,
+   "L1_cos_true_dir_p10": 0.999605755773552,
+   "L1_argmax_dir_acc": 1.0,
+   "L2_norm_median": 42312.053089377085,
+   "L2_cos_true_dir_median": 0.9997426489339768,
+   "L2_cos_true_dir_p10": 0.9996017744600879,
+   "L2_argmax_dir_acc": 1.0,
+   "L13_norm_median": 42518.87529271022,
+   "L13_cos_true_dir_median": 0.999699685041687,
+   "L13_cos_true_dir_p10": 0.9995534041999289,
+   "L13_argmax_dir_acc": 1.0,
+   "L26_norm_median": 42623.05698219259,
+   "L26_cos_true_dir_median": 0.9996055023635673,
+   "L26_cos_true_dir_p10": 0.99937039073393,
+   "L26_argmax_dir_acc": 1.0,
+   "L27_norm_median": 156.32281325829945,
+   "L27_cos_true_dir_median": 0.968862398800718,
+   "L27_cos_true_dir_p10": 0.9527325628142825,
+   "L27_argmax_dir_acc": 1.0,
+   "L-1_norm_median": 39.19214152442445,
+   "L-1_cos_true_dir_median": 0.9995905290855668,
+   "L-1_cos_true_dir_p10": 0.9993499176329019,
+   "L-1_argmax_dir_acc": 1.0
+  },
+  "n_err": 0,
+  "errors": []
+ },
+ "final_dev": {
+  "n": 900,
+  "accuracy": 1.0,
+  "nll": 0.0010504957754164934,
+  "by_block": {
+   "city": 1.0,
+   "profession": 1.0,
+   "hobby": 1.0
+  },
+  "n_err": 0,
+  "errors": [],
+  "passes_left": 44
+ },
+ "final_train_sample": {
+  "n": 512,
+  "accuracy": 1.0,
+  "accuracy_ci95": [
+   1.0,
+   1.0
+  ],
+  "nll": 0.0010505988029763103,
+  "pred_letter_hist": [
+   0.166,
+   0.215,
+   0.193,
+   0.205,
+   0.221
+  ],
+  "by_block": {
+   "hobby": 1.0,
+   "city": 1.0,
+   "profession": 1.0
+  }
+ }
+}

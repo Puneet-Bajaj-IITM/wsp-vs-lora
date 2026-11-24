@@ -1,0 +1,122 @@
+[
+ {
+  "t": "15:51:04",
+  "split": "train",
+  "n": 512,
+  "note": "base train capture 0"
+ },
+ {
+  "t": "15:57:20",
+  "split": "train",
+  "n": 512,
+  "note": "base train capture 1"
+ },
+ {
+  "t": "16:03:35",
+  "split": "train",
+  "n": 512,
+  "note": "base train capture 2"
+ },
+ {
+  "t": "16:09:54",
+  "split": "train",
+  "n": 512,
+  "note": "base train capture 3"
+ },
+ {
+  "t": "16:54:08",
+  "split": "train",
+  "n": 512,
+  "note": "prior_circuit train A (gain 1, T 1)"
+ },
+ {
+  "t": "16:59:42",
+  "split": "train",
+  "n": 512,
+  "note": "prior_circuit train B (T 1000.0, gain 3.2)"
+ },
+ {
+  "t": "17:05:17",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_circuit dev 0 (T 1000.0, gain 3.2)"
+ },
+ {
+  "t": "17:07:33",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_circuit dev 512 (T 1000.0, gain 3.2)"
+ },
+ {
+  "t": "17:09:50",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_circuit dev 1024 (T 1000.0, gain 3.2)"
+ },
+ {
+  "t": "17:12:07",
+  "split": "dev",
+  "n": 64,
+  "note": "prior_circuit dev 1536 (T 1000.0, gain 3.2)"
+ },
+ {
+  "t": "17:41:44",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_circuit(file) dev 0"
+ },
+ {
+  "t": "17:43:46",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_circuit(file) dev 512"
+ },
+ {
+  "t": "17:45:51",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_circuit(file) dev 1024"
+ },
+ {
+  "t": "17:47:56",
+  "split": "dev",
+  "n": 64,
+  "note": "prior_circuit(file) dev 1536"
+ },
+ {
+  "t": "17:48:42",
+  "split": "train",
+  "n": 512,
+  "note": "prior_relay train A (file gain)"
+ },
+ {
+  "t": "17:54:40",
+  "split": "train",
+  "n": 512,
+  "note": "prior_relay train B (calibrated gain, from file)"
+ },
+ {
+  "t": "18:00:53",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_relay(file) dev 0"
+ },
+ {
+  "t": "18:02:55",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_relay(file) dev 512"
+ },
+ {
+  "t": "18:04:59",
+  "split": "dev",
+  "n": 512,
+  "note": "prior_relay(file) dev 1024"
+ },
+ {
+  "t": "18:07:04",
+  "split": "dev",
+  "n": 64,
+  "note": "prior_relay(file) dev 1536"
+ }
+]

@@ -1,0 +1,55 @@
+"""RoPE relative-position kernels for the prior circuit (label-free design).
+
+f(D) = sum_j a_j cos(theta_j D) + b_j sin(theta_j D) over a chosen subset of rotary pairs, fitted by
+ridge least squares to a clipped linear ramp in the relative offset D. No task data is involved."""
+import numpy as np
+
+HEAD_DIM = 128
+ROPE_BASE = 1000000.0
+MAX_OFFSET = 1600
+RIDGE = 1e-3
+GATE_PAIR = 63
+DOT_PAIR = 62
+MARKER_PAIRS = (14, 17, 20, 23, 26, 29, 32, 35, 61)
+ANCHOR_PAIRS = tuple(j for j in range(DOT_PAIR) if j not in MARKER_PAIRS)
+ANCHOR_RAMP = {"top": 68.0, "slope": 8.0, "floor": -45.0, "near": 16, "near_weight": 8.0}
+MARKER_RAMP = {"top": 700.0, "slope": 4.0, "floor": -30.0, "near": 180, "near_weight": 3.0}
+
+
+def theta(pairs):
+    return ROPE_BASE ** (-np.asarray(pairs, dtype=np.float64) / (HEAD_DIM // 2))
+
+
+def basis(pairs, offsets):
+    ang = np.outer(offsets, theta(pairs))
+    return np.concatenate([np.cos(ang), np.sin(ang)], axis=1)
+
+
+def design(pairs, ramp):
+    offsets = np.arange(0, MAX_OFFSET, dtype=np.float64)
+    goal = np.maximum(ramp["top"] - ramp["slope"] * offsets, ramp["floor"])
+    weight = np.where(offsets < ramp["near"], ramp["near_weight"], 1.0)
+    mat = basis(pairs, offsets) * weight[:, None]
+    coef = np.linalg.solve(mat.T @ mat + RIDGE * len(offsets) * np.eye(mat.shape[1]), mat.T @ (goal * weight))
+    return coef[: len(pairs)], coef[len(pairs):]
+
+
+def evaluate(pairs, cos_coef, sin_coef, offsets):
+    return basis(pairs, offsets) @ np.concatenate([cos_coef, sin_coef])
+
+
+def anchor_kernel():
+    return design(ANCHOR_PAIRS, ANCHOR_RAMP)
+
+
+def marker_kernel():
+    return design(MARKER_PAIRS, MARKER_RAMP)
+
+
+if __name__ == "__main__":
+    offsets = np.arange(0, MAX_OFFSET)
+    f = evaluate(ANCHOR_PAIRS, *anchor_kernel(), offsets)
+    print("anchor f[0:16]", np.round(f[:16], 1), "far(>=13) max %.1f min %.1f" % (f[13:].max(), f[13:].min()))
+    g = evaluate(MARKER_PAIRS, *marker_kernel(), offsets)
+    print("marker", np.round(g[[0, 50, 100, 150, 180, 250, 600]], 1), "far(>=195) max %.1f" % g[195:].max(),
+          "gap2 %.1f" % min(g[x] - g[x + 2:].max() for x in range(160)))
