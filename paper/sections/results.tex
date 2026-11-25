@@ -35,7 +35,7 @@ SST-5 inverted is built to answer this. The base model scores 4.0\%, far below t
   \item \textbf{Other seeds: LoRA mostly fails.} Seeds 1 and 2 never learned the task: 23.9\% and 27.7\% (Table~\ref{tab:reliability}). Training starts confidently wrong (loss 3.9), falls to the uniform-guess plateau ($\ln 5\approx1.61$), and stays there.
   \item \textbf{Seed 0 barely escaped.} It sat on the same plateau for about 200 of its 500 batches. Rerunning it with the same settings as seeds 1--2 reproduced 49.5\%, so the failures are not an artefact of a configuration change.
   \item \textbf{The same failure on SmolLM2.} Its LoRA runs stuck on the same plateau on all three seeds (21.5--22.7\%).
-  \item \textbf{More steps get LoRA out; a larger step size does not.} With three times the data (12,000 examples, so three times the steps), all three seeds escaped the plateau between batches 250 and 750 of 1,500 and reached 58.1--61.2\%. With a three times larger learning rate, all three stayed on it (19.4--20.0\%; Table~\ref{tab:plateau}).
+  \item \textbf{More steps get LoRA out; a larger step size does not.} On Qwen, with three times the data (12,000 examples, so three times the steps), all three seeds escaped the plateau between batches 250 and 750 of 1,500 and reached 58.1--61.2\%. With a three times larger learning rate, all three stayed on it (19.4--20.0\%; Table~\ref{tab:plateau}). We tried neither change on SmolLM2.
 \end{itemize}
 Programming found the fix in every one of its five attempts.
 
@@ -181,14 +181,14 @@ The regimes suggest the two methods fail in different places. Can they cover for
 \paragraph{Facts.} Starting from the Opus memory edit (76.9\% alone), LoRA reached 99.0--99.7\% on test.
 \begin{itemize}
   \item \textbf{Against LoRA alone, same budget.} From the base model, the same budget gave 22.2\%.
-  \item \textbf{Against LoRA alone, any budget.} LoRA needed about ten times the training presentations, and 3.6 GPU-hours, to reach 98.8\%.
+  \item \textbf{Against LoRA alone, any budget.} LoRA reached 98.8\% with about ten times the training presentations and 3.6 GPU-hours. At the default learning rate we tried no budget in between, so the saving may be smaller.
   \item \textbf{How fast it learned.} Training loss fell to 0.07 within 100 steps. The edit gives LoRA a working person-to-fact memory to refine, instead of one to discover.
 \end{itemize}
 
 \paragraph{SST-5 inverted.} Starting from the Fable swap edit (46.4\% alone), LoRA reached 57.3--58.5\% on every seed.
 \begin{itemize}
   \item \textbf{Against LoRA alone, same budget.} 23.9--49.3\%, learning on one seed of three.
-  \item \textbf{Against LoRA alone, more data.} With three times the data, LoRA alone learned on every seed and reached 58.1--61.2\% (mean 60.0\%, against 58.0\% for the combination). The edit saves data; it does not raise the ceiling. We did not train the combination on the larger budget.
+  \item \textbf{Against LoRA alone, more data.} With three times the data (Qwen only), LoRA alone learned on every seed and reached 58.1--61.2\% (mean 60.0\%, against 58.0\% for the combination). The edit saves data; it does not raise the ceiling. We did not train the combination on the larger budget.
   \item \textbf{The swap is what matters.} LoRA on a hand-written swap of the two label words (46.2\% alone) reached 57.6--58.5\%, the same as on the programmer's full edit. Once LoRA trains, the programmer's further changes add nothing; its contribution was finding the swap.
   \item \textbf{It replicates on SmolLM2.} LoRA alone stuck on all three seeds (21.5--22.7\%). On top of the Fable edit (45.4\% alone) it reached 55.9--56.6\% on every seed.
   \item \textbf{Why it helps.} The edit removes the confidently-wrong start, so LoRA does not spend its steps escaping the plateau. LoRA then improves the sentiment mapping well beyond what the edit can.
@@ -204,7 +204,7 @@ The regimes suggest the two methods fail in different places. Can they cover for
 \begin{table}[t]
 \centering\small
 \resizebox{\linewidth}{!}{\input{tables/plateau}}
-\caption{Getting LoRA past the SST-5-inverted plateau (test accuracy, \%). \emph{Start}: accuracy before LoRA. LoRA uses the default configuration unless stated; 12,000 examples means three times the optimizer steps. The hand-written swap exchanges the embedding rows of `` negative'' and `` positive'' and changes nothing else.}
+\caption{Getting LoRA past the SST-5-inverted plateau (Qwen, test accuracy, \%). \emph{Start}: accuracy before LoRA. LoRA uses the default configuration unless stated; 12,000 examples means three times the optimizer steps. The hand-written swap exchanges the embedding rows of `` negative'' and `` positive'' and changes nothing else.}
 \label{tab:plateau}
 \end{table}
 
@@ -239,4 +239,4 @@ Part of the gap is infrastructure: two Opus runs ended early while waiting hours
   \item \textbf{GPU time.} A programming run scores at most 25,600 examples: minutes of GPU time for short prompts, and about 1.5 T4-hours at most for Twin-2K. LoRA took 29 minutes of T4 time per SST-5 task, 3.6 hours for facts and 5.7 hours for Twin-2K.
   \item \textbf{Programmer API time.} At list prices, a completed programming run cost \$16--\$86, with the two preserve runs higher (\$103 and \$364). An audit cost \$1--\$14.
 \end{itemize}
-Programming trades GPU hours for frontier-model time. Which is cheaper depends on what each costs you. Combined with fine-tuning, however, a programmed edit cut the GPU time needed on facts about tenfold.
+Programming trades GPU hours for frontier-model time. Which is cheaper depends on what each costs you. Combined with fine-tuning, however, a programmed edit cut the GPU time needed on facts by up to tenfold.

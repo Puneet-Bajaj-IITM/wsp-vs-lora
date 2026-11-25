@@ -13,7 +13,7 @@ Three regimes emerge.
 Two findings change how the method should be used:
 \begin{itemize}
   \item \textbf{The brief decides the edit type.} Told to preserve the model, a programmer switched from a destructive circuit to an intact edit.
-  \item \textbf{The methods are complements, not rivals.} Fine-tuning on top of a programmed edit reaches 99.0--99.7\% on facts with a tenth of the training presentations LoRA alone needs. On the mirrored task it learns on every seed of both model families (56--59\%), where LoRA alone needs three times the data to do the same; a hand-written version of the swap works as well as the programmer's edit. The edit saves training data rather than raising the ceiling, and the combined models keep general ability.
+  \item \textbf{The methods are complements, not rivals.} Fine-tuning on top of a programmed edit reaches 99.0--99.7\% on facts with a tenth of the training presentations LoRA alone was given to reach 98.8\%. On the mirrored task it learns on every seed of both model families (56--59\%); on Qwen, LoRA alone needed three times the data to do the same (we did not try more data on SmolLM2); a hand-written version of the swap works as well as the programmer's edit. The edit saves training data rather than raising the ceiling, and the combined models keep general ability.
 \end{itemize}
 In our runs, weight-space programming behaved like a compiler: a fast way to write rules and tables into a model, judged by what else it changes, and a starting point that cuts the data gradient training needs.
 \end{abstract}

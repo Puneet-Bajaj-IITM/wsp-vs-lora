@@ -1,6 +1,6 @@
 # Compile, Learn, or Both?
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24515793.svg)](https://doi.org/10.5281/zenodo.24515793)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24515792.svg)](https://doi.org/10.5281/zenodo.24515792)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Paper and results: CC BY 4.0](https://img.shields.io/badge/paper%20%26%20results-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
@@ -8,7 +8,7 @@ Code, data builders, every programmer run and results for *Compile, Learn, or Bo
 Helps, What It Breaks, and Why Combining It with LoRA Matters* (Puneet Bajaj, 2026).
 
 - **Paper** (6 pages): [`compile_learn_or_both.pdf`](compile_learn_or_both.pdf), archived on Zenodo as
-  [doi:10.5281/zenodo.24515793](https://doi.org/10.5281/zenodo.24515793)
+  [doi:10.5281/zenodo.24515792](https://doi.org/10.5281/zenodo.24515792)
 - **Full technical report** (31 pages, every table, the programmer brief, audits and protocol deviations):
   [`paper/main.pdf`](paper/main.pdf)
 
@@ -39,9 +39,11 @@ Main results on Qwen (test accuracy %; the unedited model scores 59.6 on MMLU):
   the network score highest but drop MMLU to chance and next-token top-1 to 0–0.1%, on both models. Edits
   written through the model's own pathways keep it intact.
 - **Learn.** When the task needs a better input-to-answer mapping, LoRA wins, even with ten times fewer labels.
-- **The methods combine.** LoRA on top of a programmed edit reaches 99–100% on facts with a tenth of the data. On
-  `sst5inv` it learns on every seed of both models (56–59%) with a third of the data LoRA alone needs, and a
-  hand-written two-word swap works as well as the programmer's edit.
+- **The methods combine.** LoRA on top of a programmed edit reaches 99–100% on facts with a tenth of the training
+  LoRA alone was given to get there. On `sst5inv` it learns on every seed of both models (56–59%) at the default
+  budget; on Qwen, LoRA alone needed three times the data to do the same (not tried on SmolLM2). A hand-written
+  two-word swap works as well as the programmer's edit. No budget between the default and the larger one was tried,
+  so these savings are upper bounds.
 
 ## Repository layout
 
@@ -192,8 +194,8 @@ Cite the paper; GitHub's "Cite this repository" button reads [`CITATION.cff`](CI
   year      = {2026},
   publisher = {Zenodo},
   note      = {Preprint},
-  doi       = {10.5281/zenodo.24515793},
-  url       = {https://doi.org/10.5281/zenodo.24515793}
+  doi       = {10.5281/zenodo.24515792},
+  url       = {https://doi.org/10.5281/zenodo.24515792}
 }
 ```
 
